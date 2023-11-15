@@ -1,30 +1,19 @@
 import warnings
 from tkinter import *
 
-import helperFunctions
+from helperFunctions import *
 
 warnings.filterwarnings('ignore')
 
-root = Tk()
-
-
-def run(window):
-
+def run(window:Tk):
+      
        mainFrame = Frame(window)
-       mainFrame.pack()
-       
-       backgroundFrame = Frame(window, highlightbackground="blue", highlightthickness=3)
-       backgroundFrame.pack()
-
-       chatboxFrame = Frame(window, highlightbackground="red", highlightthickness=3, padx=50,pady=50, background="#d1aa73")
-       chatboxFrame.pack(side="bottom", fill="x")
-
-       text = Label(chatboxFrame, text="cool text for cool visual novel", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
-       # text.insert(INSERT, 'cool text for cool visual novel')
+ 
+       text = Label(mainFrame, text="cool text for visual novel", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
        text.pack(side=LEFT)
-       button1 = Button(chatboxFrame, text='Hello', borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
+       button1 = Button(mainFrame, text='Start', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command= lambda: print('test'))
        button1.pack(side=RIGHT)
-       
+
        return mainFrame
 
 

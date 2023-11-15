@@ -1,23 +1,17 @@
 import warnings
 from tkinter import *
 
-import storyFrame
 from helperFunctions import *
 
 warnings.filterwarnings('ignore')
 
-
-
-def run(window):
+def run(window: Tk, storyStartPage:Frame):
 
        mainFrame = Frame(window)
-       mainFrame.pack()
  
-       text = Label(mainFrame, text="cool text for cool visual novel", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
-       # text.insert(INSERT, 'cool text for cool visual novel')
+       text = Label(mainFrame, text="starting", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
        text.pack(side=LEFT)
-       button1 = Button(mainFrame, text='Hello', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: showFrame())
+       button1 = Button(mainFrame, text='Start', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command= lambda: showFrame(storyStartPage))
        button1.pack(side=RIGHT)
-       window.mainloop()
 
        return mainFrame
