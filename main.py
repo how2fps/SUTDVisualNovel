@@ -4,6 +4,7 @@ from tkinter import *
 warnings.filterwarnings('ignore')
 
 placeholderText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+placeholderText2 = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inven."
 
 def showFrame(currentFrame:Frame, nextFrame:Frame, labelFrame:Frame=None, text: str=None):
      currentFrame.pack_forget()
@@ -19,7 +20,7 @@ def updateLabelText(labelFrame:Label, updatedText):
 
 
 def createLabelText(referenceFrame:Frame, txt:str, fontSize:int, height:int, padX:int, padY: int):
-     return Label(referenceFrame, text=txt, height=height, borderwidth=2, wraplength=480, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", fontSize), highlightbackground='green', highlightthickness=1, padx=padX, pady=padY)
+     return Label(referenceFrame, text=txt, height=height, borderwidth=2, wraplength=480, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", fontSize), padx=padX, pady=padY)
 
 
 def createStartingFrame(window:Frame, storyFrame:Frame, nextLabelFrame:Frame):
@@ -29,15 +30,17 @@ def createStartingFrame(window:Frame, storyFrame:Frame, nextLabelFrame:Frame):
      textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
      textbox.pack(side=LEFT)
      
-     button = Button(startingFrame, text='Switch to Story', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: showFrame(startingFrame, storyFrame, nextLabelFrame, "Visual novel text"))
+     button = Button(startingFrame, text="Start Story", borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: showFrame(startingFrame, storyFrame, nextLabelFrame, placeholderText))
      button.pack(side=RIGHT)
      startingFrame.tkraise()
      return startingFrame
 
-def createStoryFrame(window:Tk):
+def createStoryFrame(window:Tk, nextFrameText:str, img:str, nextFrame:Frame, labelFrame:Frame):
      storyFrame = Frame(window)
-     
-     pictureFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="red", highlightthickness=2)
+     img = PhotoImage(file=img)
+     pictureFrame = Label(storyFrame, image=img, border="2", highlightbackground="red", highlightthickness=2, height=550)
+     pictureFrame.image = img
+     pictureFrame.config(image=img)
      pictureFrame.pack(side=TOP, fill="both")
 
      chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5)
@@ -49,7 +52,7 @@ def createStoryFrame(window:Tk):
      textbox = createLabelText(chatFrame, "", 16, 0, 20, 20)
      textbox.pack(side=LEFT)
 
-     button = Button(chatFrame, text='Start', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: updateLabelText(textbox, placeholderText))
+     button = Button(chatFrame, text='Continue', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: showFrame(storyFrame, nextFrame, labelFrame, nextFrameText))
      button.pack(side=RIGHT)
 
      return storyFrame, textbox
@@ -58,8 +61,11 @@ def createStoryFrame(window:Tk):
 def main():
      window = Tk()
      window.geometry("600x720")
+     placeholderFrame = Frame()
 
-     [storyFrame, textbox] = createStoryFrame(window)
+     [storyFrame2, textbox2] = createStoryFrame(window, "dededede", "pictures/dog.png", placeholderFrame, placeholderFrame)
+
+     [storyFrame, textbox] = createStoryFrame(window, placeholderText2, "pictures/Mob_Balrog.png", storyFrame2, textbox2)
 
      createStartingFrame(window, storyFrame, textbox)
 
