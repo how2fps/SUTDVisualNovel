@@ -8,8 +8,9 @@ warnings.filterwarnings('ignore')
 def run(window: Tk, storyStartPage:Frame):
 
        mainFrame = Frame(window)
- 
-       text = Label(mainFrame, text="starting", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
+       mainFrame.pack()
+       
+       text = Label(mainFrame, text="test", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
        text.pack(side=LEFT)
        button1 = Button(mainFrame, text='Start', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command= lambda: showFrame(storyStartPage))
        button1.pack(side=RIGHT)
