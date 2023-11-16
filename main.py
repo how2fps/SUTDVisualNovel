@@ -7,7 +7,11 @@ def showFrame(currentFrame:Frame, nextFrame:Frame):
      currentFrame.pack_forget()
      nextFrame.pack(fill="both", expand=True)
 
+def updateLabelText(labelFrame:Label, updatedText):
+     labelFrame.config(text=updatedText)
 
+def createLabelText(referenceFrame:Frame, txt="", height=2):
+     return Label(referenceFrame, text=txt, height=height, borderwidth=2, background="#d1aa73", foreground="black", font="roboto",highlightbackground='green',highlightthickness=1)
 
 
 def main():
@@ -17,14 +21,16 @@ def main():
      pictureFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="red", highlightthickness=2)
      pictureFrame.pack(side=TOP, fill="both")
 
-     chatFrame = Frame(storyFrame, background="#d1aa73", height=100, border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5)
+     chatFrame = Frame(storyFrame, background="#d1aa73", height=250, border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5)
      chatFrame.pack(side=BOTTOM, fill="both")
      chatFrame.pack_propagate(0)
 
+     namebox = createLabelText(window, "protagonist name")
+     namebox.place(in_=chatFrame, x=20, y=-30)
 
-     textbox = Label(chatFrame, text="initial novel text", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
+     textbox = createLabelText(chatFrame, 'visual novel text', 220)
      textbox.pack(side=LEFT)
-     button1 = Button(chatFrame, text='Start', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: textbox.config(text='text'))
+     button1 = Button(chatFrame, text='Start', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: updateLabelText(textbox,'lol'))
      button1.pack(side=RIGHT)
      
 
