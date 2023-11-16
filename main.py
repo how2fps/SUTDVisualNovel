@@ -3,6 +3,8 @@ from tkinter import *
 
 warnings.filterwarnings('ignore')
 
+placeholderText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+
 def showFrame(currentFrame:Frame, nextFrame:Frame):
      currentFrame.pack_forget()
      nextFrame.pack(fill="both", expand=True)
@@ -10,8 +12,8 @@ def showFrame(currentFrame:Frame, nextFrame:Frame):
 def updateLabelText(labelFrame:Label, updatedText):
      labelFrame.config(text=updatedText)
 
-def createLabelText(referenceFrame:Frame, txt="", height=2):
-     return Label(referenceFrame, text=txt, height=height, borderwidth=2, background="#d1aa73", foreground="black", font="roboto",highlightbackground='green',highlightthickness=1)
+def createLabelText(referenceFrame:Frame, txt:str, height:int, padx:int, pady: int):
+     return Label(referenceFrame, text=txt, height=height, borderwidth=2, wraplength=480, justify=LEFT, background="#d1aa73", foreground="black", font="roboto", highlightbackground='green', highlightthickness=1, padx=padx, pady=pady)
 
 
 def main():
@@ -21,16 +23,16 @@ def main():
      pictureFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="red", highlightthickness=2)
      pictureFrame.pack(side=TOP, fill="both")
 
-     chatFrame = Frame(storyFrame, background="#d1aa73", height=250, border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5)
+     chatFrame = Frame(storyFrame, background="#d1aa73", height=100, border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5)
      chatFrame.pack(side=BOTTOM, fill="both")
      chatFrame.pack_propagate(0)
 
-     namebox = createLabelText(window, "protagonist name")
-     namebox.place(in_=chatFrame, x=20, y=-30)
+     namebox = createLabelText(window, "protagonist name", 0, 4, 4)
+     namebox.place(in_=chatFrame, x=20, y=-25)
 
-     textbox = createLabelText(chatFrame, 'visual novel text', 220)
+     textbox = createLabelText(chatFrame, 'visual novel text', 0, 20, 4)
      textbox.pack(side=LEFT)
-     button1 = Button(chatFrame, text='Start', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: updateLabelText(textbox,'lol'))
+     button1 = Button(chatFrame, text='Start', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: updateLabelText(textbox, placeholderText))
      button1.pack(side=RIGHT)
      
 
@@ -40,7 +42,7 @@ def main():
      textbox2 = Label(startingFrame, text="test", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
      textbox2.pack(side=LEFT)
      
-     button2 = Button(startingFrame, text='Switch to Story', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: showFrame(startingFrame,storyFrame))
+     button2 = Button(startingFrame, text='Switch to Story', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: showFrame(startingFrame, storyFrame))
      button2.pack(side=RIGHT)
      
      startingFrame.tkraise()
