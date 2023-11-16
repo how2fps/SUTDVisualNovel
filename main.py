@@ -5,15 +5,33 @@ warnings.filterwarnings('ignore')
 
 placeholderText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 
-def showFrame(currentFrame:Frame, nextFrame:Frame):
+def showFrame(currentFrame:Frame, nextFrame:Frame, textbox:Frame=None, text: str=None):
+     
+     if (textbox != None):
+          for i, word in enumerate(text):
+               textbox.after(10 * i, lambda w=word: textbox.configure(text=textbox.cget("text")+w))
      currentFrame.pack_forget()
      nextFrame.pack(fill="both", expand=True)
+     
 
 def updateLabelText(labelFrame:Label, updatedText):
-     labelFrame.config(text=updatedText)
+     labelFrame.config(text="")
+     for i, word in enumerate(updatedText):
+          labelFrame.after(10 * i, lambda w=word: labelFrame.configure(text=labelFrame.cget("text")+w))
 
 def createLabelText(referenceFrame:Frame, txt:str, fontSize:int, height:int, padX:int, padY: int):
      return Label(referenceFrame, text=txt, height=height, borderwidth=2, wraplength=480, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", fontSize), highlightbackground='green', highlightthickness=1, padx=padX, pady=padY)
+
+def createStartingFrame(window:Frame, storyFrame:Frame):
+     startingFrame = Frame(window)
+     startingFrame.pack(anchor=W, fill=Y, expand=False, side=LEFT)
+
+     textbox = Label(startingFrame, text="test", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
+     textbox.pack(side=LEFT)
+     
+     button = Button(startingFrame, text='Switch to Story', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: showFrame(startingFrame, storyFrame))
+     button.pack(side=RIGHT)
+     return startingFrame
 
 
 def main():
@@ -31,20 +49,13 @@ def main():
 
      textbox = createLabelText(chatFrame, 'visual novel text', 16, 0, 20, 20)
      textbox.pack(side=LEFT)
+
      button1 = Button(chatFrame, text='Start', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: updateLabelText(textbox, placeholderText))
      button1.pack(side=RIGHT)
-     
 
-     startingFrame = Frame(window)
-     startingFrame.pack(anchor=W, fill=Y, expand=False, side=LEFT)
-
-     textbox2 = Label(startingFrame, text="test", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
-     textbox2.pack(side=LEFT)
-     
-     button2 = Button(startingFrame, text='Switch to Story', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: showFrame(startingFrame, storyFrame))
-     button2.pack(side=RIGHT)
-     
+     startingFrame = createStartingFrame(window, storyFrame)
      startingFrame.tkraise()
+
      window.mainloop()
 
 
