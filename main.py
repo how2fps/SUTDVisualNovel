@@ -12,8 +12,8 @@ def showFrame(currentFrame:Frame, nextFrame:Frame):
 def updateLabelText(labelFrame:Label, updatedText):
      labelFrame.config(text=updatedText)
 
-def createLabelText(referenceFrame:Frame, txt:str, height:int, padx:int, pady: int):
-     return Label(referenceFrame, text=txt, height=height, borderwidth=2, wraplength=480, justify=LEFT, background="#d1aa73", foreground="black", font="roboto", highlightbackground='green', highlightthickness=1, padx=padx, pady=pady)
+def createLabelText(referenceFrame:Frame, txt:str, fontSize:int, height:int, padX:int, padY: int):
+     return Label(referenceFrame, text=txt, height=height, borderwidth=2, wraplength=480, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", fontSize), highlightbackground='green', highlightthickness=1, padx=padX, pady=padY)
 
 
 def main():
@@ -23,14 +23,13 @@ def main():
      pictureFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="red", highlightthickness=2)
      pictureFrame.pack(side=TOP, fill="both")
 
-     chatFrame = Frame(storyFrame, background="#d1aa73", height=100, border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5)
+     chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5)
      chatFrame.pack(side=BOTTOM, fill="both")
-     chatFrame.pack_propagate(0)
 
-     namebox = createLabelText(window, "protagonist name", 0, 4, 4)
-     namebox.place(in_=chatFrame, x=20, y=-25)
+     namebox = createLabelText(window, "protagonist name", 18, 0, 4, 4)
+     namebox.place(in_=chatFrame, x=20, y=-28)
 
-     textbox = createLabelText(chatFrame, 'visual novel text', 0, 20, 4)
+     textbox = createLabelText(chatFrame, 'visual novel text', 16, 0, 20, 20)
      textbox.pack(side=LEFT)
      button1 = Button(chatFrame, text='Start', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: updateLabelText(textbox, placeholderText))
      button1.pack(side=RIGHT)
