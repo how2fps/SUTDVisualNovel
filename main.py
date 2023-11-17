@@ -21,7 +21,6 @@ def showNextFrame(currentFrame:Frame, nextFrame:Frame, nextLabelFrame:Frame=None
      currentFrame.pack_forget()
      nextFrame.pack(fill="both", expand=True)
      if (nextLabelFrame != None):
-       
           updateLabelFrame(nextLabelFrame, nextLabelFrameText)
 
 def updateLabelFrame(labelFrame:Label, updatedText):
@@ -61,13 +60,10 @@ def createStoryFrameWithoutOptions(window:Tk, img, characterName, nextFrame:Fram
      chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5, height=300)
      chatFrame.pack(side=BOTTOM, fill="both", expand=TRUE)
 
-     
-
      shadow = Label(window, text=characterName, height=0, borderwidth=2, wraplength=860, justify=LEFT, background="#3b3a3a", foreground="black", font=("roboto", 18), padx=7, pady=5)
      shadow.place(in_=chatFrame, x=39, y=-25)
      nameLabelFrame = createLabelFrame(window, characterName, 18, 0, 5, 5)
      nameLabelFrame.place(in_=chatFrame, x=40, y=-28)
-
 
      chatLabelFrame = createLabelFrame(chatFrame, "", 16, 0, 50, 20)
      chatLabelFrame.pack(side=LEFT)
@@ -80,9 +76,7 @@ def createStoryFrameWithoutOptions(window:Tk, img, characterName, nextFrame:Fram
 
      return storyFrame, chatLabelFrame
 
-def createStoryFrameWithOptions(window:Tk, img, characterName, 
-                                nextFrame1:Frame = None, nextLabelFrame1:Frame = None, nextLabelFrameText1:str = "",
-                                nextFrame2:Frame = None, nextLabelFrame2:Frame = None, nextLabelFrameText2:str = ""):
+def createStoryFrameWithOptions(window:Tk, img, characterName, options):
      storyFrame = Frame(window)
      img = PhotoImage(file=img)
 
@@ -94,22 +88,25 @@ def createStoryFrameWithOptions(window:Tk, img, characterName,
      chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5, height=300)
      chatFrame.pack(side=BOTTOM, fill="both", expand=TRUE)
 
-
      shadow = Label(window, text=characterName, height=0, borderwidth=2, wraplength=860, justify=LEFT, background="#3b3a3a", foreground="black", font=("roboto", 18), padx=7, pady=5)
      shadow.place(in_=chatFrame, x=39, y=-25)
      nameLabelFrame = createLabelFrame(window, characterName, 18, 0, 5, 5)
      nameLabelFrame.place(in_=chatFrame, x=40, y=-28)
 
-
      chatButtonContainer = Frame(chatFrame, background="#d1aa73", pady=20)
      chatButtonContainer.pack(fill="both")
-     
-     optionButton1 = Button(chatButtonContainer, text='Do this option 1', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: showNextFrame(storyFrame, nextFrame, nextLabelFrame, nextLabelFrameText), padx=2, pady=2)
-     optionButton1.pack(side=TOP)
-     empty_label = Label(chatButtonContainer, text='', background="#d1aa73", pady=1)
-     empty_label.pack()
-     optionButton2 = Button(chatButtonContainer, text='Do this option 2 etc', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: showNextFrame(storyFrame, nextFrame, nextLabelFrame, nextLabelFrameText), padx=2, pady=2)
-     optionButton2.pack(side=BOTTOM)
+
+     for option in options:
+          nextFrame = option['showNextFrame'][0]
+          nextLabelFrame = option['showNextFrame'][1]
+          nextLabelFrameText = option['showNextFrame'][2]
+          def create_lambda(storyFrame=storyFrame, nextFrame=nextFrame, nextLabelFrame=nextLabelFrame, nextLabelFrameText=nextLabelFrameText):
+               return lambda: showNextFrame(storyFrame, nextFrame, nextLabelFrame, nextLabelFrameText)
+          optionButton = Button(chatButtonContainer, text=option['text'], borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=create_lambda(), padx=2, pady=2)
+          optionButton.pack(side=TOP)
+          empty_label = Label(chatButtonContainer, text='', background="#d1aa73", pady=1)
+          empty_label.pack()
+
 
      return storyFrame
 
@@ -117,9 +114,12 @@ def main():
      window = Tk()
      window.geometry("1080x720")
      placeholderFrame = Frame()
+     
+     [storyFrame4, chatLabelFrame4] = createStoryFrameWithoutOptions(window, "pictures/Mob_Balrog.png", "Balrog5000")
 
-     storyFrame3 = createStoryFrameWithOptions(window, "pictures/Mob_Balrog.png", "Balrog 2", placeholderFrame)
-
+     storyFrame3 = createStoryFrameWithOptions(window, "pictures/Mob_Balrog.png", "Balrog 2", [{'text':'Option 1', 'showNextFrame':[storyFrame4, chatLabelFrame4, 'lolz']},
+                                                                                               {'text':'Option 3', 'showNextFrame':[storyFrame4, chatLabelFrame4, 'abcdefhijklmnopqrust']}])
+     
      [storyFrame2, chatLabelFrame2] = createStoryFrameWithoutOptions(window, "pictures/dog.png", "D.O.G", storyFrame3)
 
      [storyFrame, chatLabelFrame] = createStoryFrameWithoutOptions(window, "pictures/Mob_Balrog.png", "Balrog", storyFrame2, chatLabelFrame2, placeholderText2)
