@@ -26,7 +26,7 @@ def updateLabelFrame(labelFrame:Label, updatedText):
      playSound()
      labelFrame.config(text="")
      for i, word in enumerate(updatedText):
-          labelFrame.after(10 * i, lambda w=word: labelFrame.configure(text=labelFrame.cget("text")+w))
+          labelFrame.after(20 * i, lambda w=word: labelFrame.configure(text=labelFrame.cget("text")+w))
 
 def createLabelFrame(referenceFrame:Frame, txt:str, fontSize:int, height:int, padX:int, padY: int):
      return Label(referenceFrame, text=txt, height=height, borderwidth=2, wraplength=860, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", fontSize), padx=padX, pady=padY)
