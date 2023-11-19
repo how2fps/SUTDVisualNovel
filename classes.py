@@ -12,9 +12,9 @@ class NPC:
               self.img = img
               self.affectionLevel = 0
        
-       def increaseAffectionLevel(self):
-              self.affectionLevel = self.affectionLevel + 1
+       def increaseAffectionLevel(self, amount=1):
+              self.affectionLevel = self.affectionLevel + amount
               
-       def decreaseAffectionLevel(self):
-              self.affectionLevel = self.affectionLevel - 1
+       def decreaseAffectionLevel(self, amount=1):
+              self.affectionLevel = self.affectionLevel - amount
        
