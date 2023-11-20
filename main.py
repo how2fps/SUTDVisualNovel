@@ -11,6 +11,7 @@ placeholderText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
 placeholderText2 = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inven."
 
 protagonist =  Protagonist("")
+Willy = NPC("Willy")
 
 def playSound(relativeFilePath:str):
     winsound.PlaySound(relativeFilePath, winsound.SND_ASYNC)
@@ -105,7 +106,16 @@ def createOptionsFrameWithoutDialogueBox  (window:Tk, imgFilePath:str, options):
           nextFrame = option['showNextFrame'][0]
           nextLabelFrame = option['showNextFrame'][1]
           nextLabelFrameText = option['showNextFrame'][2]
-          def create_lambda(nextFrame=nextFrame, nextLabelFrame=nextLabelFrame, nextLabelFrameText=nextLabelFrameText):
+          NPC = None 
+          affectionChange = None
+          if (len(option) == 4):
+               affectionChange = option['showNextFrame'][3][0]
+               NPC = option['showNextFrame'][3][1]
+          def create_lambda(nextFrame=nextFrame, nextLabelFrame=nextLabelFrame, nextLabelFrameText=nextLabelFrameText, NPC=NPC):
+               if (NPC and affectionChange=="decrease"):
+                    return lambda: [showNextFrame(storyFrame, nextFrame, nextLabelFrame, nextLabelFrameText), NPC.decreaseAffectionLevel()]
+               if (NPC and affectionChange=="increase"):
+                    return lambda: [showNextFrame(storyFrame, nextFrame, nextLabelFrame, nextLabelFrameText), NPC.increaseAffectionLevel()]
                return lambda: showNextFrame(storyFrame, nextFrame, nextLabelFrame, nextLabelFrameText)
           optionButton = Button(pictureFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto",20), command=create_lambda(), padx=2, pady=6)
           optionButton.pack(fill=X, padx=50, pady=10, expand=TRUE)
@@ -134,7 +144,7 @@ def main():
      [storyFrame5, dialogueContainer5] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5001", 35, storyFrame6, dialogueContainer6,'dia1logue 2')
      [storyFrame4, dialogueContainer4] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5000", 43, storyFrame5, dialogueContainer5,'dialogu22e 2')
 
-     storyFrame3 = createOptionsFrameWithoutDialogueBox(window, "pictures/Mob_Balrog.png", [{'text':'Option 1', 'showNextFrame':[storyFrame4, dialogueContainer4, 'dede']},
+     storyFrame3 = createOptionsFrameWithoutDialogueBox(window, "pictures/Mob_Balrog.png", [{'text':'Option 1', 'showNextFrame':[storyFrame4, dialogueContainer4, 'dede', [Willy, 'decrease']]},
                                                                                                {'text':'Option 2', 'showNextFrame':[storyFrame4, dialogueContainer4, 'damn']},
                                                                                                {'text':'Option 3', 'showNextFrame':[storyFrame4, dialogueContainer4, 'tete']}])
      

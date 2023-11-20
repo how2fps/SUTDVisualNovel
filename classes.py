@@ -7,7 +7,7 @@ class Protagonist:
        
 
 class NPC:
-       def __init__(self, name, img):
+       def __init__(self, name, img=""):
               self.name = name
               self.img = img
               self.affectionLevel = 0
