@@ -29,9 +29,9 @@ def createNameFrame(window:Frame, chatFrame:Frame, characterName:str, xLocation:
 def createDialogueFrameNew(window: Tk, currentFrame: Frame, textImgNameSound: list):
     storyFrame = Frame(window)
     storyFrame.pack(fill=BOTH, expand=True)
-    after_ids = []  # List to store after IDs for text appearing
+    after_ids = []
     def update_dialogue():
-       nonlocal currentIndex
+       currentIndex
        pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="red", highlightthickness=2, height=550)
        name = textImgNameSound[currentIndex].get("name")
        dialogue = textImgNameSound[currentIndex].get("text")
@@ -49,9 +49,9 @@ def createDialogueFrameNew(window: Tk, currentFrame: Frame, textImgNameSound: li
                        nonlocal currentIndex
                        currentIndex = updatedIndex
                        print(currentIndex)
-                       winsound.PlaySound(None, winsound.SND_PURGE) # Stop sound from playing
+                       winsound.PlaySound(None, winsound.SND_PURGE)
                        for after_id in after_ids:
-                              dialogueContainer.after_cancel(after_id)  # Cancel after IDs
+                              dialogueContainer.after_cancel(after_id)
                        for widget in storyFrame.winfo_children():
                               widget.destroy()
                 optionButton = Button(pictureFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option.get("nextSceneIndex"): [updateCurrentIndex(idx), update_dialogue()], padx=2, pady=6)
@@ -76,13 +76,13 @@ def createDialogueFrameNew(window: Tk, currentFrame: Frame, textImgNameSound: li
        chatButtonContainer.pack(side="right", fill="both")
        def continue_dialogue():
            nonlocal currentIndex
-           winsound.PlaySound(None, winsound.SND_PURGE) # Stop sound from playing
+           winsound.PlaySound(None, winsound.SND_PURGE)
            for after_id in after_ids:
-               dialogueContainer.after_cancel(after_id)  # Cancel after IDs
+               dialogueContainer.after_cancel(after_id)
            for widget in storyFrame.winfo_children():
                widget.destroy()
            if (len(options) == 1):
-                currentIndex = options[0] #
+                currentIndex = options[0]
            else: 
                 currentIndex += 1
            update_dialogue()
@@ -99,6 +99,19 @@ def main():
      Label(startingFrame, text="Enter your name").pack()
      nameInput = Entry(startingFrame)
      nameInput.pack()
+     # text is what the dialogue in the chatbox reads, leave it empty during multiple option scenes.
+     # imgFilePath is the relative image file path to this file, a few examples are shown (please create the characters on the background)
+     # name is the name of the character who is speaking, it will appear in the name box at the top left of the chatbox, leave it empty to not have the name box shown.
+     # soundFilePath is the relative sound file path to this file, a few examples are shown.
+     # https://acedio.github.io/animalese.js/ < please use this to generate more animal crossing sounds, need to format this to .wav even though it is already .wav if not winsound wouldn't run it
+     # https://cloudconvert.com/wav-converter < use this to reformat the animal crossing sounds
+
+     # options is a list that dictates what scenes the buttons go to.
+     # In multiple options, create a list of dictionary [{"text": "Scene 6", "nextSceneIndex": 6}, {"text": "Scene 7", "nextSceneIndex": 7}] like this,
+     # where "text" is the text shown in the option button, and "nextSceneIndex" is the scene's index in the array it will jump to when the button is pressed.
+     # If you put options as a single number in a list e.g. [3], it will go to the scene at array index 3.
+     # If you put options as [], an empty list, it will go to the scene in the next index.
+
      def txtImgOptNameSnd(text:str, imgFilePath: str, options: list = [], name:str = None, soundFilePath: str = None):
           return {"text": text, "imgFilePath": imgFilePath, "name": name, "soundFilePath": soundFilePath, "options": options}
      textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
