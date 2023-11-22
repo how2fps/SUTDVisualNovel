@@ -16,20 +16,17 @@ Willy = NPC("Willy")
 def playSound(relativeFilePath:str):
     winsound.PlaySound(relativeFilePath, winsound.SND_ASYNC)
 
-
 def showNextFrame(currentFrame:Frame, nextFrame:Frame, nextLabelFrame:Frame=None, nextLabelFrameText: str=None):
      currentFrame.pack_forget()
      nextFrame.pack(fill="both", expand=True)
      if (nextLabelFrame != None):
           updateLabelFrame(nextLabelFrame, nextLabelFrameText)
 
-
 def updateLabelFrame(labelFrame:Label, updatedText:str):
      playSound('sounds/animalese (1).wav')
      labelFrame.config(text="")
      for i, word in enumerate(updatedText):
           labelFrame.after(20 * i, lambda w=word: labelFrame.configure(text=labelFrame.cget("text")+w))
-
 
 def createLabelFrame(referenceFrame:Frame, txt:str, fontSize:int, height:int, padX:int, padY: int):
      return Label(referenceFrame, text=txt, height=height, wraplength=860, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", fontSize), padx=padX, pady=padY)
@@ -77,7 +74,7 @@ def createDialogueFrame(window:Tk, imgFilePath, characterName, characterNameLoca
 
      chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5, height=300)
      chatFrame.pack(side=BOTTOM, fill="both", expand=TRUE)
-
+     
      if (len(characterName) > 0):
           createNameFrame(window, chatFrame, characterName, characterNameLocation)
 
@@ -87,10 +84,56 @@ def createDialogueFrame(window:Tk, imgFilePath, characterName, characterNameLoca
      chatButtonContainer = Frame(chatFrame, background="#d1aa73")
      chatButtonContainer.pack(side=RIGHT, fill="both")
 
-     chatButton = Button(chatButtonContainer, text='Continue >>', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: showNextFrame(storyFrame, nextFrame, nextLabelFrame, nextLabelFrameText), padx=2, pady=2)
+     chatButton = Button(chatButtonContainer, text='Continue >>', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: [showNextFrame(storyFrame, nextFrame, nextLabelFrame, nextLabelFrameText)], padx=2, pady=2)
      chatButton.pack(side=BOTTOM)
 
      return storyFrame, dialogueContainer
+
+
+
+
+def createDialogueFrameNew(window: Tk, currentFrame: Frame, nameDialogueImage: list, characterNameLocation: int = 35, options: list = []):
+    storyFrame = Frame(window)
+    storyFrame.pack(fill=BOTH, expand=True)
+    def update_dialogue():
+        nonlocal currentIndex
+        pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="red", highlightthickness=2, height=550)
+        if currentIndex < len(nameDialogueImage):
+            imgFilePath = nameDialogueImage[currentIndex]["img"]
+            name = nameDialogueImage[currentIndex]["name"]
+            dialogue = nameDialogueImage[currentIndex]["dialogue"]
+            currentFrame.pack_forget()
+            img = PhotoImage(file=imgFilePath)
+            pictureFrame.image = img
+            pictureFrame.config(image=img)
+            pictureFrame.pack(side="top", fill="both")
+            chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5, height=300)
+            chatFrame.pack(side="bottom", fill="both", expand=TRUE)
+            
+            if len(name) > 0:
+                createNameFrame(window, chatFrame, name, characterNameLocation)
+            
+            dialogueContainer = createLabelFrame(chatFrame, "", 16, 0, 50, 20)
+            dialogueContainer.pack(side="left")
+            updateLabelFrame(dialogueContainer, dialogue)
+            
+            chatButtonContainer = Frame(chatFrame, background="#d1aa73")
+            chatButtonContainer.pack(side="right", fill="both")
+
+            def continue_dialogue():
+                nonlocal currentIndex
+                currentIndex += 1
+                for widget in storyFrame.winfo_children():
+                    widget.destroy()
+                update_dialogue()
+
+            chatButton = Button(chatButtonContainer, text='Continue >>', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=continue_dialogue, padx=2, pady=2)
+            chatButton.pack(side="bottom")
+
+            return storyFrame, dialogueContainer
+
+    currentIndex = 0
+    return update_dialogue()
 
 
 
@@ -128,19 +171,30 @@ def createOptionsFrameWithoutDialogueBox  (window:Tk, imgFilePath:str, options):
 def main():
      window = Tk()
      window.geometry("1080x720")
-     placeholderFrame = Frame()
-     
-#      storyFrame3 = createOptionsFrameWithoutDialogueBox(window, "pictures/Mob_Balrog.png", [{'text':'Option 1', 'showNextFrame':[storyFrame4, dialogueContainer4, 'dede', [Willy, 'decrease']]},
-#                                                                                                {'text':'Option 2', 'showNextFrame':[storyFrame4, dialogueContainer4, 'damn']},
-#                                                                                                {'text':'Option 3', 'showNextFrame':[storyFrame4, dialogueContainer4, 'tete']}])
-     
-     [xiaoMingFrame3, xiaomingDialogue3] = createDialogueFrame(window, "pictures/dog.png", "", 60, placeholderFrame)
-     [xiaoMingFrame2, xiaomingDialogue2] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Protagonist", 43, xiaoMingFrame3, xiaomingDialogue3, "(You head for the classroom door, ready to head home...)")
-     [xiaoMingFrame1, xiaomingDialogue1] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "", 30, xiaoMingFrame2, xiaomingDialogue2, "Damn, I can’t believe that it is already 6pm... time to go home and submit my assignment.")
+     startingFrame = Frame(window)
+     startingFrame.pack(anchor=W, fill=Y, expand=False, side=LEFT)
 
-     chooseNPCFrame = createOptionsFrameWithoutDialogueBox(window, "pictures/Mob_Balrog.png", [{'text':'Choose Xiao Ming', 'showNextFrame':[xiaoMingFrame1, xiaomingDialogue1, '(After a long and tiring day of classes, school has finally ended...)', [Willy, 'decrease']]},])
+     Label(startingFrame, text="Enter your name").pack()
+     nameInput = Entry(startingFrame)
+     nameInput.pack()
+     def nameDialogueImg(name,dialogue,img):
+          return {"name":name, "dialogue":dialogue, "img": img}
+     textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
+     textbox.pack(side=LEFT)
+     startButton = Button(startingFrame, text="Start Story", borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: 
+          [protagonist.setName(nameInput.get()), (createDialogueFrameNew(window, startingFrame,
+                                                                         [nameDialogueImg("Dedede", "wtf", "pictures/dog.png"), 
+                                                                          nameDialogueImg(nameInput.get(), "aaaa", "pictures/dog.png")]
+                                                                          ))])
+     startButton.pack(side=RIGHT)
+     
+#      [xiaoMingFrame3, xiaomingDialogue3] = createDialogueFrame(window, "pictures/dog.png", "", 60, placeholderFrame)
+#      [xiaoMingFrame2, xiaomingDialogue2] = createDialogueFrame(window, "pictures/Mob_Balrog.png", protagonist.name, 43, xiaoMingFrame3, xiaomingDialogue3, "(You head for the classroom door, ready to head home...)")
+#      [xiaoMingFrame1, xiaomingDialogue1] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "", 30, xiaoMingFrame2, xiaomingDialogue2, "Damn, I can’t believe that it is already 6pm... time to go home and submit my assignment.")
 
-     createStartingFrame(window, chooseNPCFrame, protagonist)
+#      chooseNPCFrame = createOptionsFrameWithoutDialogueBox(window, "pictures/Mob_Balrog.png", [{'text':'Choose Xiao Ming', 'showNextFrame':[xiaoMingFrame1, xiaomingDialogue1, '(After a long and tiring day of classes, school has finally ended...)', [Willy, 'decrease']]},])
+
+#      createStartingFrame(window, chooseNPCFrame, protagonist)
 
      window.mainloop()
 
