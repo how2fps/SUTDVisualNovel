@@ -10,7 +10,7 @@ warnings.filterwarnings('ignore')
 placeholderText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 placeholderText2 = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inven."
 
-protagonist =  Protagonist("")
+protagonist =  Protagonist("", "")
 Willy = NPC("Willy")
 
 def playSound(relativeFilePath:str):
@@ -48,7 +48,7 @@ def createNameFrame(window:Frame, chatFrame:Frame, characterName:str, xLocation:
      nameLabelFrame.place(in_=chatFrame, x=xLocation, y=-28)
 
 
-def createStartingFrame(window:Frame, storyFrame:Frame, nextLabelFrame:Frame):
+def createStartingFrame(window:Frame, storyFrame:Frame, nextLabelFrame:Frame = None, protagonist=protagonist):
      startingFrame = Frame(window)
      startingFrame.pack(anchor=W, fill=Y, expand=False, side=LEFT)
 
@@ -58,15 +58,16 @@ def createStartingFrame(window:Frame, storyFrame:Frame, nextLabelFrame:Frame):
 
      textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
      textbox.pack(side=LEFT)
-          
      startButton = Button(startingFrame, text="Start Story", borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: 
-          [protagonist.setName(nameInput.get()),showNextFrame(startingFrame, storyFrame, nextLabelFrame, f"Hi {protagonist.name}! " + placeholderText)])
+          [protagonist.setName(nameInput.get()), showNextFrame(startingFrame, storyFrame, nextLabelFrame)])
      startButton.pack(side=RIGHT)
 
      return startingFrame
 
 
 def createDialogueFrame(window:Tk, imgFilePath, characterName, characterNameLocation, nextFrame:Frame=None, nextLabelFrame:Frame=None, nextLabelFrameText:str=""):
+     #nextLabelFrameText is the dialogue for the NEXT dialogue
+     #the current dialogue for this current frame is retrieved from the previous function
      storyFrame = Frame(window)
      img = PhotoImage(file=imgFilePath)
      pictureFrame = Label(storyFrame, image=img, border="2", highlightbackground="red", highlightthickness=2, height=550)
@@ -77,7 +78,8 @@ def createDialogueFrame(window:Tk, imgFilePath, characterName, characterNameLoca
      chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5, height=300)
      chatFrame.pack(side=BOTTOM, fill="both", expand=TRUE)
 
-     createNameFrame(window, chatFrame, characterName, characterNameLocation)
+     if (len(characterName) > 0):
+          createNameFrame(window, chatFrame, characterName, characterNameLocation)
 
      dialogueContainer = createLabelFrame(chatFrame, "", 16, 0, 50, 20)
      dialogueContainer.pack(side=LEFT)
@@ -100,7 +102,7 @@ def createOptionsFrameWithoutDialogueBox  (window:Tk, imgFilePath:str, options):
      pictureFrame = Label(storyFrame, image=img, highlightbackground="red", highlightthickness=2)
      pictureFrame.image = img
      pictureFrame.config(image=img) #gotta do this weird thing to load images
-     pictureFrame.pack(fill="both", expand=TRUE,)
+     pictureFrame.pack(fill="both", expand=TRUE)
 
      for option in options:
           nextFrame = option['showNextFrame'][0]
@@ -128,36 +130,24 @@ def main():
      window.geometry("1080x720")
      placeholderFrame = Frame()
      
-     [storyFrame18, dialogueContainer18] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5000", 40, placeholderFrame, placeholderFrame)
-     [storyFrame17, dialogueContainer17] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5000", 40, storyFrame18, dialogueContainer18,'dialogue 2')
-     [storyFrame16, dialogueContainer16] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5000", 40, storyFrame17, dialogueContainer17,'dialog1ue 2')
-     [storyFrame15, dialogueContainer15] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5000", 40, storyFrame16, dialogueContainer16,'dialogu23e 2')
-     [storyFrame14, dialogueContainer14] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5000", 40, storyFrame15, dialogueContainer15,'dialogue23 2')
-     [storyFrame13, dialogueContainer13] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5000", 40, storyFrame14, dialogueContainer14,'dialog2ue 2')
-     [storyFrame12, dialogueContainer12] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5000", 41, storyFrame13, dialogueContainer13,'dialo3gue 2')
-     [storyFrame11, dialogueContainer11] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5000", 40, storyFrame12, dialogueContainer12,'dialog2ue 3122')
-     [storyFrame10, dialogueContainer10] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5000", 40, storyFrame11, dialogueContainer11,'dialogue 2')
-     [storyFrame9, dialogueContainer9] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5000", 40, storyFrame10, dialogueContainer10,'dialo2gue 2')
-     [storyFrame8, dialogueContainer8] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5004", 45, storyFrame9, dialogueContainer9,'dialog4ue 2')
-     [storyFrame7, dialogueContainer7] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5003", 40, storyFrame8, dialogueContainer8,'dialog5ue 2')
-     [storyFrame6, dialogueContainer6] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5002", 40, storyFrame7, dialogueContainer7,'dialog2ue 322')
-     [storyFrame5, dialogueContainer5] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5001", 35, storyFrame6, dialogueContainer6,'dia1logue 2')
-     [storyFrame4, dialogueContainer4] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog5000", 43, storyFrame5, dialogueContainer5,'dialogu22e 2')
-
-     storyFrame3 = createOptionsFrameWithoutDialogueBox(window, "pictures/Mob_Balrog.png", [{'text':'Option 1', 'showNextFrame':[storyFrame4, dialogueContainer4, 'dede', [Willy, 'decrease']]},
-                                                                                               {'text':'Option 2', 'showNextFrame':[storyFrame4, dialogueContainer4, 'damn']},
-                                                                                               {'text':'Option 3', 'showNextFrame':[storyFrame4, dialogueContainer4, 'tete']}])
+#      storyFrame3 = createOptionsFrameWithoutDialogueBox(window, "pictures/Mob_Balrog.png", [{'text':'Option 1', 'showNextFrame':[storyFrame4, dialogueContainer4, 'dede', [Willy, 'decrease']]},
+#                                                                                                {'text':'Option 2', 'showNextFrame':[storyFrame4, dialogueContainer4, 'damn']},
+#                                                                                                {'text':'Option 3', 'showNextFrame':[storyFrame4, dialogueContainer4, 'tete']}])
      
-     [storyFrame2, dialogueContainer2] = createDialogueFrame(window, "pictures/dog.png", "D.O.G", 60, storyFrame3)
+     [xiaoMingFrame3, xiaomingDialogue3] = createDialogueFrame(window, "pictures/dog.png", "", 60, placeholderFrame)
+     [xiaoMingFrame2, xiaomingDialogue2] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Protagonist", 43, xiaoMingFrame3, xiaomingDialogue3, "(You head for the classroom door, ready to head home...)")
+     [xiaoMingFrame1, xiaomingDialogue1] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "", 30, xiaoMingFrame2, xiaomingDialogue2, "Damn, I can’t believe that it is already 6pm... time to go home and submit my assignment.")
 
-     [storyFrame, dialogueContainer] = createDialogueFrame(window, "pictures/Mob_Balrog.png", "Balrog", 30, storyFrame2, dialogueContainer2, placeholderText2)
+     chooseNPCFrame = createOptionsFrameWithoutDialogueBox(window, "pictures/Mob_Balrog.png", [{'text':'Choose Xiao Ming', 'showNextFrame':[xiaoMingFrame1, xiaomingDialogue1, '(After a long and tiring day of classes, school has finally ended...)', [Willy, 'decrease']]},])
 
-     createStartingFrame(window, storyFrame, dialogueContainer)
+     createStartingFrame(window, chooseNPCFrame, protagonist)
 
      window.mainloop()
 
 if __name__ == '__main__':
       main()
+
+
 
 
 
