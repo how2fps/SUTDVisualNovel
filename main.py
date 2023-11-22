@@ -32,46 +32,45 @@ def createDialogueFrameNew(window: Tk, currentFrame: Frame, textImgNameSound: li
     after_ids = []
     def update_dialogue():
        currentIndex
-       pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="red", highlightthickness=2, height=550)
        name = textImgNameSound[currentIndex].get("name")
        dialogue = textImgNameSound[currentIndex].get("text")
        imgFilePath = textImgNameSound[currentIndex].get("imgFilePath")
        soundFilePath = textImgNameSound[currentIndex].get("soundFilePath")
        options = textImgNameSound[currentIndex].get("options")
-       currentFrame.pack_forget()
-       img = PhotoImage(file=imgFilePath)
+       currentFrame.pack_forget() # Remove current frame
+       img = PhotoImage(file=imgFilePath) # Some weird gimmick to make the image work
+       pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="red", highlightthickness=2, height=550)
        pictureFrame.image = img
        pictureFrame.config(image=img)
        pictureFrame.pack(side="top", fill="both")
-       if (len(options) > 1):
+       if (len(options) > 1): # If there are multiple options, show multiple options.
             for option in options:
                 def updateCurrentIndex(updatedIndex=option.get("nextSceneIndex")):
                        nonlocal currentIndex
                        currentIndex = updatedIndex
-                       print(currentIndex)
-                       winsound.PlaySound(None, winsound.SND_PURGE)
+                       winsound.PlaySound(None, winsound.SND_PURGE) # Stops sound from playing
                        for after_id in after_ids:
                               dialogueContainer.after_cancel(after_id)
                        for widget in storyFrame.winfo_children():
                               widget.destroy()
                 optionButton = Button(pictureFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option.get("nextSceneIndex"): [updateCurrentIndex(idx), update_dialogue()], padx=2, pady=6)
                 optionButton.pack(fill=X, padx=50, pady=10, expand=TRUE)
-       chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5, height=300)
+       chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
        chatFrame.pack(side="bottom", fill="both", expand=TRUE)
        if (name != None and len(name) > 0):
            createNameFrame(window, chatFrame, name)
-       dialogueContainer = createLabelFrame(chatFrame, "", 16, 0, 50, 20)
+       dialogueContainer = createLabelFrame(chatFrame, "", 16, 0, 50, 20) # Container for the dialogue
        dialogueContainer.pack(side="left")
        dialogueContainer.config(text="")
        after_ids.clear()
-       for i, word in enumerate(dialogue):
+       for i, word in enumerate(dialogue): # Creates the text effect
             def update_text(w=word):
                 current_text = dialogueContainer.cget("text")
                 dialogueContainer.configure(text=current_text + w)
-            after_id = dialogueContainer.after(20 * i, update_text)
+            after_id = dialogueContainer.after(20 * i, update_text) # Logs the after_id so I can stop it from running when I go to the next scene
             after_ids.append(after_id)  # Store the after ID 
        if (soundFilePath != None):
-         playSound(soundFilePath)
+           playSound(soundFilePath)
        chatButtonContainer = Frame(chatFrame, background="#d1aa73")
        chatButtonContainer.pack(side="right", fill="both")
        def continue_dialogue():
@@ -118,7 +117,7 @@ def main():
      textbox.pack(side=LEFT)
      scenesList = [txtImgOptNameSnd("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
                    txtImgOptNameSnd("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], nameInput.get(), "sounds/animalese (1).wav"),
-                   txtImgOptNameSnd("(You head for the classroom door, ready to head home...)", "pictures/dog.png", [3]),
+                   txtImgOptNameSnd("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
                    txtImgOptNameSnd("(Suddenly, you felt someone grab your shoulders!)", "pictures/dog.png", [4]),
                    txtImgOptNameSnd("NOOO WE ARE GONNA BE LATE, LETS GO NOW!", "pictures/dog.png", [5], "Mia", "sounds/animalese (1).wav"),
                    txtImgOptNameSnd("", "pictures/dog.png", [{"text": "Scene 6", "nextSceneIndex": 6}, {"text": "Scene 7", "nextSceneIndex": 7}]),
