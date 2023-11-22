@@ -22,3 +22,5 @@ class NPC:
        def decreaseAffectionLevel(self, amount=1):
               self.affectionLevel = self.affectionLevel - amount
        
+       def getAffectionLevel(self):
+              return self.affectionLevel
