@@ -139,16 +139,22 @@ def main():
        def txtImgOptNameSndAff(text:str, imgFilePath: str, options: list = [], name:str = None, soundFilePath: str = None, affectionCheck: dict = None):
             return {"text": text, "imgFilePath": imgFilePath, "name": name, "soundFilePath": soundFilePath, "options": options, "affectionCheck": affectionCheck}
        # ****FUNCTION txtImgOptNameSndAff****
+
        # "text" is what the dialogue in the chatbox reads, leave it empty during multiple option scenes.
+
        # "imgFilePath" is the relative image file path to this file, a few examples are shown (please create the characters on the background)
+
        # "name" is the name of the character who is speaking, it will appear in the name box at the top left of the chatbox, leave it empty to not have the name box shown.
+
        # "soundFilePath" is the relative sound file path to this file, a few examples are shown.
-       # affectionCheck is a dictionary in this format {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }. "NPC" is the NPC you want to check affection levels,
+
+       # "affectionCheck" is a dictionary in this format {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }. 
+       # "NPC" is the NPC you want to check affection levels,
        # "comparison" is to check whether it is smaller or bigger than the "amount".
        # "altSceneIndex" is the alternate scene you want to go to when the comparison returns TRUE.
 
        # "options" is a list that dictates what scenes the buttons go to.
-       # In multiple options, create a list of dictionary
+       # If you have multiple options, create a list of dictionary
        # [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, 
        #  {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}] < like this
        # where "text" is the text shown in the option button, and "nextSceneIndex" is the scene's index in the array it will jump to when the button is pressed.
