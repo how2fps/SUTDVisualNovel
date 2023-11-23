@@ -142,7 +142,7 @@ def main():
 
        # "text" is what the dialogue in the chatbox reads, leave it empty during multiple option scenes.
 
-       # "imgFilePath" is the relative image file path to this file, a few examples are shown (create ONE image for each scene, edit the characters onto the image)
+       # "imgFilePath" is the relative image file path to this file, a few examples are shown (create ONE image for each scene, edit the characters onto the image) (can reuse images, up to you)
 
        # "name" is the name of the character who is speaking, it will appear in the name box at the top left of the chatbox, leave it empty to not have the name box shown.
 
