@@ -128,18 +128,18 @@ def main():
        Label(startingFrame, text="Enter your name").pack()
        nameInput = Entry(startingFrame)
        nameInput.pack()
-       # ****FUNCTION txtImgOptNameSnd****
-       # text is what the dialogue in the chatbox reads, leave it empty during multiple option scenes.
-       # imgFilePath is the relative image file path to this file, a few examples are shown (please create the characters on the background)
-       # name is the name of the character who is speaking, it will appear in the name box at the top left of the chatbox, leave it empty to not have the name box shown.
-       # soundFilePath is the relative sound file path to this file, a few examples are shown.
+       # ****FUNCTION txtImgOptNameSndAff****
+       # "text" is what the dialogue in the chatbox reads, leave it empty during multiple option scenes.
+       # "imgFilePath" is the relative image file path to this file, a few examples are shown (please create the characters on the background)
+       # "name" is the name of the character who is speaking, it will appear in the name box at the top left of the chatbox, leave it empty to not have the name box shown.
+       # "soundFilePath" is the relative sound file path to this file, a few examples are shown.
        # https://acedio.github.io/animalese.js/ < please use this to generate more animal crossing sounds, need to format this to .wav even though it is already .wav if not winsound wouldn't run it
        # https://cloudconvert.com/wav-converter < use this to reformat the animal crossing sounds
        # affectionCheck is a dictionary in this format {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }. "NPC" is the NPC you want to check affection levels,
        # "comparison" is to check whether it is smaller or bigger than the "amount".
        # "altSceneIndex" is the alternate scene you want to go to when the comparison returns TRUE.
 
-       # options is a list that dictates what scenes the buttons go to.
+       # "options" is a list that dictates what scenes the buttons go to.
        # In multiple options, create a list of dictionary
        # [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, 
        #  {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}] < like this
@@ -156,7 +156,7 @@ def main():
             return {"text": text, "imgFilePath": imgFilePath, "name": name, "soundFilePath": soundFilePath, "options": options, "affectionCheck": affectionCheck}
        textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
        textbox.pack(side=LEFT)
-       # How to find out what line your dialogue is in the array: Take the current line of your array and subtract from the starting line. P.S: Put your dialogues in this vertical manner. 
+       # How to find out what index your dialogue is in the array: Take the current line of your array and subtract from the starting line. P.S: Put your dialogues in this vertical manner. 
        scenesList = [txtImgOptNameSndAff("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
                      txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], nameInput.get(), "sounds/animalese (1).wav"),
                      txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
