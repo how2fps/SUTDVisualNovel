@@ -21,12 +21,6 @@ INCREASE = "increase"
 BIGGER = "bigger"
 SMALLER = "smaller"
 
-def playSound(relativeFilePath:str):
-       winsound.PlaySound(relativeFilePath, winsound.SND_ASYNC)
-
-def createLabelFrame(referenceFrame:Frame, txt:str, fontSize:int, height:int, padX:int, padY: int):
-       return Label(referenceFrame, text=txt, height=height, wraplength=860, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", fontSize), padx=padX, pady=padY)
-
 def createNameFrame(window:Frame, chatFrame:Frame, characterName:str, xLocation:int = 40): # Creates the name box
        shadow1 = Label(window, text=characterName, background="#1f1f1f", foreground="black", font=("roboto", 18), padx=6, pady=6)
        shadow1.place(in_=chatFrame, x=xLocation+5, y=-23)
@@ -85,13 +79,13 @@ def createDialogueFrameNew(window: Tk, currentFrame: Frame, textImgNameSound: li
               dialogueContainer.config(text="")
               afterIds.clear()
               for i, word in enumerate(dialogue): # Creates the text effect
-                     def update_text(w=word):
-                            current_text = dialogueContainer.cget("text")
-                            dialogueContainer.configure(text=current_text + w)
-                     afterId = dialogueContainer.after(20 * i, update_text) # Logs the afterId so I can stop it from running when I go to the next scene
+                     def updateText(w=word):
+                            currentText = dialogueContainer.cget("text")
+                            dialogueContainer.configure(text=currentText + w)
+                     afterId = dialogueContainer.after(20 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
                      afterIds.append(afterId)  # Store the after ID 
               if (soundFilePath != None):
-                     playSound(soundFilePath)
+                     winsound.PlaySound(soundFilePath, winsound.SND_ASYNC)
               chatButtonContainer = Frame(chatFrame, background="#d1aa73")
               chatButtonContainer.pack(side="right", fill="both")
               def continueDialogue():
