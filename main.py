@@ -1,4 +1,5 @@
 # type "python main.py" without the " " in the terminal to run this project. ctrl + ` to open the terminal.
+# Only need to add more scenes using txtImgOptNameSndAff function. Guide to use is below.
 import warnings
 import winsound
 from tkinter import *
@@ -16,6 +17,7 @@ SMALLER = "smaller"
 
 def playSound(relativeFilePath:str):
        winsound.PlaySound(relativeFilePath, winsound.SND_ASYNC)
+
 def createLabelFrame(referenceFrame:Frame, txt:str, fontSize:int, height:int, padX:int, padY: int):
        return Label(referenceFrame, text=txt, height=height, wraplength=860, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", fontSize), padx=padX, pady=padY)
 
@@ -72,7 +74,7 @@ def createDialogueFrameNew(window: Tk, currentFrame: Frame, textImgNameSound: li
               chatFrame.pack(side="bottom", fill="both", expand=TRUE)
               if (name != None and len(name) > 0):
                      createNameFrame(window, chatFrame, name)
-              dialogueContainer = createLabelFrame(chatFrame, "", 16, 0, 50, 20) # Container for the dialogue
+              dialogueContainer = Label(chatFrame, text="", height=0, wraplength=860, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", 16), padx=50, pady=20)
               dialogueContainer.pack(side="left")
               dialogueContainer.config(text="")
               afterIds.clear()
@@ -156,20 +158,19 @@ def main():
             return {"text": text, "imgFilePath": imgFilePath, "name": name, "soundFilePath": soundFilePath, "options": options, "affectionCheck": affectionCheck}
        textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
        textbox.pack(side=LEFT)
+       print (nameInput.get())
        # How to find out what index your dialogue is in the array: Take the current line of your array and subtract from the starting line. P.S: Put your dialogues in this vertical manner. 
-       scenesList = [txtImgOptNameSndAff("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
-                     txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], nameInput.get(), "sounds/animalese (1).wav"),
-                     txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
-                     txtImgOptNameSndAff("(Suddenly, you felt someone grab your shoulders!)", "pictures/dog.png", [4]),
-                     txtImgOptNameSndAff("NOOO WE ARE GONNA BE LATE, LETS GO NOW!", "pictures/dog.png", [5], "Mia", "sounds/animalese (1).wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}]),
-                     txtImgOptNameSndAff("SCENE 6!", "pictures/dog.png", [], "YAY", "sounds/animalese (1).wav", {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }), 
-                     txtImgOptNameSndAff("SCENE 7!", "pictures/dog.png", [4], "YAY", "sounds/animalese (1).wav")
-                     ]
        startButton = Button(startingFrame, text="Start Story", borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: 
-              [protagonist.setName(nameInput.get()), (createDialogueFrameNew(window, startingFrame, scenesList))])
-     
- 
+              [protagonist.setName(nameInput.get()), (createDialogueFrameNew(window, startingFrame, 
+              [txtImgOptNameSndAff("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
+              txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], nameInput.get(), "sounds/animalese (1).wav"),
+              txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
+              txtImgOptNameSndAff("(Suddenly, you felt someone grab your shoulders!)", "pictures/dog.png", [4]),
+              txtImgOptNameSndAff("NOOO WE ARE GONNA BE LATE, LETS GO NOW!", "pictures/dog.png", [5], "Mia", "sounds/animalese (1).wav"),
+              txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}]),
+              txtImgOptNameSndAff("SCENE 6!", "pictures/dog.png", [], "YAY", "sounds/animalese (1).wav", {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }), 
+              txtImgOptNameSndAff("SCENE 7!", "pictures/dog.png", [4], "YAY", "sounds/animalese (1).wav"),
+              ]))])
        startButton.pack(side=RIGHT)
        window.mainloop()
      
