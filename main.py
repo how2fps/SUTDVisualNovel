@@ -16,7 +16,6 @@ SMALLER = "smaller"
 
 def playSound(relativeFilePath:str):
        winsound.PlaySound(relativeFilePath, winsound.SND_ASYNC)
-
 def createLabelFrame(referenceFrame:Frame, txt:str, fontSize:int, height:int, padX:int, padY: int):
        return Label(referenceFrame, text=txt, height=height, wraplength=860, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", fontSize), padx=padX, pady=padY)
 
@@ -149,16 +148,15 @@ def main():
        # If you put options as [], an empty list, it will go to the scene in the next index.
        # "affection" is a dictionary that takes in the affected NPC and whether the button will INCREASE or DECREASE his affection.
        # If neutral, just put {"text": "Neutral Option Example", "nextSceneIndex": 8}, without "affection"
-       
        # [{"text": "Positive Option Example", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, 
        #  {"text": "Negative Option Example", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}},
        #  {"text": "Neutral Option Example", "nextSceneIndex": 8} ] < like this
-       
 
        def txtImgOptNameSndAff(text:str, imgFilePath: str, options: list = [], name:str = None, soundFilePath: str = None, affectionCheck: dict = None):
             return {"text": text, "imgFilePath": imgFilePath, "name": name, "soundFilePath": soundFilePath, "options": options, "affectionCheck": affectionCheck}
        textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
        textbox.pack(side=LEFT)
+       # How to find out what line your dialogue is in the array: Take the current line of your array and subtract from the starting line. P.S: Put your dialogues in this vertical manner. 
        scenesList = [txtImgOptNameSndAff("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
                      txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], nameInput.get(), "sounds/animalese (1).wav"),
                      txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
