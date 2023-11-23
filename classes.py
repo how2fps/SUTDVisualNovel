@@ -24,3 +24,6 @@ class NPC:
        
        def getAffectionLevel(self):
               return self.affectionLevel
+       
+       def getName(self):
+              return self.name
