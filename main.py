@@ -102,10 +102,10 @@ def createDialogueFrameNew(window: Tk, currentFrame: Frame, textImgNameSound: li
                      updateDialogue()
               chatButton = Button(chatButtonContainer, text='Continue >>', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=continueDialogue, padx=2, pady=2)
               if(affectionCheck != None):
-                     affectedNPC: NPC = affectionCheck.get("affectedNPC")
+                     affectedNPC: NPC = affectionCheck.get("NPC")
                      comparison = affectionCheck.get("comparison")
                      amount: int = affectionCheck.get("amount")
-                     altSceneIndex: int = affectionCheck.get("altScene")
+                     altSceneIndex: int = affectionCheck.get("altSceneIndex")
                      if (comparison == BIGGER):
                             if (affectedNPC.getAffectionLevel() > amount):
                                    chatButton.config(command=continueDialogueToScene(altSceneIndex))
@@ -129,12 +129,16 @@ def main():
        Label(startingFrame, text="Enter your name").pack()
        nameInput = Entry(startingFrame)
        nameInput.pack()
+       # ****FUNCTION txtImgOptNameSnd****
        # text is what the dialogue in the chatbox reads, leave it empty during multiple option scenes.
        # imgFilePath is the relative image file path to this file, a few examples are shown (please create the characters on the background)
        # name is the name of the character who is speaking, it will appear in the name box at the top left of the chatbox, leave it empty to not have the name box shown.
        # soundFilePath is the relative sound file path to this file, a few examples are shown.
        # https://acedio.github.io/animalese.js/ < please use this to generate more animal crossing sounds, need to format this to .wav even though it is already .wav if not winsound wouldn't run it
        # https://cloudconvert.com/wav-converter < use this to reformat the animal crossing sounds
+       # affectionCheck is a dictionary in this format {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }. "NPC" is the NPC you want to check affection levels,
+       # "comparison" is to check whether it is smaller or bigger than the "amount".
+       # "altSceneIndex" is the alternate scene you want to go to when the comparison returns TRUE.
 
        # options is a list that dictates what scenes the buttons go to.
        # In multiple options, create a list of dictionary
@@ -151,18 +155,18 @@ def main():
        #  {"text": "Neutral Option Example", "nextSceneIndex": 8} ] < like this
        
 
-       def txtImgOptNameSnd(text:str, imgFilePath: str, options: list = [], name:str = None, soundFilePath: str = None, affectionCheck: dict = None):
+       def txtImgOptNameSndAff(text:str, imgFilePath: str, options: list = [], name:str = None, soundFilePath: str = None, affectionCheck: dict = None):
             return {"text": text, "imgFilePath": imgFilePath, "name": name, "soundFilePath": soundFilePath, "options": options, "affectionCheck": affectionCheck}
        textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
        textbox.pack(side=LEFT)
-       scenesList = [txtImgOptNameSnd("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
-                     txtImgOptNameSnd("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], nameInput.get(), "sounds/animalese (1).wav"),
-                     txtImgOptNameSnd("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
-                     txtImgOptNameSnd("(Suddenly, you felt someone grab your shoulders!)", "pictures/dog.png", [4]),
-                     txtImgOptNameSnd("NOOO WE ARE GONNA BE LATE, LETS GO NOW!", "pictures/dog.png", [5], "Mia", "sounds/animalese (1).wav"),
-                     txtImgOptNameSnd("", "pictures/dog.png", [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}]),
-                     txtImgOptNameSnd("SCENE 6!", "pictures/dog.png", [], "YAY", "sounds/animalese (1).wav", {"affectedNPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altScene": 2 }), 
-                     txtImgOptNameSnd("SCENE 7!", "pictures/dog.png", [4], "YAY", "sounds/animalese (1).wav")
+       scenesList = [txtImgOptNameSndAff("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
+                     txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], nameInput.get(), "sounds/animalese (1).wav"),
+                     txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
+                     txtImgOptNameSndAff("(Suddenly, you felt someone grab your shoulders!)", "pictures/dog.png", [4]),
+                     txtImgOptNameSndAff("NOOO WE ARE GONNA BE LATE, LETS GO NOW!", "pictures/dog.png", [5], "Mia", "sounds/animalese (1).wav"),
+                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}]),
+                     txtImgOptNameSndAff("SCENE 6!", "pictures/dog.png", [], "YAY", "sounds/animalese (1).wav", {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }), 
+                     txtImgOptNameSndAff("SCENE 7!", "pictures/dog.png", [4], "YAY", "sounds/animalese (1).wav")
                      ]
        startButton = Button(startingFrame, text="Start Story", borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: 
               [protagonist.setName(nameInput.get()), (createDialogueFrameNew(window, startingFrame, scenesList))])
