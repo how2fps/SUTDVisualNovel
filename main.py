@@ -143,8 +143,6 @@ def main():
        # "imgFilePath" is the relative image file path to this file, a few examples are shown (please create the characters on the background)
        # "name" is the name of the character who is speaking, it will appear in the name box at the top left of the chatbox, leave it empty to not have the name box shown.
        # "soundFilePath" is the relative sound file path to this file, a few examples are shown.
-       # https://acedio.github.io/animalese.js/ < please use this to generate more animal crossing sounds, need to format this to .wav even though it is already .wav if not winsound wouldn't run it
-       # https://cloudconvert.com/wav-converter < use this to reformat the animal crossing sounds
        # affectionCheck is a dictionary in this format {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }. "NPC" is the NPC you want to check affection levels,
        # "comparison" is to check whether it is smaller or bigger than the "amount".
        # "altSceneIndex" is the alternate scene you want to go to when the comparison returns TRUE.
@@ -162,6 +160,8 @@ def main():
        #  {"text": "Negative Option Example", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}},
        #  {"text": "Neutral Option Example", "nextSceneIndex": 8} ] < like this
 
+       # https://acedio.github.io/animalese.js/ < please use this to generate more animal crossing sounds, need to format this to .wav even though it is already .wav if not winsound wouldn't run it
+       # https://cloudconvert.com/wav-converter < use this to reformat the animal crossing sounds
        
        textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
        textbox.pack(side=LEFT)
