@@ -38,7 +38,7 @@ def cleanUp(afterIds:list, dialogueContainer:Label, storyFrame:Frame):
        for widget in storyFrame.winfo_children():
               widget.destroy() 
 
-def createDialogueFrameNew(window: Tk, currentFrame: Frame, textImgNameSound: list):
+def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
        storyFrame = Frame(window)
        storyFrame.pack(fill=BOTH, expand=True)
        afterIds = []
@@ -176,7 +176,7 @@ def main():
        print (nameInput.get())
        # How to find out what index your dialogue is in the array: Take the current line of your array and subtract from the starting line. P.S: Put your dialogues in this vertical manner. 
        startButton = Button(startingFrame, text="Start Story", borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: 
-              [protagonist.setName(nameInput.get()), (createDialogueFrameNew(window, startingFrame, 
+              [protagonist.setName(nameInput.get()), (createScenes(window, startingFrame, 
               [txtImgOptNameSndAff("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
               txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], nameInput.get(), "sounds/animalese (1).wav"),
               txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
