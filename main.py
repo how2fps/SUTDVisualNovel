@@ -130,7 +130,7 @@ def createDialogueFrameNew(window: Tk, currentFrame: Frame, textImgNameSound: li
 
 def main():
        window = Tk()
-       window.title('Centered!')
+       window.title('SUTDoki')
        width = 1080
        height = 720 
        ws = window.winfo_screenwidth()
