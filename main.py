@@ -9,8 +9,13 @@ from classes import *
 warnings.filterwarnings('ignore')
 
 # Create your characters here, e.g. Xiao Ming => XIAOMING = NPC("Xiao Ming")
+# Already created for you guys, just edit the name if you want
 protagonist =  Protagonist("", "")
 XIAOMING = NPC("Xiao Ming")
+JUNGCOOK = NPC("Jung Cook")
+ADAMCMITH = NPC("Adam Cmith")
+JOHNNYSIN = NPC("Johnny Sin")
+
 DECREASE = "decrease"
 INCREASE = "increase"
 BIGGER = "bigger"
