@@ -1,4 +1,4 @@
-# type "python main.py" without the " " in the terminal to run this project. ctrl + ` to open the terminal.
+# Type "python main.py" without the " " in the terminal to run this project. ctrl + ` to open the terminal.
 # Only need to add more scenes using txtImgOptNameSndAff function. Guide to use is below.
 import warnings
 import winsound
@@ -8,7 +8,7 @@ from classes import *
 
 warnings.filterwarnings('ignore')
 
-#Create your characters here, e.g. xiao ming => XIAOMING = NPC("Xiao Ming")
+# Create your characters here, e.g. xiao ming => XIAOMING = NPC("Xiao Ming")
 protagonist =  Protagonist("", "")
 XIAOMING = NPC("Xiao Ming")
 DECREASE = "decrease"
