@@ -8,6 +8,7 @@ from classes import *
 
 warnings.filterwarnings('ignore')
 
+#Create your characters here, e.g. xiao ming => XIAOMING = NPC("Xiao Ming")
 protagonist =  Protagonist("", "")
 XIAOMING = NPC("Xiao Ming")
 DECREASE = "decrease"
