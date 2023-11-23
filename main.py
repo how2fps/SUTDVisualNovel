@@ -130,6 +130,8 @@ def main():
        Label(startingFrame, text="Enter your name").pack()
        nameInput = Entry(startingFrame)
        nameInput.pack()
+       def txtImgOptNameSndAff(text:str, imgFilePath: str, options: list = [], name:str = None, soundFilePath: str = None, affectionCheck: dict = None):
+            return {"text": text, "imgFilePath": imgFilePath, "name": name, "soundFilePath": soundFilePath, "options": options, "affectionCheck": affectionCheck}
        # ****FUNCTION txtImgOptNameSndAff****
        # "text" is what the dialogue in the chatbox reads, leave it empty during multiple option scenes.
        # "imgFilePath" is the relative image file path to this file, a few examples are shown (please create the characters on the background)
@@ -154,8 +156,7 @@ def main():
        #  {"text": "Negative Option Example", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}},
        #  {"text": "Neutral Option Example", "nextSceneIndex": 8} ] < like this
 
-       def txtImgOptNameSndAff(text:str, imgFilePath: str, options: list = [], name:str = None, soundFilePath: str = None, affectionCheck: dict = None):
-            return {"text": text, "imgFilePath": imgFilePath, "name": name, "soundFilePath": soundFilePath, "options": options, "affectionCheck": affectionCheck}
+       
        textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
        textbox.pack(side=LEFT)
        print (nameInput.get())
