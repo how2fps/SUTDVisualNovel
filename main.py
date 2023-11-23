@@ -58,7 +58,7 @@ def createDialogueFrameNew(window: Tk, currentFrame: Frame, textImgNameSound: li
               affectionCheck = textImgNameSound[currentIndex].get("affectionCheck")
               currentFrame.pack_forget() # Remove current frame
               img = PhotoImage(file=imgFilePath) # Some weird gimmick to make the image work
-              pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="red", highlightthickness=2, height=550)
+              pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="#A7885C", highlightthickness=2, height=550)
               pictureFrame.image = img
               pictureFrame.config(image=img)
               pictureFrame.pack(side="top", fill="both")
@@ -76,7 +76,7 @@ def createDialogueFrameNew(window: Tk, currentFrame: Frame, textImgNameSound: li
                                        NPC.decreaseAffectionLevel()
                             optionButton = Button(pictureFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
                             optionButton.pack(fill=X, padx=50, pady=10, expand=TRUE)
-              chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="white", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
+              chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
               chatFrame.pack(side="bottom", fill="both", expand=TRUE)
               if (name != None and len(name) > 0):
                      createNameFrame(window, chatFrame, name)
@@ -130,7 +130,15 @@ def createDialogueFrameNew(window: Tk, currentFrame: Frame, textImgNameSound: li
 
 def main():
        window = Tk()
-       window.geometry("1080x720")
+       window.title('Centered!')
+       width = 1080
+       height = 720 
+       ws = window.winfo_screenwidth()
+       hs = window.winfo_screenheight()
+       x = (ws/2) - (width/2)
+       y = (hs/2) - (height/2) - 100
+       window.geometry('%dx%d+%d+%d' % (width, height, x, y))
+
        startingFrame = Frame(window)
        startingFrame.pack(anchor=W, fill=Y, expand=False, side=LEFT)
        Label(startingFrame, text="Enter your name").pack()
@@ -142,7 +150,7 @@ def main():
 
        # "text" is what the dialogue in the chatbox reads, leave it empty during multiple option scenes.
 
-       # "imgFilePath" is the relative image file path to this file, a few examples are shown (create ONE image for each scene, edit the characters onto the image) (can reuse images, up to you)
+       # "imgFilePath" is the relative image file path to this file, a few examples are shown (ONE image for each scene, edit the characters onto the image, 1080x550 resolution)
 
        # "name" is the name of the character who is speaking, it will appear in the name box at the top left of the chatbox, leave it empty to not have the name box shown.
 
