@@ -12,7 +12,7 @@ warnings.filterwarnings('ignore')
 # Already created for you guys, just edit the name if you want
 protagonist =  Protagonist("", "")
 XIAOMING = NPC("Xiao Ming")
-JUNGCOOK = NPC("Jung Cook")
+JUNGCOOK = NPC("JungCook")
 ADAMCMITH = NPC("Adam Cmith")
 JOHNNYSIN = NPC("Johnny Sin")
 
