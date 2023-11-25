@@ -1,112 +1,8 @@
-import warnings
-import winsound
-from tkinter import *
 
-from classes import *
+from main import *
 
-warnings.filterwarnings('ignore')
-
-
-def createNameFrame(window:Frame, chatFrame:Frame, characterName:str, xLocation:int = 40): # Creates the name box
-       shadow1 = Label(window, text=characterName, background="#1f1f1f", foreground="black", font=("roboto", 18), padx=6, pady=6)
-       shadow1.place(in_=chatFrame, x=xLocation+5, y=-23)
-       shadow2 = Label(window, text=characterName, background="#2e2e2e", foreground="black", font=("roboto", 18), padx=6, pady=6)
-       shadow2.place(in_=chatFrame, x=xLocation+4, y=-24)
-       shadow3 = Label(window, text=characterName, background="#3b3a3a", foreground="black", font=("roboto", 18), padx=6, pady=6)
-       shadow3.place(in_=chatFrame, x=xLocation+3, y=-25)
-       nameLabelFrame = Label(window, text=characterName, background="#d1aa73", foreground="black", font=("roboto", 18), padx=5, pady=5, highlightbackground="#A7885C", highlightthickness=2)
-       nameLabelFrame.place(in_=chatFrame, x=xLocation, y=-28)
-
-def cleanUp(afterIds:list, dialogueContainer:Label, storyFrame:Frame):
-       winsound.PlaySound(None, winsound.SND_PURGE)
-       for afterId in afterIds:
-              dialogueContainer.after_cancel(afterId)       
-       for widget in storyFrame.winfo_children():
-              widget.destroy() 
-
-def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
-       storyFrame = Frame(window)
-       storyFrame.pack(fill=BOTH, expand=True)
-       afterIds = []
-       def updateDialogue():
-              nonlocal currentIndex
-              name = textImgNameSound[currentIndex].get("name")
-              dialogue = textImgNameSound[currentIndex].get("text")
-              imgFilePath = textImgNameSound[currentIndex].get("imgFilePath")
-              soundFilePath = textImgNameSound[currentIndex].get("soundFilePath")
-              options = textImgNameSound[currentIndex].get("options")
-              affectionCheck = textImgNameSound[currentIndex].get("affectionCheck")
-              currentFrame.pack_forget() # Remove current frame
-              img = PhotoImage(file=imgFilePath) # Some weird gimmick to make the image work
-              pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="#A7885C", highlightthickness=2, height=550)
-              pictureFrame.image = img
-              pictureFrame.config(image=img)
-              pictureFrame.pack(side="top", fill="both")
-              if (len(options) > 1): # If there are multiple options, show multiple options.
-                     for option in options:
-                            def updateCurrentIndex(updatedIndex=option.get("nextSceneIndex"), NPC:NPC=option.get("affection").get("affectedNPC") , affectionChange=option.get("affection").get("change") ):
-                                   nonlocal currentIndex
-                                   currentIndex = updatedIndex
-                                   cleanUp(afterIds, dialogueContainer, storyFrame)
-                                   if (affectionChange == 'increase'):
-                                       print('increasing affection of ' + NPC.getName())
-                                       NPC.increaseAffectionLevel()
-                                   if (affectionChange =='decrease'):
-                                       print('decreasing affection of ' + NPC.getName())
-                                       NPC.decreaseAffectionLevel()
-                            optionButton = Button(pictureFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
-                            optionButton.pack(fill=X, padx=50, pady=10, expand=TRUE)
-              chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
-              chatFrame.pack(side="bottom", fill="both", expand=TRUE)
-              if (name != None and len(name) > 0):
-                     createNameFrame(window, chatFrame, name)
-              dialogueContainer = Label(chatFrame, text="", height=0, wraplength=860, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", 16), padx=50, pady=20)
-              dialogueContainer.pack(side="left")
-              dialogueContainer.config(text="")
-              afterIds.clear()
-              for i, word in enumerate(dialogue): # Creates the text effect
-                     def updateText(w=word):
-                            currentText = dialogueContainer.cget("text")
-                            dialogueContainer.configure(text=currentText + w)
-                     afterId = dialogueContainer.after(20 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
-                     afterIds.append(afterId)  # Store the after ID 
-              if (soundFilePath != None):
-                     winsound.PlaySound(soundFilePath, winsound.SND_ASYNC)
-              chatButtonContainer = Frame(chatFrame, background="#d1aa73")
-              chatButtonContainer.pack(side="right", fill="both")
-              def continueDialogue():
-                     nonlocal currentIndex
-                     cleanUp(afterIds, dialogueContainer, storyFrame)
-                     if (len(options) == 1):
-                         currentIndex = options[0]
-                     else: 
-                         currentIndex += 1
-                     updateDialogue()
-              def continueDialogueToScene(sceneIndex: int):
-                     nonlocal currentIndex
-                     cleanUp(afterIds, dialogueContainer, storyFrame)
-                     currentIndex = sceneIndex
-                     updateDialogue()
-              chatButton = Button(chatButtonContainer, text='Continue >>', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=continueDialogue, padx=2, pady=2)
-              if(affectionCheck != None):
-                     affectedNPC: NPC = affectionCheck.get("NPC")
-                     comparison = affectionCheck.get("comparison")
-                     amount: int = affectionCheck.get("amount")
-                     altSceneIndex: int = affectionCheck.get("altSceneIndex")
-                     if (comparison == BIGGER):
-                            if (affectedNPC.getAffectionLevel() > amount):
-                                   chatButton.config(command=continueDialogueToScene(altSceneIndex))
-                            else:
-                                   chatButton.config(command=continueDialogue)
-                     if (comparison == SMALLER):
-                            if (affectedNPC.getAffectionLevel() < amount):
-                                   print(affectedNPC.getAffectionLevel())
-                                   chatButton.config(command=continueDialogueToScene(altSceneIndex))
-                            else:
-                                   chatButton.config(command=continueDialogue)
-              chatButton.pack(side="bottom")
-       currentIndex:int = 0
-       return updateDialogue()
+picmain = "pic of main path"
+picofJC = "pic of JC path"
 
 def main():
        window = Tk()
@@ -160,17 +56,55 @@ def main():
        textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
        textbox.pack(side=LEFT)
        print (nameInput.get())
+       # If not sure can check main for Finn examples
        # How to find out what index your dialogue is in the array: Take the current line of your array and subtract from the starting line. P.S: Put your dialogues in this vertical manner. 
        startButton = Button(startingFrame, text="Start Story", borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: 
               [protagonist.setName(nameInput.get()), (createScenes(window, startingFrame, 
               [txtImgOptNameSndAff("Day 1", "pictures/dog.png", [1]), 
-              txtImgOptNameSndAff("Haiz, why does uni have to be so hard. Why can't the proffessor just give everyone passes", "pic of main", [2], nameInput.get(), "sounds/animalese (1).wav"),
-              txtImgOptNameSndAff("(As you are heading back dorm, you smelt an amazing scent coming from the kitchen)", "pic of main", [3]),
-              txtImgOptNameSndAff("(Curiosity got the better of you as you decide to check it out.)", "pic of main", [4]),
+              txtImgOptNameSndAff("Haiz, why does uni have to be so hard. Why can't the proffessor just give everyone passes", picmain, [2], nameInput.get(), "sounds/animalese (1).wav"),
+              txtImgOptNameSndAff("(As you are heading back dorm, you smelt an amazing scent coming from the kitchen)", picmain, [3]),
+              txtImgOptNameSndAff("(Curiosity got the better of you as you decide to check it out.)", picmain, [4]),
               txtImgOptNameSndAff("(This seems to be some short of event happenning in the common kitchen)", "picture of kitchen", [5]),
-              txtImgOptNameSndAff("(Thinking about it now, aren't the grub club in charge of the dessert aspect of the Prom.)", "pic of main", [6]),
-              txtImgOptNameSndAff("Maybe I can sneak a peek at what dessert will be at prom in advanced!!", "pic of main", [7], nameInput.get(), "sounds/animalese (1).wav"), 
-              txtImgOptNameSndAff("(As {} is trying to see through the crowd to see what food they are preparing, a shadow can be seen creeping up behind her)".format(nameInput.get()), "pic of main with shadow", [8], "scary sound?"),
+              txtImgOptNameSndAff("(Thinking about it now, aren't the grub club in charge of the dessert aspect of the Prom.)", picmain, [6]),
+              txtImgOptNameSndAff("Maybe I can sneak a peek at what dessert will be at prom in advanced!!", picmain, [7], nameInput.get(), "sounds/animalese (1).wav"), 
+              txtImgOptNameSndAff("(As you are trying to see through the crowd to see what food they are preparing, a shadow can be seen creeping up behind her)", "pic of main with shadow", [8], "scary sound?"),
+              txtImgOptNameSndAff("Oi!! What are you doing ?!?", "pic of shadow figure", [9], "sounds/animalese (1).wav"),
+              txtImgOptNameSndAff("(Wah!! Shit scared the hell outta me.)", picmain, [10], "scary sound?"),
+              txtImgOptNameSndAff("(Who is the annoying guy spoiling my business!!!)", picmain, [11]),
+              txtImgOptNameSndAff("(You turn around to see a tall handsome man with curly hair)", picofJC, [12], "wow sounds??"),
+              txtImgOptNameSndAff("(OMG itss JungCook!!!)", picmain, [13]),
+              txtImgOptNameSndAff("(You might be wondering why the Grub Club was in charge of the dessert for Prom)", [14]),
+              txtImgOptNameSndAff("(It is all because of this one man! JungCook is from a renowned family of chef, he also has an impressive history of winning multiple competitions. He is the star chef of SUTD)", picofJC, [15]),
+              txtImgOptNameSndAff("(JungCook has specially requested to help with the Prom dessert, with his reputation, no one would refuse his proposition!)", picofJC, [16]),
+              txtImgOptNameSndAff("Hellooo, did you not hear me. WHAT ARE YOU DOING HERE!!!", picofJC, [17], "sounds/animalese (1).wav"),
+              txtImgOptNameSndAff("", picofsun, [{"text": "Act SUS", "nextSceneIndex": 19, "affection": {"affectedNPC": JUNGCOOK, "change": INCREASE}}, {"text": "Ignore him", "nextSceneIndex": 24}, {"text": "Act Curious", "nextSceneIndex": 26, "affection": {"affectedNPC": JUNGCOOK, "change": DECREASE}}]),
+              txtImgOptNameSndAff("O nothing im just here chilling randomly outside a window, for no apparent reason, just ignore me. ", picmain, [20], "sounds/animalese (1).wav"),
+              txtImgOptNameSndAff("Okay weirdo, give me a reason why I shouldn’t just report you for suspicious activity huh.", picofJC, [21], "sounds/animalese (1).wav"),
+              txtImgOptNameSndAff("Because of that UFO over there", picmain, [22], "sounds/animalese (1).wav"),
+              txtImgOptNameSndAff("(As JungCook turns around, you immediately ran away.)", picmain, [23]),
+              txtImgOptNameSndAff("What the!?? What a interesting lady she is.", picofJC, [28], "sound"),
+              txtImgOptNameSndAff("(You stare at JungCook for awhile before turning and walking away)", picmain, [25]),
+              txtImgOptNameSndAff("????????", picofJC, [28]),
+              txtImgOptNameSndAff("O i'm just curious about what they are cooking ", picmain, [27], "sounds/animalese (1).wav"),
+              txtImgOptNameSndAff("If you are curious about cooking, how about you pay attention to our grub club telegram rather than stand outside like a weirdo", picofJC, [28], "sounds/animalese (1).wav"),
+              txtImgOptNameSndAff("WTF?!!??", picmain, [28], "sounds/animalese (1).wav"),
+              txtImgOptNameSndAff("Day End", picofsun, [29]),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+              txtImgOptNameSndAff("", pic, [], "sound"),
+
               ]))])
        startButton.pack(side=RIGHT)
        window.mainloop()
