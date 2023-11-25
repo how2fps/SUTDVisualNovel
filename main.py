@@ -3,7 +3,10 @@
 import warnings
 import winsound
 from tkinter import *
-
+from jungcook import *
+from Johnny import *
+from AdamCmith import *
+from Xiaoming import *
 from classes import *
 
 warnings.filterwarnings('ignore')

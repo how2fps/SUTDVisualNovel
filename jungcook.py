@@ -1,10 +1,9 @@
 
-from main import *
 
 picmain = "pic of main path"
 picofJC = "pic of JC path"
 
-def main():
+def JC():
        window = Tk()
        window.title('SUTDoki')
        width = 1080
@@ -109,6 +108,3 @@ def main():
        startButton.pack(side=RIGHT)
        window.mainloop()
      
-
-if __name__ == '__main__':
-       main()
