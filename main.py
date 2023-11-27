@@ -124,7 +124,6 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
               chatButton.pack(side="bottom")
        currentIndex:int = 0
        return updateDialogue()
-
 def main():
        window = Tk()
        window.title('SUTDoki')
