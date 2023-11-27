@@ -4,7 +4,6 @@ import warnings
 import winsound
 from tkinter import *
 
-from AdamCmith import *
 from classes import *
 from jungcook import *
 
