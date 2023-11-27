@@ -22,6 +22,7 @@ JOHNNYSIN = NPC("Johnny Sin")
 
 DECREASE = "decrease"
 INCREASE = "increase"
+NEUTRAL = "neutral"
 BIGGER = "bigger"
 SMALLER = "smaller"
 
@@ -69,7 +70,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList):
                             txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
                             txtImgOptNameSndAff("(Suddenly, you felt someone grab your shoulders!)", "pictures/dog.png", [4]),
                             txtImgOptNameSndAff("NOOO WE ARE GONNA BE LATE, LETS GO NOW!", "pictures/dog.png", [5], "Mia", "sounds/animalese (1).wav"),
-                            txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}]),
+                            txtImgOptNameSndAff("", "pictures/Mob_Balrog.png", [{"text": "Act SUS", "nextSceneIndex": 19, "affection": {"affectedNPC": JUNGCOOK, "change": INCREASE}}, {"text": "Ignore him", "nextSceneIndex": 24, "affection": {"affectedNPC": JUNGCOOK, "change": INCREASE}}, {"text": "Act Curious", "nextSceneIndex": 26, "affection": {"affectedNPC": JUNGCOOK, "change": DECREASE}}]),
                             txtImgOptNameSndAff("SCENE 6!", "pictures/dog.png", [], "YAY", "sounds/animalese (1).wav", {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }), 
                             txtImgOptNameSndAff("SCENE 7!", "pictures/dog.png", [4], "YAY", "sounds/animalese (1).wav"),
                             ]), padx=2, pady=2)
@@ -107,6 +108,8 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                                    if (affectionChange =='decrease'):
                                        print('decreasing affection of ' + NPC.getName())
                                        NPC.decreaseAffectionLevel()
+                                   if (affectionChange =='neutral'):
+                                       print('no change of affection of ' + NPC.getName())
                             optionButton = Button(pictureFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
                             optionButton.pack(fill=X, padx=50, pady=10, expand=TRUE)
               chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
@@ -153,7 +156,6 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                                    chatButton.config(command=continueDialogue)
                      if (comparison == SMALLER):
                             if (affectedNPC.getAffectionLevel() < amount):
-                                   print(affectedNPC.getAffectionLevel())
                                    chatButton.config(command=continueDialogueToScene(altSceneIndex))
                             else:
                                    chatButton.config(command=continueDialogue)
@@ -168,7 +170,7 @@ def main():
        ws = window.winfo_screenwidth()
        hs = window.winfo_screenheight()
        x = (ws/2) - (width/2)
-       y = (hs/2) - (height/2) - 100
+       y = (hs/2) - (height/2) - 70
        window.geometry('%dx%d+%d+%d' % (width, height, x, y))
 
        startingFrame = Frame(window)
@@ -220,18 +222,8 @@ def main():
        window.mainloop()
      
 
-# (createScenes(window, startingFrame, 
-#               [txtImgOptNameSndAff("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
-#               txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], nameInput.get(), "sounds/animalese (1).wav"),
-#               txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
-#               txtImgOptNameSndAff("(Suddenly, you felt someone grab your shoulders!)", "pictures/dog.png", [4]),
-#               txtImgOptNameSndAff("NOOO WE ARE GONNA BE LATE, LETS GO NOW!", "pictures/dog.png", [5], "Mia", "sounds/animalese (1).wav"),
-#               txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}]),
-#               txtImgOptNameSndAff("SCENE 6!", "pictures/dog.png", [], "YAY", "sounds/animalese (1).wav", {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }), 
-#               txtImgOptNameSndAff("SCENE 7!", "pictures/dog.png", [4], "YAY", "sounds/animalese (1).wav"),
-#               ]))
-
 if __name__ == '__main__':
        main()
+
 
 
