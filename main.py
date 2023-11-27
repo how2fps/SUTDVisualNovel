@@ -3,6 +3,8 @@
 import warnings
 import winsound
 from tkinter import *
+
+from AdamCmith import *
 from classes import *
 from jungcook import *
 
@@ -179,22 +181,62 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
               chatButton.pack(side="bottom")
        currentIndex:int = 0
        return updateDialogue()
-def main():
-       window = Tk()
-       window.title('SUTDoki')
-       width = 1080
-       height = 720 
-       ws = window.winfo_screenwidth()
-       hs = window.winfo_screenheight()
-       x = (ws/2) - (width/2)
-       y = (hs/2) - (height/2) - 70
-       window.geometry('%dx%d+%d+%d' % (width, height, x, y))
 
-       startingFrame = Frame(window)
-       startingFrame.pack(anchor=W, fill=Y, expand=False, side=LEFT)
-       Label(startingFrame, text="Enter your name").pack()
-       nameInput = Entry(startingFrame)
-       nameInput.pack()
+from tkinter import *
+
+def main():
+    window = Tk()
+    window.title('SUTDoki')
+    width = 1080
+    height = 720 
+    ws = window.winfo_screenwidth()
+    hs = window.winfo_screenheight()
+    x = (ws/2) - (width/2)
+    y = (hs/2) - (height/2) - 70
+    window.geometry('%dx%d+%d+%d' % (width, height, x, y))
+
+    # Load background image for start menu
+    bg_photo = PhotoImage(file='pictures/start_menu_bg.png')
+    bg_label = Label(window, image=bg_photo)
+    bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+    # Create a frame to hold the start menu widgets
+    start_menu_frame = Frame(window, bg='white')
+    start_menu_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+    # Create a label for the game title
+    title_label = Label(start_menu_frame, text="SUTDoki", bg='white', font=('Arial', 48))
+    title_label.pack(pady=20)
+
+    # Create an entry for the player to input their name
+    name_label = Label(start_menu_frame, text="Enter your name", bg='white', font=('Arial', 24))
+    name_label.pack()
+    name_entry = Entry(start_menu_frame, font=('Arial', 24))
+    name_entry.pack()
+
+    # Create the start button
+    start_button = Button(start_menu_frame, text="Start Story", font=('Arial', 24), command=lambda: 
+            [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist)])
+    start_button.pack(pady=20)
+
+    window.mainloop()
+
+# def main():
+#        window = Tk()
+#        window.title('SUTDoki')
+#        width = 1080
+#        height = 720 
+#        ws = window.winfo_screenwidth()
+#        hs = window.winfo_screenheight()
+#        x = (ws/2) - (width/2)
+#        y = (hs/2) - (height/2) - 70
+#        window.geometry('%dx%d+%d+%d' % (width, height, x, y))
+
+#        startingFrame = Frame(window)
+#        startingFrame.pack(anchor=W, fill=Y, expand=False, side=LEFT)
+#        Label(startingFrame, text="Enter your name").pack()
+#        nameInput = Entry(startingFrame)
+#        nameInput.pack()
        
        # ****FUNCTION txtImgOptNameSndAff****
 
@@ -227,16 +269,16 @@ def main():
        # https://acedio.github.io/animalese.js/ < please use this to generate more animal crossing sounds, need to format this to .wav even though it is already .wav if not winsound wouldn't run it
        # https://cloudconvert.com/wav-converter < use this to reformat the animal crossing sounds
        
-       textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
-       textbox.pack(side=LEFT)
-       NPClist = [JOHNNYSIN,JUNGCOOK,ADAMCMITH,XIAOMING]
+       # textbox = Label(startingFrame, text="Starting Screen", borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
+       # textbox.pack(side=LEFT)
+       # NPClist = [JOHNNYSIN,JUNGCOOK,ADAMCMITH,XIAOMING]
 
 
-       # How to find out what index your dialogue is in the array: Take the current line of your array and subtract from the starting line. P.S: Put your dialogues in this vertical manner. 
-       startButton = Button(startingFrame, text="Start Story", borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: 
-              [protagonist.setName(nameInput.get()), showSelectNPCWindow(window, startingFrame, nameInput.get(), NPClist)])
-       startButton.pack(side=RIGHT)
-       window.mainloop()
+       # # How to find out what index your dialogue is in the array: Take the current line of your array and subtract from the starting line. P.S: Put your dialogues in this vertical manner. 
+       # startButton = Button(startingFrame, text="Start Story", borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: 
+       #        [protagonist.setName(nameInput.get()), showSelectNPCWindow(window, startingFrame, nameInput.get(), NPClist)])
+       # startButton.pack(side=RIGHT)
+       # window.mainloop()
      
 
 if __name__ == '__main__':
