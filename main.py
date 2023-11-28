@@ -50,13 +50,17 @@ def cleanUp(afterIds:list, dialogueContainer:Label, storyFrame:Frame):
        for widget in storyFrame.winfo_children():
               widget.destroy() 
 
-def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList):
+def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoList):
        currentFrame.pack_forget()
        selectFrame = Frame(window)
-       selectFrame.pack()
-       for i in NPCList:
-              if i == XIAOMING:
-                     chatButton = Button(selectFrame, text=XIAOMING.getName(), borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: createScenes(window, selectFrame,
+       selectFrame.pack(fill=BOTH, expand=1)
+       for i in range(4):
+              row = i // 2
+              column = i % 2
+              NPC = NPCList[i]
+              image = photoList[i].subsample(3,3)
+              if NPC == XIAOMING:
+                     chatButton = Button(selectFrame, text=NPC.getName(), image = photoList[i].subsample(3,3), compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: createScenes(window, selectFrame,
                             [txtImgOptNameSndAff("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
                             txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], name, "sounds/animalese (1).wav"),
                             txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
@@ -66,8 +70,9 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList):
                             txtImgOptNameSndAff("SCENE 6!", "pictures/dog.png", [], "YAY", "sounds/animalese (1).wav", {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }), 
                             txtImgOptNameSndAff("SCENE 7!", "pictures/dog.png", [4], "YAY", "sounds/animalese (1).wav"),
                             ]), padx=2, pady=2)
-                     chatButton.pack()
-              if i == JUNGCOOK:
+                     chatButton.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
+
+              if NPC == JUNGCOOK:
                      list = []
                      for i in JC(name):
                             length = len(i)
@@ -90,9 +95,21 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList):
                             else:
                                    sixth = None
                             list.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth))
-                     chatButton = Button(selectFrame, text=JUNGCOOK.getName(), borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: createScenes(window, selectFrame,
+                     chatButton = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: createScenes(window, selectFrame,
                             list), padx=2, pady=2)
-                     chatButton.pack()
+                     chatButton.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
+              if NPC == ADAMCMITH:
+                     chatButton = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
+                     chatButton.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
+              if NPC == JOHNNYSIN:
+                     chatButton = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
+                     chatButton.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
+                     
+
+           # Make the rows and columns expandable
+       for i in range(2):
+              selectFrame.grid_rowconfigure(i, weight=1)
+              selectFrame.grid_columnconfigure(i, weight=1)
 
 
 
@@ -213,9 +230,17 @@ def main():
     name_entry = Entry(start_menu_frame, font=('Arial', 24))
     name_entry.pack()
 
+    NPClist = [JOHNNYSIN,JUNGCOOK,ADAMCMITH,XIAOMING]
+    photoList = [
+           PhotoImage(file="pictures/dog.png"),
+           PhotoImage(file="pictures/dog.png"),
+           PhotoImage(file="pictures/dog.png"),
+           PhotoImage(file="pictures/dog.png")
+    ]
+
     # Create the start button
     start_button = Button(start_menu_frame, text="Start Story", font=('Arial', 24), command=lambda: 
-            [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist)])
+            [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist,photoList)])
     start_button.pack(pady=20)
 
     window.mainloop()
