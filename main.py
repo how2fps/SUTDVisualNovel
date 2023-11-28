@@ -51,7 +51,6 @@ def cleanUp(afterIds:list, dialogueContainer:Label, storyFrame:Frame):
               widget.destroy() 
 
 def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoList):
-       print(NPCList)
        currentFrame.pack_forget()
        selectFrame = Frame(window)
        selectFrame.pack(fill=BOTH, expand=1)
@@ -61,12 +60,12 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
               NPC = NPCList[i]
               image = photoList[i].subsample(3,3)
               if NPC == XIAOMING:
-                     chatButton = Button(selectFrame, text=NPC.getName(), compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: createScenes(window, selectFrame,
+                     chatButton = Button(selectFrame, text=NPC.getName(), borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: createScenes(window, selectFrame,
                             [txtImgOptNameSndAff("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
-                            txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], name, "sounds/animalese (1).wav"),
+                            txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], name, "sounds/xm1.wav"),
                             txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
                             txtImgOptNameSndAff("(Suddenly, you felt someone grab your shoulders!)", "pictures/dog.png", [4]),
-                            txtImgOptNameSndAff("NOOO WE ARE GONNA BE LATE, LETS GO NOW!", "pictures/dog.png", [5], "Mia", "sounds/animalese (1).wav"),
+                            txtImgOptNameSndAff("NOOO WE ARE GONNA BE LATE, LETS GO NOW!", "pictures/dog.png", [5], "Mia", "sounds/xm2.wav"),
                             txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}]),
                             txtImgOptNameSndAff("SCENE 6!", "pictures/dog.png", [], "YAY", "sounds/animalese (1).wav", {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }), 
                             txtImgOptNameSndAff("SCENE 7!", "pictures/dog.png", [4], "YAY", "sounds/animalese (1).wav"),
@@ -161,7 +160,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                      def updateText(w=word):
                             currentText = dialogueContainer.cget("text")
                             dialogueContainer.configure(text=currentText + w)
-                     afterId = dialogueContainer.after(20 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
+                     afterId = dialogueContainer.after(27 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
                      afterIds.append(afterId)  # Store the after ID 
               if (soundFilePath != None):
                      winsound.PlaySound(soundFilePath, winsound.SND_ASYNC)
