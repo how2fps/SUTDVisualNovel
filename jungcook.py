@@ -1,6 +1,7 @@
 import warnings
 import winsound
 from tkinter import *
+
 from classes import *
 from jungcook import *
 
@@ -58,9 +59,9 @@ def JC(name):
        ("O i'm just curious about what they are cooking ", picmain, [27], name, "sounds/animalese (1).wav"),
        ("If you are curious about cooking, how about you pay attention to our grub club telegram rather than stand outside like a weirdo", picofJC, [28], "JungCook", "sounds/animalese (1).wav"),
        ("WTF?!!??", picmain, [29], name, "sounds/animalese (1).wav"),
-       ("Day End", picofmoon, [30]),
+       ("DAY END", picofmoon, [30]),
        #Day 2!!!!!!!!!!!!!!!
-       ("Day 2 ", picofsun, [31]),
+       ("DAY 2 ", picofsun, [31]),
        ("(You just finished the last lesson of the day and is walking with your friend)", pic, [32]),
        ("Ahhh im stravinggg, wanna go eat gom-gom, canteen getting kinda boring", picmain, [33], name, "sounds/animalese (1).wav"),
        ("Sorry sis, i got project meeting right now. Have fun, CHAO!", picshadow, [34], "Friend 1", "sounds/animalese (1).wav"),
@@ -72,7 +73,7 @@ def JC(name):
        ("Nice to see you too!! Why can't you just say hello like normal people", picmain, [40], name, "sounds/animalese (1).wav"),
        ("And just to clarify I wasn’t being weird I just happen to be there when you arrive ", picmain, [41], name,"sounds/animalese (1).wav"),
        ("Whatever", picofJC, [42], "JungCook", "sounds/animalese (1).wav"),
-       ("O what a sweet couple, we happen to have a promotion where you can get 2 sandwiches for 50%% off would you two like to share this?", picofshadow, [43], "CASHIER", "sounds/animalese (1).wav"),
+       ("O what a sweet couple, we happen to have a promotion where you can get 2 sandwiches for 50% off would you two like to share this?", picofshadow, [43], "CASHIER", "sounds/animalese (1).wav"),
        ("", picofsun, [{"text": "I will TAKE TWO FOR MYSELF", "nextSceneIndex": 44, "affection": {"affectedNPC": JUNGCOOK, "change": INCREASE}}, {"text": "No thanks", "nextSceneIndex": 48, "affection":{"affectedNPC": JUNGCOOK, "change": NEUTRAL}}, {"text": "Clarify the relationship", "nextSceneIndex": 57, "affection": {"affectedNPC": JUNGCOOK, "change": DECREASE}}]),
        ("NOOO!!! I will take two chicken sandwichesss for myself, such a good offer", picmain, [45], name, "sounds/animalese (1).wav"),
        ("(JungCook rolling his eyes at your response)", picofJC, [46]),
@@ -91,9 +92,9 @@ def JC(name):
        ("As If my standards would be so low, I rather date a cow then her.", picofJC, [59], "JungCook", "sounds/animalese (1).wav"),
        ("Heyyyyy!!! Rude much", picmain, [60],name, "sounds/animalese (1).wav"),
        ("(You ordered a chicken sandwich and left after receiving it, you did not bother interacting with JungCook in anyway)", pic, [61]),
-       ("Day End", picofmoon, [62]),
+       ("DAY END", picofmoon, [62]),
        #Day 3 !!!!!!!!!!!
-       ("Day 3", picofsun, [63]),
+       ("DAY 3", picofsun, [63]),
        ("(After lesson, you decided that studying in dorm was unproductive hence you decided to visit the library)",pic, [64]),
        ("Woah the library is surprisingly full today", picmain, [65], name, "sounds/animalese (1).wav"),
        ("(As you are trying to find a seat, you spotted JungCook sitting alone in a corner, you also saw your group of friends sitting at the other side)", picmain, [66]),
@@ -117,9 +118,9 @@ def JC(name):
        ("Excuse me! I dare you to say that again.", picofJC, [84], "JungCook","sounds/animalese (1).wav"),
        ("Jeez i'm just kidding, why gotta be so defensive", picmain, [85],name, "sounds/animalese (1).wav"),
        ("(You then go to study with your friend)", picmain, [86]),
-       ("Day End", picofmoon, [87]),
+       ("DAY END", picofmoon, [87]),
        #Day 4!!!!!!!!!!!!!!
-       ("Day 4", picofsun, [88]),
+       ("DAY 4", picofsun, [88]),
        ("God dammit why is this assignment so hard!!", picmain, [89], name, "sounds/animalese (1).wav"),
        ("(Looking at your phone you realise that you has been studying for 8 hours straight and that it is now 3am)", picmain, [90]),
        ("I need to sleep if not I will miss tomorrow classes.", picmain, [91],name, "sounds/animalese (1).wav"),
@@ -162,9 +163,9 @@ def JC(name):
        ("Its certainly harder than you just yapping, get out of my way, I need to get my equipments.", picofJC, [128], "JungCook", "sounds/animalese (1).wav"),
        ("TSK this pantry aint yours.", picmain, [129], name, "sounds/animalese (1).wav"),
        ("(You bought snacks and leave)", pic, [130]),
-       ("Day End", picofmoon, [131]),
+       ("DAY END", picofmoon, [131]),
        #Day 5!!!!!!!!!!!!!!!!!!!
-       ("Day 5", picofsun, [132]),
+       ("DAY 5", picofsun, [132]),
        ("(Today was a chill day, you enjoyed the peaceful moments [Affection with JungCook too low])", picmain, [157], '??',"sounds/animalese (1).wav" , {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 3, "altSceneIndex": 133 }),
        ("(You just finished her fifth row of volleyball training)", picmain, [134]),
        ("Good training guys, see you guys CHAOOO", picmain, [135], name, "sounds/animalese (1).wav"),
@@ -190,9 +191,9 @@ def JC(name):
        ("(JungCook walk away)", picofJC, [155]), 
        ("Eh whatever", picmain, [156], name,"sounds/animalese (1).wav"), 
        ("(You ordered mac delivery and enjoyed yourself)", picmain,[157]), 
-       ("Day End", picofmoon, [158]), 
+       ("DAY END", picofmoon, [158]), 
        #Day 6!!!!!!!!!!!!!!
-       ("Day 6", picofsun, [159]), 
+       ("DAY 6", picofsun, [159]), 
        ("", pic, [], 'sound'), 
        ("", pic, [], 'sound'), 
        ("", pic, [], 'sound'), 

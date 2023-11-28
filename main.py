@@ -3,9 +3,10 @@
 import warnings
 import winsound
 from tkinter import *
+
+from adamcmith import *
 from classes import *
 from jungcook import *
-from adamcmith import *
 
 warnings.filterwarnings('ignore')
 
@@ -186,7 +187,6 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
 
 
 def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
-       print('runn')
        storyFrame = Frame(window)
        storyFrame.pack(fill=BOTH, expand=True)
        afterIds = []
@@ -279,8 +279,6 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
        currentIndex:int = 0
        return updateDialogue()
 
-from tkinter import *
-
 
 def main():
     window = Tk()
@@ -305,6 +303,7 @@ def main():
     # Position the window
     window.geometry("+{}+{}".format(position_right, position_top))
 
+    winsound.PlaySound("sounds/justforfun.wav", winsound.SND_ASYNC)
     # Load background image for start menu
     bg_photo = PhotoImage(file='pictures/start_menu_bg.png')
     bg_label = Label(window, image=bg_photo)
