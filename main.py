@@ -99,7 +99,30 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                             list), padx=2, pady=2)
                      chatButton.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
               if NPC == ADAMCMITH:
-                     chatButton = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
+                     list = []
+                     for i in JC(name):
+                            length = len(i)
+                            textls = i[0]
+                            picls = i[1]
+                            if (length >= 3):
+                                   third = i[2]
+                            else:
+                                   third = []
+                            if (length >= 4):
+                                   fourth = i[3]
+                            else:
+                                   fourth = None
+                            if (length >= 5):
+                                   fifth = i[4]
+                            else:
+                                   fifth = None
+                            if (length >= 6):
+                                   sixth = i[5]
+                            else:
+                                   sixth = None
+                            list.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth))
+                     chatButton = Button(selectFrame, text=NPC.getName(), borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: createScenes(window, selectFrame,
+                            ), padx=2, pady=2)
                      chatButton.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
               if NPC == JOHNNYSIN:
                      chatButton = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
