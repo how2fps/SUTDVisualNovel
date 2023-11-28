@@ -209,6 +209,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                                        NPC.decreaseAffectionLevel()
                                    if (affectionChange =='neutral'):
                                        print('no change of affection of ' + NPC.getName())
+                                   print(NPC.getAffectionLevel()) 
                             optionButton = Button(pictureFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
                             optionButton.pack(fill=X, padx=50, pady=10, expand=TRUE)
               chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
