@@ -3,7 +3,6 @@ import winsound
 from tkinter import *
 from classes import *
 from jungcook import *
-from main import txtImgOptNameSndAff, createNameFrame, cleanUp, createScenes
 
 warnings.filterwarnings('ignore')
 
@@ -28,111 +27,6 @@ INCREASE = "increase"
 NEUTRAL = "neutral"
 BIGGER = "bigger"
 SMALLER = "smaller"
-
-def txtImgOptNameSndAff(text:str, imgFilePath: str, options: list = [], name:str = None, soundFilePath: str = None, affectionCheck: dict = None):
-            return {"text": text, "imgFilePath": imgFilePath, "name": name, "soundFilePath": soundFilePath, "options": options, "affectionCheck": affectionCheck}
-
-def createNameFrame(window:Frame, chatFrame:Frame, characterName:str, xLocation:int = 40): # Creates the name box
-       shadow1 = Label(window, text=characterName, background="#1f1f1f", foreground="black", font=("roboto", 18), padx=6, pady=6)
-       shadow1.place(in_=chatFrame, x=xLocation+5, y=-23)
-       shadow2 = Label(window, text=characterName, background="#2e2e2e", foreground="black", font=("roboto", 18), padx=6, pady=6)
-       shadow2.place(in_=chatFrame, x=xLocation+4, y=-24)
-       shadow3 = Label(window, text=characterName, background="#3b3a3a", foreground="black", font=("roboto", 18), padx=6, pady=6)
-       shadow3.place(in_=chatFrame, x=xLocation+3, y=-25)
-       nameLabelFrame = Label(window, text=characterName, background="#d1aa73", foreground="black", font=("roboto", 18), padx=5, pady=5, highlightbackground="#A7885C", highlightthickness=2)
-       nameLabelFrame.place(in_=chatFrame, x=xLocation, y=-28)
-
-def cleanUp(afterIds:list, dialogueContainer:Label, storyFrame:Frame):
-       winsound.PlaySound(None, winsound.SND_PURGE)
-       for afterId in afterIds:
-              dialogueContainer.after_cancel(afterId)       
-       for widget in storyFrame.winfo_children():
-              widget.destroy()
-
-def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
-       storyFrame = Frame(window)
-       storyFrame.pack(fill=BOTH, expand=True)
-       afterIds = []
-       def updateDialogue():
-              nonlocal currentIndex
-              name = textImgNameSound[currentIndex].get("name")
-              dialogue = textImgNameSound[currentIndex].get("text")
-              imgFilePath = textImgNameSound[currentIndex].get("imgFilePath")
-              soundFilePath = textImgNameSound[currentIndex].get("soundFilePath")
-              options = textImgNameSound[currentIndex].get("options")
-              affectionCheck = textImgNameSound[currentIndex].get("affectionCheck")
-              currentFrame.pack_forget() # Remove current frame
-              img = PhotoImage(file=imgFilePath) # Some weird gimmick to make the image work
-              pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="#A7885C", highlightthickness=2, height=550)
-              pictureFrame.image = img
-              pictureFrame.config(image=img)
-              pictureFrame.pack(side="top", fill="both")
-              if (len(options) > 1): # If there are multiple options, show multiple options.
-                     for option in options:
-                            def updateCurrentIndex(updatedIndex=option.get("nextSceneIndex"), NPC:NPC=option.get("affection").get("affectedNPC") , affectionChange=option.get("affection").get("change") ):
-                                   nonlocal currentIndex
-                                   currentIndex = updatedIndex
-                                   cleanUp(afterIds, dialogueContainer, storyFrame)
-                                   if (affectionChange == 'increase'):
-                                       print('increasing affection of ' + NPC.getName())
-                                       NPC.increaseAffectionLevel()
-                                   if (affectionChange =='decrease'):
-                                       print('decreasing affection of ' + NPC.getName())
-                                       NPC.decreaseAffectionLevel()
-                                   if (affectionChange =='neutral'):
-                                       print('no change of affection of ' + NPC.getName())
-                            optionButton = Button(pictureFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
-                            optionButton.pack(fill=X, padx=50, pady=10, expand=TRUE)
-              chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
-              chatFrame.pack(side="bottom", fill="both", expand=TRUE)
-              if (name != None and len(name) > 0):
-                     createNameFrame(window, chatFrame, name)
-              dialogueContainer = Label(chatFrame, text="", height=0, wraplength=860, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", 16), padx=50, pady=20)
-              dialogueContainer.pack(side="left")
-              dialogueContainer.config(text="")
-              afterIds.clear()
-              for i, word in enumerate(dialogue): # Creates the text effect
-                     def updateText(w=word):
-                            currentText = dialogueContainer.cget("text")
-                            dialogueContainer.configure(text=currentText + w)
-                     afterId = dialogueContainer.after(20 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
-                     afterIds.append(afterId)  # Store the after ID 
-              if (soundFilePath != None):
-                     winsound.PlaySound(soundFilePath, winsound.SND_ASYNC)
-              chatButtonContainer = Frame(chatFrame, background="#d1aa73")
-              chatButtonContainer.pack(side="right", fill="both")
-              def continueDialogue():
-                     nonlocal currentIndex
-                     cleanUp(afterIds, dialogueContainer, storyFrame)
-                     if (len(options) == 1):
-                         currentIndex = options[0]
-                     else: 
-                         currentIndex += 1
-                     updateDialogue()
-              def continueDialogueToScene(sceneIndex: int):
-                     nonlocal currentIndex
-                     cleanUp(afterIds, dialogueContainer, storyFrame)
-                     currentIndex = sceneIndex
-                     updateDialogue()
-              chatButton = Button(chatButtonContainer, text='Continue >>', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=continueDialogue, padx=2, pady=2)
-              if(affectionCheck != None):
-                     affectedNPC: NPC = affectionCheck.get("NPC")
-                     comparison = affectionCheck.get("comparison")
-                     amount: int = affectionCheck.get("amount")
-                     altSceneIndex: int = affectionCheck.get("altSceneIndex")
-                     if (comparison == BIGGER):
-                            if (affectedNPC.getAffectionLevel() > amount):
-                                   chatButton.config(command=continueDialogueToScene(altSceneIndex))
-                            else:
-                                   chatButton.config(command=continueDialogue)
-                     if (comparison == SMALLER):
-                            if (affectedNPC.getAffectionLevel() < amount):
-                                   chatButton.config(command=continueDialogueToScene(altSceneIndex))
-                            else:
-                                   chatButton.config(command=continueDialogue)
-              chatButton.pack(side="bottom")
-       currentIndex:int = 0
-       return updateDialogue()
 
 def JC(name):
        diag = [["Day 1", "pictures/dog.png", [1]], 
