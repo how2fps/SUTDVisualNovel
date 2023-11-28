@@ -126,9 +126,10 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                                    fifth = None
                             if (length >= 6):
                                    sixth = i[5]
+                                   print(sixth)
                             else:
                                    sixth = None
-                            list.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth))
+                            list.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth))
                      chatButton2 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
                             list), padx=2, pady=2)
                      chatButton2.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
@@ -210,6 +211,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                                        NPC.decreaseAffectionLevel()
                                    if (affectionChange =='neutral'):
                                        print('no change of affection of ' + NPC.getName())
+                                   print(NPC.getAffectionLevel()) 
                             optionButton = Button(pictureFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
                             optionButton.pack(fill=X, padx=50, pady=10, expand=TRUE)
               else:
