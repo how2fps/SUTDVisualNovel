@@ -5,6 +5,7 @@ import winsound
 from tkinter import *
 from classes import *
 from jungcook import *
+from adamcmith import *
 
 warnings.filterwarnings('ignore')
 
@@ -137,7 +138,31 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                      description2 = Label(selectFrame, text="-Fiery Korean chef with a tsundere personality\n\n-Known as the 'Korean Gordon Ramsey'\n\n-Despite his tough exterior, he has a\nsoft spot for those he cares about.\n\n-Uses his culinary prowess to create\nmouth-watering dishes that leave everyone in awe.\n\nJoin him on his journey from being a\nrenowned chef to the star of the Prom night", bg="#ed8ce0",font=("Comic Sans MS", 15))
                      description2.grid(row=row, column=column+3, sticky=W+E)
               if NPC == ADAMCMITH:
-                     chatButton3 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20))
+                     list = []
+                     for i in AC(name):
+                            length = len(i)
+                            textls = i[0]
+                            picls = i[1]
+                            if (length >= 3):
+                                   third = i[2]
+                            else:
+                                   third = []
+                            if (length >= 4):
+                                   fourth = i[3]
+                            else:
+                                   fourth = None
+                            if (length >= 5):
+                                   fifth = i[4]
+                            else:
+                                   fifth = None
+                            if (length >= 6):
+                                   sixth = i[5]
+                                   print(sixth)
+                            else:
+                                   sixth = None
+                            list.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth))
+                     chatButton3 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
+                            list), padx=2, pady=2)
                      chatButton3.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
                      # Add a label for the character description
                      description3 = Label(selectFrame, text="Your childhood friend with a heart of gold.\n\n-A familiar face from your past,\nalways there in your memories.\n\n-Always there when you need him.\n\nDespite the time that's passed,\nyour bond with him remains strong.\n\n-He is a constant source of support and companionship.\n\nJoin him on a journey of reconnection,\nfrom accidental encounters to shared memories.",bg="#8ced8f", font=("Comic Sans MS", 15))
@@ -195,9 +220,11 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
               pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="#A7885C", highlightthickness=2, height=550)
               pictureFrame.image = img
               pictureFrame.config(image=img)
-              pictureFrame.pack(side="top", fill="both")
               if (len(options) > 1): # If there are multiple options, show multiple options.
                      showContinue = False
+                     pictureFrame.pack(side="top", fill="both", expand= True)
+                     chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
+                     chatFrame.pack(side="bottom", fill="both", expand=FALSE)
                      for option in options:
                             def updateCurrentIndex(updatedIndex=option.get("nextSceneIndex"), NPC:NPC=option.get("affection").get("affectedNPC") , affectionChange=option.get("affection").get("change") ):
                                    nonlocal currentIndex
@@ -212,12 +239,13 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                                    if (affectionChange =='neutral'):
                                        print('no change of affection of ' + NPC.getName())
                                    print(NPC.getAffectionLevel()) 
-                            optionButton = Button(pictureFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
-                            optionButton.pack(fill=X, padx=50, pady=10, expand=TRUE)
+                            optionButton = Button(chatFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
+                            optionButton.pack(side = "top", fill=X, padx=50, pady=10, expand=FALSE)
               else:
+                     pictureFrame.pack(side="top", fill="both")
                      showContinue = True
-              chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
-              chatFrame.pack(side="bottom", fill="both", expand=TRUE)
+                     chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
+                     chatFrame.pack(side="bottom", fill="both", expand=TRUE)
               if (name != None and len(name) > 0):
                      createNameFrame(window, chatFrame, name)
               dialogueContainer = Label(chatFrame, text="", height=0, wraplength=860, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", 16), padx=50, pady=20)
@@ -249,6 +277,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                      updateDialogue()
               if(showContinue):
                      chatButton = Button(chatButtonContainer, text='Continue >>', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=continueDialogue, padx=2, pady=2)
+                     chatButton.pack(side="bottom")
               if(affectionCheck != None):
                      affectedNPC: NPC = affectionCheck.get("NPC")
                      comparison = affectionCheck.get("comparison")
@@ -264,7 +293,6 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                                    chatButton.config(command=continueDialogueToScene(altSceneIndex))
                             else:
                                    chatButton.config(command=continueDialogue)
-              chatButton.pack(side="bottom")
        currentIndex:int = 0
        return updateDialogue()
 
