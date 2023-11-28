@@ -103,7 +103,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                             ]), padx=2, pady=2)
                      chatButton1.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
                      # Add a label for the character description
-                     description1 = Label(selectFrame, text="Description of the character", font=("roboto", 20))
+                     description1 = Label(selectFrame, text="Shy yet sporty tech student\n\n-Introverted coder\n\n-Confident athlete\n\n-Uses his tech prowess \nto solve challenges\n\nJoin him on his journey from \nnovice coder to top tech expert", bg="#8cb9ed", font=("Comic Sans MS", 15))
                      description1.grid(row=row, column=column+3, sticky=W+E)
 
               if NPC == JUNGCOOK:
@@ -134,19 +134,19 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                             list), padx=2, pady=2)
                      chatButton2.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
                      # Add a label for the character description
-                     description2 = Label(selectFrame, text="Description of the character", font=("roboto", 20))
+                     description2 = Label(selectFrame, text="-Fiery Korean chef with a tsundere personality\n\n-Known as the 'Korean Gordon Ramsey'\n\n-Despite his tough exterior, he has a\nsoft spot for those he cares about.\n\n-Uses his culinary prowess to create\nmouth-watering dishes that leave everyone in awe.\n\nJoin him on his journey from being a\nrenowned chef to the star of the Prom night", bg="#ed8ce0",font=("Comic Sans MS", 15))
                      description2.grid(row=row, column=column+3, sticky=W+E)
               if NPC == ADAMCMITH:
                      chatButton3 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20))
                      chatButton3.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
                      # Add a label for the character description
-                     description3 = Label(selectFrame, text="Description of the character", font=("roboto", 20))
+                     description3 = Label(selectFrame, text="Your childhood friend with a heart of gold.\n\n-A familiar face from your past,\nalways there in your memories.\n\n-Always there when you need him.\n\nDespite the time that's passed,\nyour bond with him remains strong.\n\n-He is a constant source of support and companionship.\n\nJoin him on a journey of reconnection,\nfrom accidental encounters to shared memories.",bg="#8ced8f", font=("Comic Sans MS", 15))
                      description3.grid(row=row, column=column+2, sticky=W+E)
               if NPC == JOHNNYSIN:
                      chatButton4 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20))
                      chatButton4.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
                      # Add a label for the character description
-                     description4 = Label(selectFrame, text="Description of the character", font=("roboto", 20))
+                     description4 = Label(selectFrame, text="An exchange student from the USA with\na heart as warm as his home state.\n\nHis charm lies in his adventurous spirit\nand his willingness to immerse\nhimself in new experiences.\n\n-Johnny's enthusiasm is infectious\n\n-He brings a touch of foreign intrigue\nand a lot of friendly warmth.\n\nJoin him on his journey of cultural exchange.", bg="#ed8c8c",font=("Comic Sans MS", 15))
                      description4.grid(row=row, column=column+2, sticky=W+E)
        
                   # Make the rows and columns expandable
@@ -197,6 +197,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
               pictureFrame.config(image=img)
               pictureFrame.pack(side="top", fill="both")
               if (len(options) > 1): # If there are multiple options, show multiple options.
+                     showContinue = False
                      for option in options:
                             def updateCurrentIndex(updatedIndex=option.get("nextSceneIndex"), NPC:NPC=option.get("affection").get("affectedNPC") , affectionChange=option.get("affection").get("change") ):
                                    nonlocal currentIndex
@@ -213,6 +214,8 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                                    print(NPC.getAffectionLevel()) 
                             optionButton = Button(pictureFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
                             optionButton.pack(fill=X, padx=50, pady=10, expand=TRUE)
+              else:
+                     showContinue = True
               chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
               chatFrame.pack(side="bottom", fill="both", expand=TRUE)
               if (name != None and len(name) > 0):
@@ -244,7 +247,8 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                      cleanUp(afterIds, dialogueContainer, storyFrame)
                      currentIndex = sceneIndex
                      updateDialogue()
-              chatButton = Button(chatButtonContainer, text='Continue >>', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=continueDialogue, padx=2, pady=2)
+              if(showContinue):
+                     chatButton = Button(chatButtonContainer, text='Continue >>', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=continueDialogue, padx=2, pady=2)
               if(affectionCheck != None):
                      affectedNPC: NPC = affectionCheck.get("NPC")
                      comparison = affectionCheck.get("comparison")
