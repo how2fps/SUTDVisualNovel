@@ -106,38 +106,21 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                      # Add a label for the character description
                      description1 = Label(selectFrame, text="Shy yet sporty tech student\n\n-Introverted coder\n\n-Confident athlete\n\n-Uses his tech prowess \nto solve challenges\n\nJoin him on his journey from \nnovice coder to top tech expert", bg="#8cb9ed", font=("Comic Sans MS", 15))
                      description1.grid(row=row, column=column+3, sticky=W+E)
-
-              if NPC == JUNGCOOK:
-                     list = []
+              elif NPC == JUNGCOOK:
+                     poopy = []
                      for i in JC(name):
+                            listy = {1:'',2:'',3:[],4:None,5:None,6:None}
                             length = len(i)
-                            textls = i[0]
-                            picls = i[1]
-                            if (length >= 3):
-                                   third = i[2]
-                            else:
-                                   third = []
-                            if (length >= 4):
-                                   fourth = i[3]
-                            else:
-                                   fourth = None
-                            if (length >= 5):
-                                   fifth = i[4]
-                            else:
-                                   fifth = None
-                            if (length >= 6):
-                                   sixth = i[5]
-                                   print(sixth)
-                            else:
-                                   sixth = None
-                            list.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth))
+                            for j in range(1, length + 1):
+                                   listy[j] = i[j - 1]
+                            poopy.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
                      chatButton2 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
-                            list), padx=2, pady=2)
+                            poopy), padx=2, pady=2)
                      chatButton2.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
                      # Add a label for the character description
                      description2 = Label(selectFrame, text="-Fiery Korean chef with a tsundere personality\n\n-Known as the 'Korean Gordon Ramsey'\n\n-Despite his tough exterior, he has a\nsoft spot for those he cares about.\n\n-Uses his culinary prowess to create\nmouth-watering dishes that leave everyone in awe.\n\nJoin him on his journey from being a\nrenowned chef to the star of the Prom night", bg="#ed8ce0",font=("Comic Sans MS", 15))
                      description2.grid(row=row, column=column+3, sticky=W+E)
-              if NPC == ADAMCMITH:
+              elif NPC == ADAMCMITH:
                      list = []
                      for i in AC(name):
                             length = len(i)
@@ -167,7 +150,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                      # Add a label for the character description
                      description3 = Label(selectFrame, text="Your childhood friend with a heart of gold.\n\n-A familiar face from your past,\nalways there in your memories.\n\n-Always there when you need him.\n\nDespite the time that's passed,\nyour bond with him remains strong.\n\n-He is a constant source of support and companionship.\n\nJoin him on a journey of reconnection,\nfrom accidental encounters to shared memories.",bg="#8ced8f", font=("Comic Sans MS", 15))
                      description3.grid(row=row, column=column+2, sticky=W+E)
-              if NPC == JOHNNYSIN:
+              elif NPC == JOHNNYSIN:
                      chatButton4 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20))
                      chatButton4.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
                      # Add a label for the character description
