@@ -270,7 +270,7 @@ def JC(name):
        ("Day End", picofmoon, [131]),
        #Day 5!!!!!!!!!!!!!!!!!!!
        ("Day 5", picofsun, [132]),
-       ("(Today was a chill day, you enjoyed the peaceful moments (Affection with JungCook too low))", picmain, [157], '',"sounds/animalese (1).wav" , {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 1, "altSceneIndex": 133 }),
+       ("(Today was a chill day, you enjoyed the peaceful moments [Affection with JungCook too low])", picmain, [157], '??',"sounds/animalese (1).wav" , {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 3, "altSceneIndex": 133 }),
        ("(You just finished her fifth row of volleyball training)", picmain, [134]),
        ("Good training guys, see you guys CHAOOO", picmain, [135], name, "sounds/animalese (1).wav"),
        ("Woo, all those workout got me famished, what do I want what do I want", picmain, [136], name, "sounds/animalese (1).wav"),

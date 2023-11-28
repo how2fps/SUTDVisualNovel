@@ -126,9 +126,10 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                                    fifth = None
                             if (length >= 6):
                                    sixth = i[5]
+                                   print(sixth)
                             else:
                                    sixth = None
-                            list.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth))
+                            list.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth))
                      chatButton2 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
                             list), padx=2, pady=2)
                      chatButton2.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
