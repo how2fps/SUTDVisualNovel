@@ -58,8 +58,9 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
               column = i % 2
               NPC = NPCList[i]
               image = photoList[i].subsample(3,3)
+              photoList[i] = image  # keep the reference to the new PhotoImage
               if NPC == XIAOMING:
-                     chatButton = Button(selectFrame, text=NPC.getName(), borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: createScenes(window, selectFrame,
+                     chatButton1 = Button(selectFrame, text=NPC.getName(), image= image, compound=TOP,  borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda i=i :createScenes(window, selectFrame,
                             [txtImgOptNameSndAff("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
                             txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], name, "sounds/xm1.wav"),
                             txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
@@ -69,7 +70,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                             txtImgOptNameSndAff("SCENE 6!", "pictures/dog.png", [], "YAY", "sounds/animalese (1).wav", {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }), 
                             txtImgOptNameSndAff("SCENE 7!", "pictures/dog.png", [4], "YAY", "sounds/animalese (1).wav"),
                             ]), padx=2, pady=2)
-                     chatButton.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
+                     chatButton1.grid(row=0, column=0, sticky=N+E+W+S, padx=10, pady=10)
 
               if NPC == JUNGCOOK:
                      list = []
@@ -94,18 +95,17 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                             else:
                                    sixth = None
                             list.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth))
-                     chatButton = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: createScenes(window, selectFrame,
+                     chatButton2 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda i=i :createScenes(window, selectFrame,
                             list), padx=2, pady=2)
-                     chatButton.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
+                     chatButton2.grid(row=0, column=1, sticky=N+E+W+S, padx=10, pady=10)
               if NPC == ADAMCMITH:
-                     chatButton = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
-                     chatButton.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
+                     chatButton3 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
+                     chatButton3.grid(row=1, column=0, sticky=N+E+W+S, padx=10, pady=10)
               if NPC == JOHNNYSIN:
-                     chatButton = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
-                     chatButton.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
-                     
-
-           # Make the rows and columns expandable
+                     chatButton4 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto")
+                     chatButton4.grid(row=1, column=1, sticky=N+E+W+S, padx=10, pady=10)
+       
+                  # Make the rows and columns expandable
        for i in range(2):
               selectFrame.grid_rowconfigure(i, weight=1)
               selectFrame.grid_columnconfigure(i, weight=1)
