@@ -3,7 +3,6 @@
 import warnings
 import winsound
 from tkinter import *
-
 from classes import *
 from jungcook import *
 
