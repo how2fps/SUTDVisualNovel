@@ -99,7 +99,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                             txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
                             txtImgOptNameSndAff("(Suddenly, you felt someone grab your shoulders!)", "pictures/dog.png", [4]),
                             txtImgOptNameSndAff("NOOO WE ARE GONNA BE LATE, LETS GO NOW!", "pictures/dog.png", [5], "Mia", "sounds/xm2.wav"),
-                            txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}]),
+                            txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}},{"text": "Neutral 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": NEUTRAL}}]),
                             txtImgOptNameSndAff("SCENE 6!", "pictures/dog.png", [], "YAY", "sounds/animalese (1).wav", {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }), 
                             txtImgOptNameSndAff("SCENE 7!", "pictures/dog.png", [4], "YAY", "sounds/animalese (1).wav"),
                             ]), padx=2, pady=2)
@@ -187,6 +187,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
 
 
 def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
+       winsound.PlaySound(None, winsound.SND_PURGE)
        storyFrame = Frame(window)
        storyFrame.pack(fill=BOTH, expand=True)
        afterIds = []
@@ -223,7 +224,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                                        print('no change of affection of ' + NPC.getName())
                                    print(NPC.getAffectionLevel()) 
                             optionButton = Button(chatFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
-                            optionButton.pack(side = "top", fill=X, padx=50, pady=10, expand=FALSE)
+                            optionButton.pack(side = "top", fill=X, padx=50, pady=5, expand=FALSE)
               else:
                      pictureFrame.pack(side="top", fill="both")
                      showContinue = True

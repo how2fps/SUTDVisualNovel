@@ -31,7 +31,7 @@ SMALLER = "smaller"
 
 def JC(name):
        diag = [["Day 1", "pictures/dog.png", [1]], 
-       ["Haiz, why does uni have to be so hard. Why can't the proffessor just give everyone passes", picmain, [2], name, "sounds/animalese (1).wav"],
+       ["Haiz, why does uni have to be so hard. Why can't the professor just give everyone passes", picmain, [2], name, "sounds/animalese (1).wav"],
        ["(As you are heading back dorm, you smelt an amazing scent coming from the kitchen)", picmain, [3]],
        ("(Curiosity got the better of you as you decide to check it out.)", picmain, [4]),
        ("(This seems to be some short of event happenning in the common kitchen)", pic, [5]),
