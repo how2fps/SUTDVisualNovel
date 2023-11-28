@@ -220,9 +220,11 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
               pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="#A7885C", highlightthickness=2, height=550)
               pictureFrame.image = img
               pictureFrame.config(image=img)
-              pictureFrame.pack(side="top", fill="both")
               if (len(options) > 1): # If there are multiple options, show multiple options.
                      showContinue = False
+                     pictureFrame.pack(side="top", fill="both", expand= True)
+                     chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
+                     chatFrame.pack(side="bottom", fill="both", expand=FALSE)
                      for option in options:
                             def updateCurrentIndex(updatedIndex=option.get("nextSceneIndex"), NPC:NPC=option.get("affection").get("affectedNPC") , affectionChange=option.get("affection").get("change") ):
                                    nonlocal currentIndex
@@ -237,12 +239,13 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                                    if (affectionChange =='neutral'):
                                        print('no change of affection of ' + NPC.getName())
                                    print(NPC.getAffectionLevel()) 
-                            optionButton = Button(pictureFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
-                            optionButton.pack(fill=X, padx=50, pady=10, expand=TRUE)
+                            optionButton = Button(chatFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
+                            optionButton.pack(side = "top", fill=X, padx=50, pady=10, expand=FALSE)
               else:
+                     pictureFrame.pack(side="top", fill="both")
                      showContinue = True
-              chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
-              chatFrame.pack(side="bottom", fill="both", expand=TRUE)
+                     chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
+                     chatFrame.pack(side="bottom", fill="both", expand=TRUE)
               if (name != None and len(name) > 0):
                      createNameFrame(window, chatFrame, name)
               dialogueContainer = Label(chatFrame, text="", height=0, wraplength=860, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", 16), padx=50, pady=20)
@@ -274,6 +277,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                      updateDialogue()
               if(showContinue):
                      chatButton = Button(chatButtonContainer, text='Continue >>', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=continueDialogue, padx=2, pady=2)
+                     chatButton.pack(side="bottom")
               if(affectionCheck != None):
                      affectedNPC: NPC = affectionCheck.get("NPC")
                      comparison = affectionCheck.get("comparison")
@@ -289,7 +293,6 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                                    chatButton.config(command=continueDialogueToScene(altSceneIndex))
                             else:
                                    chatButton.config(command=continueDialogue)
-              chatButton.pack(side="bottom")
        currentIndex:int = 0
        return updateDialogue()
 
