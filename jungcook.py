@@ -151,7 +151,7 @@ def JC(name):
        ("(JungCook has specially requested to help with the Prom dessert, with his reputation, no one would refuse his proposition!)", picofJC, [16]),
        ("Hellooo, did you not hear me. WHAT ARE YOU DOING HERE!!!", picofJC, [17], "JungCook", "sounds/animalese (1).wav"),
        ("", picofsun, [{"text": "Act SUS", "nextSceneIndex": 19, "affection": {"affectedNPC": JUNGCOOK, "change": INCREASE}}, {"text": "Ignore him", "nextSceneIndex": 24, "affection": {"affectedNPC": JUNGCOOK, "change": NEUTRAL}}, {"text": "Act Curious", "nextSceneIndex": 26, "affection": {"affectedNPC": JUNGCOOK, "change": DECREASE}}]),
-       ("BooBoo Gaga", pic, [])
+       ("BooBoo Gaga", pic, []),
        ("O nothing im just here chilling randomly outside a window, for no apparent reason, just ignore me. ", picmain, [20], name, "sounds/animalese (1).wav"),
        ("Okay weirdo, give me a reason why I shouldn’t just report you for suspicious activity huh.", picofJC, [21], "JungCook", "sounds/animalese (1).wav"),
        ("Because of that UFO over there", picmain, [22], name , "sounds/animalese (1).wav"),
