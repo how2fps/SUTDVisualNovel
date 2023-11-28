@@ -51,6 +51,7 @@ def cleanUp(afterIds:list, dialogueContainer:Label, storyFrame:Frame):
               widget.destroy() 
 
 def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoList):
+       print(NPCList)
        currentFrame.pack_forget()
        selectFrame = Frame(window)
        selectFrame.pack(fill=BOTH, expand=1)
@@ -60,7 +61,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
               NPC = NPCList[i]
               image = photoList[i].subsample(3,3)
               if NPC == XIAOMING:
-                     chatButton = Button(selectFrame, text=NPC.getName(), image = photoList[i].subsample(3,3), compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: createScenes(window, selectFrame,
+                     chatButton = Button(selectFrame, text=NPC.getName(), compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=lambda: createScenes(window, selectFrame,
                             [txtImgOptNameSndAff("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
                             txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], name, "sounds/animalese (1).wav"),
                             txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
@@ -114,6 +115,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
 
 
 def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
+       print('runn')
        storyFrame = Frame(window)
        storyFrame.pack(fill=BOTH, expand=True)
        afterIds = []
@@ -200,6 +202,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
 
 from tkinter import *
 
+
 def main():
     window = Tk()
     window.title('SUTDoki')
@@ -217,18 +220,18 @@ def main():
     bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
     # Create a frame to hold the start menu widgets
-    start_menu_frame = Frame(window, bg='white')
+    start_menu_frame = Frame(window, bg='#d1aa73', highlightbackground="#A7885C", highlightthickness=4)
     start_menu_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
 
     # Create a label for the game title
-    title_label = Label(start_menu_frame, text="SUTDoki", bg='white', font=('Arial', 48))
+    title_label = Label(start_menu_frame, text="SUTDoki", bg='#d1aa73', font=('Comic Sans MS', 48))
     title_label.pack(pady=20)
 
     # Create an entry for the player to input their name
-    name_label = Label(start_menu_frame, text="Enter your name", bg='white', font=('Arial', 24))
+    name_label = Label(start_menu_frame, text="What's your name?", bg='#d1aa73', font=('Comic Sans MS', 24))
     name_label.pack()
     name_entry = Entry(start_menu_frame, font=('Arial', 24))
-    name_entry.pack()
+    name_entry.pack(padx=10, pady=10)
 
     NPClist = [JOHNNYSIN,JUNGCOOK,ADAMCMITH,XIAOMING]
     photoList = [
@@ -240,7 +243,7 @@ def main():
 
     # Create the start button
     start_button = Button(start_menu_frame, text="Start Story", font=('Arial', 24), command=lambda: 
-            [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist,photoList)])
+            [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist, photoList)])
     start_button.pack(pady=20)
 
     window.mainloop()
