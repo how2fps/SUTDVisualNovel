@@ -285,7 +285,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
 def main():
     window = Tk()
     window.title('SUTDoki')
-    window.minsize(1080, 720)  # set a minimum size for the window
+    window.minsize(1280, 720)  # set a minimum size for the window
 
     # Get screen size
     screen_width = window.winfo_screenwidth()
@@ -307,7 +307,7 @@ def main():
 
     winsound.PlaySound("sounds/justforfun.wav", winsound.SND_ASYNC)
     # Load background image for start menu
-    bg_photo = PhotoImage(file='pictures/start_menu_bg.png')
+    bg_photo = PhotoImage(file='pictures/start_menu_bg3.png')
     bg_label = Label(window, image=bg_photo)
     bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
@@ -337,8 +337,33 @@ def main():
     start_button = Button(start_menu_frame, text="Start Story", font=('Arial', 24), command=lambda: 
             [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist, photoList)])
     start_button.pack(pady=20)
-
+    window.attributes("-fullscreen", True)
+    window.bind("<F11>", lambda event: window.attributes("-fullscreen",
+                                   not window.attributes("-fullscreen")))
+    window.bind("<Escape>", lambda event: window.attributes("-fullscreen", False))
+    show_toast("Press F11 to toggle Fullscreen\nPress Escape to exit Fullscreen")
     window.mainloop()
+
+def show_toast(message, duration=3000):  # Duration in milliseconds
+    toast = Toplevel()
+    toast.overrideredirect(1)
+
+    # Get screen width and height
+    screen_width = toast.winfo_screenwidth()
+    screen_height = toast.winfo_screenheight()
+
+    # Specify dimensions of the toast
+    toast_width = 450
+    toast_height = 75
+
+    # Calculate position to center the toast
+    position_top = int(0)
+    position_right = int(screen_width / 2 - toast_width / 2)
+
+    toast.geometry(f"{toast_width}x{toast_height}+{position_right}+{position_top}")
+
+    toast.after(duration, toast.destroy)
+    Label(toast, text=message, bg="black", fg="white", font=("Helvetica", 25)).pack()
      
 
 if __name__ == '__main__':
