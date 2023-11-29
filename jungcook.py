@@ -17,6 +17,9 @@ picofshadow = "pictures/dog.png"
 picshadow = "pictures/dog.png"
 pic = "pictures/dog.png"
 picofgomgom = "pictures/dog.png"
+sound = "sounds/animalese (1).wav"
+Jung = "JungCook"
+
 protagonist =  Protagonist("", "")
 XIAOMING = NPC("Xiao Ming")
 JUNGCOOK = NPC("JungCook")
@@ -30,8 +33,9 @@ BIGGER = "bigger"
 SMALLER = "smaller"
 
 def JC(name):
-       diag = [["Day 1", "pictures/dog.png", [1]], 
-       ["Haiz, why does uni have to be so hard. Why can't the professor just give everyone passes", picmain, [2], name, "sounds/animalese (1).wav"],
+       diag = [
+       ["Day 1", "pictures/dog.png", [1]], 
+       ["Haiz, why does uni have to be so hard. Why can't the proffessor just give everyone passes", picmain, [2], name, "sounds/animalese (1).wav"],
        ["(As you are heading back dorm, you smelt an amazing scent coming from the kitchen)", picmain, [3]],
        ("(Curiosity got the better of you as you decide to check it out.)", picmain, [4]),
        ("(This seems to be some short of event happenning in the common kitchen)", pic, [5]),
@@ -59,9 +63,9 @@ def JC(name):
        ("O i'm just curious about what they are cooking ", picmain, [27], name, "sounds/animalese (1).wav"),
        ("If you are curious about cooking, how about you pay attention to our grub club telegram rather than stand outside like a weirdo", picofJC, [28], "JungCook", "sounds/animalese (1).wav"),
        ("WTF?!!??", picmain, [29], name, "sounds/animalese (1).wav"),
-       ("DAY END", picofmoon, [30]),
-       #Day 2!!!!!!!!!!!!!!!
-       ("DAY 2 ", picofsun, [31]),
+       ("Day End", picofmoon, [30]),
+       #Day 2!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       ("Day 2 ", picofsun, [31]),
        ("(You just finished the last lesson of the day and is walking with your friend)", pic, [32]),
        ("Ahhh im stravinggg, wanna go eat gom-gom, canteen getting kinda boring", picmain, [33], name, "sounds/animalese (1).wav"),
        ("Sorry sis, i got project meeting right now. Have fun, CHAO!", picshadow, [34], "Friend 1", "sounds/animalese (1).wav"),
@@ -92,9 +96,9 @@ def JC(name):
        ("As If my standards would be so low, I rather date a cow then her.", picofJC, [59], "JungCook", "sounds/animalese (1).wav"),
        ("Heyyyyy!!! Rude much", picmain, [60],name, "sounds/animalese (1).wav"),
        ("(You ordered a chicken sandwich and left after receiving it, you did not bother interacting with JungCook in anyway)", pic, [61]),
-       ("DAY END", picofmoon, [62]),
-       #Day 3 !!!!!!!!!!!
-       ("DAY 3", picofsun, [63]),
+       ("Day End", picofmoon, [62]),
+       #Day 3 !--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       ("Day 3", picofsun, [63]),
        ("(After lesson, you decided that studying in dorm was unproductive hence you decided to visit the library)",pic, [64]),
        ("Woah the library is surprisingly full today", picmain, [65], name, "sounds/animalese (1).wav"),
        ("(As you are trying to find a seat, you spotted JungCook sitting alone in a corner, you also saw your group of friends sitting at the other side)", picmain, [66]),
@@ -118,9 +122,9 @@ def JC(name):
        ("Excuse me! I dare you to say that again.", picofJC, [84], "JungCook","sounds/animalese (1).wav"),
        ("Jeez i'm just kidding, why gotta be so defensive", picmain, [85],name, "sounds/animalese (1).wav"),
        ("(You then go to study with your friend)", picmain, [86]),
-       ("DAY END", picofmoon, [87]),
-       #Day 4!!!!!!!!!!!!!!
-       ("DAY 4", picofsun, [88]),
+       ("Day End", picofmoon, [87]),
+       #Day 4!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       ("Day 4", picofsun, [88]),
        ("God dammit why is this assignment so hard!!", picmain, [89], name, "sounds/animalese (1).wav"),
        ("(Looking at your phone you realise that you has been studying for 8 hours straight and that it is now 3am)", picmain, [90]),
        ("I need to sleep if not I will miss tomorrow classes.", picmain, [91],name, "sounds/animalese (1).wav"),
@@ -163,10 +167,10 @@ def JC(name):
        ("Its certainly harder than you just yapping, get out of my way, I need to get my equipments.", picofJC, [128], "JungCook", "sounds/animalese (1).wav"),
        ("TSK this pantry aint yours.", picmain, [129], name, "sounds/animalese (1).wav"),
        ("(You bought snacks and leave)", pic, [130]),
-       ("DAY END", picofmoon, [131]),
-       #Day 5!!!!!!!!!!!!!!!!!!!
-       ("DAY 5", picofsun, [132]),
-       ("(Today was a chill day, you enjoyed the peaceful moments [Affection with JungCook too low])", picmain, [157], '??',"sounds/animalese (1).wav" , {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 3, "altSceneIndex": 133 }),
+       ("Day End", picofmoon, [131]),
+       #Day 5!-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       ("Day 5", picofsun, [132]),
+       ("(Today was a chill day, you enjoyed the peaceful moments [Affection with JungCook too low])", picmain, [157], '',"sounds/animalese (1).wav" , {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 3, "altSceneIndex": 133 }),
        ("(You just finished her fifth row of volleyball training)", picmain, [134]),
        ("Good training guys, see you guys CHAOOO", picmain, [135], name, "sounds/animalese (1).wav"),
        ("Woo, all those workout got me famished, what do I want what do I want", picmain, [136], name, "sounds/animalese (1).wav"),
@@ -191,24 +195,90 @@ def JC(name):
        ("(JungCook walk away)", picofJC, [155]), 
        ("Eh whatever", picmain, [156], name,"sounds/animalese (1).wav"), 
        ("(You ordered mac delivery and enjoyed yourself)", picmain,[157]), 
-       ("DAY END", picofmoon, [158]), 
-       #Day 6!!!!!!!!!!!!!!
-       ("DAY 6", picofsun, [159]), 
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound'),  
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound'), 
-       ("", pic, [], 'sound')] 
+       ("Day End", picofmoon, [158]), 
+       #Day 6!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       ("Day 6", picofsun, [159]), 
+       ("(You are with your friend at ccp, deciding what to eat.)", picofsun, [160]), 
+       ("Hmmmm, what should we eat?", pic, [161], "sounds/animalese (1).wav"), 
+       ("How bout Sukiya? Its nice and cheap?", picshadow, [162], "Friend 1", sound), 
+       ("I just had that yesterday though", picshadow, [163], "Friend 2", sound), 
+       ("(Time passed as they discussed, finally deciding to eat Seoul Garden HotPot)", pic, [164]), 
+       ("(Main and her friends enjoyed the food and was having fun talking)", pic, [165]), 
+       ("I go pay first ah", picmain, [166], name, sound),  
+       ("(You stand up and went to the cashier)", pic, [167]), 
+       ("(You noticed that JC happened to be there and is eating alone)", pic, [168]), 
+       ("", picofsun, [{"text": "Approach Him", "nextSceneIndex": 169, "affection": {"affectedNPC": JUNGCOOK, "change": INCREASE}}, {"text": "Pay First Then Approach Him", "nextSceneIndex": 179, "affection": {"affectedNPC": JUNGCOOK, "change": NEUTRAL}}, {"text": "Ignore Him", "nextSceneIndex": 187, "affection": {"affectedNPC": JUNGCOOK, "change": DECREASE}}]), 
+       ("O hiii, JC what a coincidence. ", picmain, [170], name, sound), 
+       ("O hi, did you have your dinner here as well?", picofJC, [171], "JungCook", sound), 
+       ("Yaa, the food was not bad, Im going to pay for my meal now", picmain, [172], name, sound), 
+       ("O in that case, I will just treat you the meal", picofJC, [173], "JungCook", sound), 
+       ("O no, theres no need for that, this meal is with my friends, the price must be enormous", picmain, [174], name, sound),
+       ("Hahah no worries, this restaurant is actually under my family. Plus your friends can be my friends too, do let intro me to them next time.", picofJC, [175], "JungCook", sound),
+       ("But I feel like I have been taking too much free stuff from you recently.", picmain, [176], name, sound),
+       ("Isnt that what being friend is all about, just tell me your table number and go enjoy the food.", picofJC, [177], "JungCook",sound),
+       ("Ok thanks a lot, I will pay you back next time.", picmain, [178], name, sound),
+       ("(You enjoy the company of your friends, you also inform them about JC treating which resulted in them teasing you about it. You can’t help to think that maybe JC does have interest in you)", pic, [190]),
+       ("(You went to pay for the meal before approaching JC)", pic, [180]),
+       ("Hi, JC what a coincidence. ", picmain, [181], name, sound),
+       ("O hi, did you have your dinner here as well?", picofJC, [182], Jung, sound),
+       ("Yaa, the food was not bad, Im going to pay for my meal now", picmain, [183], name, sound),
+       ("O in that case, I will just treat you the meal", picofJC, [184], Jung, sound),
+       ("O theres no need for that, I already paid for the meal.", picmain, [185], name, sound),
+       ("O ok, enjoy the meal.", picofJC, [186], name, sound),
+       ("(Main enjoy the company of her friends)", pic, [190]),
+       ("Im just gonna pay and go, I have nothing to talk to him about anyway", picmain, [188], name, sound),
+       ("(You went to pay at the cashier)", pic, [189]),
+       ("(You didn’t know that JC had actually notice you was there and was unhappy you didn’t come say hi)", picofJC, [190]),
+       ("Day End", picofmoon, [191]),
+       #Day 7!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       ("(Today was a chill day, you enjoyed the peaceful moments [Affection with JungCook too low])", picmain, [217], '',"sounds/animalese (1).wav" , {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 5, "altSceneIndex": 192 }),
+       ("(You are in your dorm, studying)", pic, [193]),
+       #ring sounds
+       ("(Phone rings, it’s a call from JC)", picmain, [194]),
+       ("Hi JC, wassup.", picmain, [195], name, sound),
+       ("Are you free today afternoon?, I need help with something.", picofJC, [196], Jung, sound),
+       ("hmm should be free.", picmain, [197], name, sound),
+       ("Wonderful, meet you at our block kitchen at 2pm then.", picofJC, [198], Jung, sound),
+       ("Sure see you.", picmain, [199], name, sound),
+       ("(At 2pm)", pic, [200]),
+       ("Come lets go in, I need help deciding the finishing touch to my dessert.", picofJC, [201], Jung, sound),
+       ("Dessert? For prom?", picmain, [202], name, sound),
+       ("Yes for Prom, I had a discussion with the other chef and we have different opinions about it.", picofJC, [203], Jung, sound),
+       ("So I wanted to consult a consumer and the first person I thought of was you.", picofJC, [204], Jung, sound),
+       ("Ah I see, what the dessert and the finishing touches you guys were arguing about.", picmain, [205], name, sound),
+       ("Tomorrow is prom day so its prob ok for me to tell you this, it’s a pound cake muffin. ", picofJC, [206], Jung, sound),
+       ("However we were deciding whether we should use whip cream and cherry or just drizzle of lemon topping. Both has their advantages.", picofJC, [207], Jung, sound),
+       ("HMmmm both sounds so good, but if I were to choose.", picmain, [208], name, sound),
+       ("", picofsun, [{"text": "Whip Cream and Cherry", "nextSceneIndex": 209, "affection": {"affectedNPC": JUNGCOOK, "change": NEUTRAL}}, {"text": "Drizzle of Lemon Syrup", "nextSceneIndex": 210, "affection": {"affectedNPC": JUNGCOOK, "change": NEUTRAL}}, {"text": "Why Not Both", "nextSceneIndex": 211, "affection": {"affectedNPC": JUNGCOOK, "change": NEUTRAL}}]),
+       ("I would probably choose the whip cream and cherry. ", picmain, [213], name, sound),
+       ("I would probably choose the lemon drizzle.", picmain, [213], name, sound),
+       ("Actually I don’t see why we cant just combine both. I feel like having lemon drizzle on the whip cream and cherry could actually work.", picmain, [212], name, sound),
+       ("Interesting, I will test it out and let you know.", picofJC, [213],Jung, sound),
+       ("Thanks for the help. Here is the sample of the cake just for the help.", pic, [214], Jung, sound),
+       ("OO Niceee", picmain, [215], name, sound),
+       ("(You eat the cake and chatted with JC)", picmain, [216], name, sound),
+       ("(You left after thanking JC.)", picmain, [217], name, sound),
+       ("Day End", pic, [218]),
+       #Prom Day !-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       ("PROM DAY", pic, [219]),
+       ("(Its Prom Day, as others were preparing for prom. You realise that you do not have any partner for tonight.)", pic, [220], '', sound, {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 5, "altSceneIndex": 222 }),
+       ("(If you had made better choices maybe someone would have asked you to be their prom date.)", pic, [221], sound),
+       ("Too bad You Losttt", pic, [233], sound),
+       #ring sound
+       ("(Ringing!! Ringing!!)", pic, [223], sound),
+       ("Hi JC!!", picmain, [224], name, sound),
+       ("Hi, today is Prom Day. I just want to check if you are free for tonight.", picofJC, [225], Jung, sound),
+       ("Of Course, I am!!", picmain, [226], name, sound),
+       ("I will pick you up at 8pm", picofJC, [227], Jung, sound),
+       ("Okkk!!!", picmain, [228], name, sound),
+       ("(At 8pm)", pic, [229]),
+       #JC in suit
+       ("(JC waited outside the door, You came out showing him your new dress you just bought for today. JC was dressed more than normal as well.)", picofJC, [230]),
+       ("(With his fancy blazer and Gucci shoes. You guys then proceed to Prom and enjoyed yourselves. )", pic, [231]),
+       ("Story End", pic, [232]),
+       ("Congratss you got JungCook Heart", pic, [233]),
+       ("Thanks for playing!!!!!", pic, [])
+       ]
        return diag
 
 
