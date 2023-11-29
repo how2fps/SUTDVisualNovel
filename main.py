@@ -232,22 +232,21 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                      chatFrame.pack(side="bottom", fill="both", expand=TRUE)
               if (name != None and len(name) > 0):
                      createNameFrame(window, chatFrame, name)
-              dialogueContainer = Frame(chatFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", padx=3, pady=5, height=300)
+              dialogueContainer = Frame(chatFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", padx=3, pady=5, height=250)
               dialogueContainer.pack(side="left", fill="both", expand=TRUE)
-              dialogue = Label(dialogueContainer, text="", wraplength=900, background="#d1aa73", foreground="black", font=("roboto", 24))
-              dialogue.pack(expand=TRUE)
+              dialogueLabel = Label(dialogueContainer, text="", wraplength=1200, background="#d1aa73", foreground="black", font=("roboto", 24), justify=LEFT, highlightcolor="white", highlightthickness=3, padx=30)
+              dialogueLabel.pack(side=LEFT)
               afterIds.clear()
               for i, word in enumerate(dialogue): # Creates the text effect
-                     print(word)
                      def updateText(w=word):
-                            currentText = dialogue.cget("text")
-                            dialogue.configure(text=currentText + w)
-                     afterId = dialogue.after(27 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
+                            currentText = dialogueLabel.cget("text")
+                            dialogueLabel.configure(text=currentText + w)
+                     afterId = dialogueLabel.after(27 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
                      afterIds.append(afterId)  # Store the after ID 
               if (soundFilePath != None):
                      winsound.PlaySound(soundFilePath, winsound.SND_ASYNC)
-              chatButtonContainer = Frame(chatFrame, background="#d1aa73")
-              chatButtonContainer.pack(side="right", fill="both")
+              chatButtonContainer = Frame(chatFrame, background="#d1aa73", highlightbackground="white", highlightthickness=3)
+              chatButtonContainer.pack(side="right", fill=BOTH)
               def continueDialogue():
                      nonlocal currentIndex
                      cleanUp(afterIds, dialogueContainer, storyFrame)
