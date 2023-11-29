@@ -86,6 +86,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
        currentFrame.pack_forget()
        selectFrame = Frame(window)
        selectFrame.pack(fill=BOTH, expand=1)
+       window.attributes('-fullscreen', True)
        for i in range(4):
               row = i // 2
               column = i % 2
@@ -204,10 +205,10 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
               pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="#A7885C", highlightthickness=2, height=550)
               pictureFrame.image = img
               pictureFrame.config(image=img)
+              chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=3, pady=5, height=300)
               if (len(options) > 1): # If there are multiple options, show multiple options.
                      showContinue = False
-                     pictureFrame.pack(side="top", fill="both", expand= True)
-                     chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
+                     pictureFrame.pack(side="top", fill="both", expand=TRUE)
                      chatFrame.pack(side="bottom", fill="both", expand=FALSE)
                      for option in options:
                             def updateCurrentIndex(updatedIndex=option.get("nextSceneIndex"), NPC:NPC=option.get("affection").get("affectedNPC") , affectionChange=option.get("affection").get("change") ):
@@ -228,19 +229,20 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
               else:
                      pictureFrame.pack(side="top", fill="both")
                      showContinue = True
-                     chatFrame = Frame(storyFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", highlightthickness=2, padx=5, pady=5, height=300) # Container for the chat which includes dialogue and continue buttons
                      chatFrame.pack(side="bottom", fill="both", expand=TRUE)
               if (name != None and len(name) > 0):
                      createNameFrame(window, chatFrame, name)
-              dialogueContainer = Label(chatFrame, text="", height=0, wraplength=860, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", 16), padx=50, pady=20)
-              dialogueContainer.pack(side="left")
-              dialogueContainer.config(text="")
+              dialogueContainer = Frame(chatFrame, background="#d1aa73", border="2", highlightbackground="#A7885C", padx=3, pady=5, height=300)
+              dialogueContainer.pack(side="left", fill="both", expand=TRUE)
+              dialogue = Label(dialogueContainer, text="", wraplength=900, background="#d1aa73", foreground="black", font=("roboto", 24))
+              dialogue.pack(expand=TRUE)
               afterIds.clear()
               for i, word in enumerate(dialogue): # Creates the text effect
+                     print(word)
                      def updateText(w=word):
-                            currentText = dialogueContainer.cget("text")
-                            dialogueContainer.configure(text=currentText + w)
-                     afterId = dialogueContainer.after(27 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
+                            currentText = dialogue.cget("text")
+                            dialogue.configure(text=currentText + w)
+                     afterId = dialogue.after(27 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
                      afterIds.append(afterId)  # Store the after ID 
               if (soundFilePath != None):
                      winsound.PlaySound(soundFilePath, winsound.SND_ASYNC)
@@ -304,7 +306,7 @@ def main():
     # Position the window
     window.geometry("+{}+{}".format(position_right, position_top))
 
-    winsound.PlaySound("sounds/justforfun.wav", winsound.SND_ASYNC)
+    winsound.PlaySound("sounds/1-38 Slateport City.wav", winsound.SND_ASYNC)
     # Load background image for start menu
     bg_photo = PhotoImage(file='pictures/start_menu_bg.png')
     bg_label = Label(window, image=bg_photo)
