@@ -1,6 +1,7 @@
 import warnings
 import winsound
 from tkinter import *
+
 from classes import *
 from jungcook import *
 
@@ -76,7 +77,7 @@ def JC(name):
        ("Nice to see you too!! Why can't you just say hello like normal people", picmain, [40], name, "sounds/animalese (1).wav"),
        ("And just to clarify I wasn’t being weird I just happen to be there when you arrive ", picmain, [41], name,"sounds/animalese (1).wav"),
        ("Whatever", picofJC, [42], "JungCook", "sounds/animalese (1).wav"),
-       ("O what a sweet couple, we happen to have a promotion where you can get 2 sandwiches for 50%% off would you two like to share this?", picofshadow, [43], "CASHIER", "sounds/animalese (1).wav"),
+       ("O what a sweet couple, we happen to have a promotion where you can get 2 sandwiches for 50% off would you two like to share this?", picofshadow, [43], "CASHIER", "sounds/animalese (1).wav"),
        ("", picofsun, [{"text": "I will TAKE TWO FOR MYSELF", "nextSceneIndex": 44, "affection": {"affectedNPC": JUNGCOOK, "change": INCREASE}}, {"text": "No thanks", "nextSceneIndex": 48, "affection":{"affectedNPC": JUNGCOOK, "change": NEUTRAL}}, {"text": "Clarify the relationship", "nextSceneIndex": 57, "affection": {"affectedNPC": JUNGCOOK, "change": DECREASE}}]),
        ("NOOO!!! I will take two chicken sandwichesss for myself, such a good offer", picmain, [45], name, "sounds/animalese (1).wav"),
        ("(JungCook rolling his eyes at your response)", picofJC, [46]),
