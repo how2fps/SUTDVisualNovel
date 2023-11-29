@@ -231,10 +231,10 @@ def JC(name):
        ("(You didn’t know that JC had actually notice you was there and was unhappy you didn’t come say hi)", picofJC, [190]),
        ("Day End", picofmoon, [191]),
        #Day 7!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       ("(Today was a chill day, you enjoyed the peaceful moments [Affection with JungCook too low])", picmain, [end], '',"sounds/animalese (1).wav" , {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 5, "altSceneIndex": 192 }),
+       ("(Today was a chill day, you enjoyed the peaceful moments [Affection with JungCook too low])", picmain, [217], '',"sounds/animalese (1).wav" , {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 5, "altSceneIndex": 192 }),
        ("(You are in your dorm, studying)", pic, [193]),
        #ring sounds
-       ("Phone rings, it’s a call from JC", picmain, [194], sound),
+       ("(Phone rings, it’s a call from JC)", picmain, [194]),
        ("Hi JC, wassup.", picmain, [195], name, sound),
        ("Are you free today afternoon?, I need help with something.", picofJC, [196], Jung, sound),
        ("hmm should be free.", picmain, [197], name, sound),
@@ -252,16 +252,16 @@ def JC(name):
        ("", picofsun, [{"text": "Whip Cream and Cherry", "nextSceneIndex": 209, "affection": {"affectedNPC": JUNGCOOK, "change": NEUTRAL}}, {"text": "Drizzle of Lemon Syrup", "nextSceneIndex": 210, "affection": {"affectedNPC": JUNGCOOK, "change": NEUTRAL}}, {"text": "Why Not Both", "nextSceneIndex": 211, "affection": {"affectedNPC": JUNGCOOK, "change": NEUTRAL}}]),
        ("I would probably choose the whip cream and cherry. ", picmain, [213], name, sound),
        ("I would probably choose the lemon drizzle.", picmain, [213], name, sound),
-       ("Actually I don’t see why we cant just combine both. I feel like having lemon drizzle on the whip cream and cherry could actually work.", picmain, [212], sound),
+       ("Actually I don’t see why we cant just combine both. I feel like having lemon drizzle on the whip cream and cherry could actually work.", picmain, [212], name, sound),
        ("Interesting, I will test it out and let you know.", picofJC, [213],Jung, sound),
-       ("Thanks for the help. Here is the sample of the cake just for the help.", pic, [214], sound),
+       ("Thanks for the help. Here is the sample of the cake just for the help.", pic, [214], Jung, sound),
        ("OO Niceee", picmain, [215], name, sound),
        ("(You eat the cake and chatted with JC)", picmain, [216], name, sound),
        ("(You left after thanking JC.)", picmain, [217], name, sound),
        ("Day End", pic, [218]),
        #Prom Day !-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        ("PROM DAY", pic, [219]),
-       ("(Its Prom Day, as others were preparing for prom. You realise that you do not have any partner for tonight.)", pic, [220], sound, {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 5, "altSceneIndex": 222 }),
+       ("(Its Prom Day, as others were preparing for prom. You realise that you do not have any partner for tonight.)", pic, [220], '', sound, {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 5, "altSceneIndex": 222 }),
        ("(If you had made better choices maybe someone would have asked you to be their prom date.)", pic, [221], sound),
        ("Too bad You Losttt", pic, [233], sound),
        #ring sound
