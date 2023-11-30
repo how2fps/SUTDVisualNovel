@@ -53,6 +53,14 @@ def cleanUp(afterIds:list, dialogueContainer:Label, storyFrame:Frame):
        for widget in storyFrame.winfo_children():
               widget.destroy() 
 
+def create_button_hover_effect(button, bg_normal='#d1aa73', bg_hover='#A7885C'):
+       def on_enter(e):
+              button.config(bg=bg_hover)
+       def on_leave(e):
+              button.config(bg=bg_normal)
+       button.bind("<Enter>", on_enter)
+       button.bind("<Leave>", on_leave)
+
 def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoList):
        # ****FUNCTION txtImgOptNameSndAff****
 
@@ -102,8 +110,9 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                             for j in range(1, length + 1):
                                    listy[j] = i[j - 1]
                             xiaomingScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
-                     xiaomingStartBtn = Button(selectFrame, text=XIAOMING.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, xiaomingScenes), padx=2, pady=2)
+                     xiaomingStartBtn = Button(selectFrame, text=XIAOMING.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, xiaomingScenes), padx=2, pady=2)
                      xiaomingStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
+                     create_button_hover_effect(xiaomingStartBtn)
                      xiaomingDescription = Label(selectFrame, text="Shy yet sporty tech student\n\n-Introverted coder\n\n-Confident athlete\n\n-Uses his tech prowess \nto solve challenges\n\nJoin him on his journey from \nnovice coder to top tech expert", bg="#8cb9ed", font=("Comic Sans MS", 15))
                      xiaomingDescription.grid(row=row, column=column+3, sticky=W+E)
 
@@ -115,8 +124,9 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                             for j in range(1, length + 1):
                                    listy[j] = i[j - 1]
                             jungcookScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
-                     jungcookStartBtn = Button(selectFrame, text=JUNGCOOK.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, jungcookScenes), padx=2, pady=2)
+                     jungcookStartBtn = Button(selectFrame, text=JUNGCOOK.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, jungcookScenes), padx=2, pady=2)
                      jungcookStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
+                     create_button_hover_effect(jungcookStartBtn)
                      jungcookDescription = Label(selectFrame, text="-Fiery Korean chef with a tsundere personality\n\n-Known as the 'Korean Gordon Ramsey'\n\n-Despite his tough exterior, he has a\nsoft spot for those he cares about.\n\n-Uses his culinary prowess to create\nmouth-watering dishes that leave everyone in awe.\n\nJoin him on his journey from being a\nrenowned chef to the star of the Prom night", bg="#ed8ce0",font=("Comic Sans MS", 15))
                      jungcookDescription.grid(row=row, column=column+3, sticky=W+E)
 
@@ -144,13 +154,14 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                             else:
                                    sixth = None
                             adamcmithScenes.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth))
-                     adamcmithStartBtn = Button(selectFrame, text=ADAMCMITH.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, adamcmithScenes), padx=2, pady=2)
+                     adamcmithStartBtn = Button(selectFrame, text=ADAMCMITH.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", activebackground="#A7885C", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, adamcmithScenes), padx=2, pady=2)
                      adamcmithStartBtn.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
+                     create_button_hover_effect(adamcmithStartBtn)
                      adamcmithDescription = Label(selectFrame, text="Your childhood friend with a heart of gold.\n\n-A familiar face from your past,\nalways there in your memories.\n\n-Always there when you need him.\n\nDespite the time that's passed,\nyour bond with him remains strong.\n\n-He is a constant source of support and companionship.\n\nJoin him on a journey of reconnection,\nfrom accidental encounters to shared memories.",bg="#8ced8f", font=("Comic Sans MS", 15))
                      adamcmithDescription.grid(row=row, column=column+2, sticky=W+E)
 
               elif NPC == JOHNNYSIN:
-                     johnnysinStartBtn = Button(selectFrame, text=JOHNNYSIN.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame,
+                     johnnysinStartBtn = Button(selectFrame, text=JOHNNYSIN.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", activebackground="#A7885C", font=("roboto", 20), command=lambda:createScenes(window, selectFrame,
                      [txtImgOptNameSndAff("(You're buried in books at the SUTD library, preparing for your final exams.)", "pictures/dog.png", [1], None, "sounds/animalese.wav"),
                      txtImgOptNameSndAff("Hey there, sorry to disturb you. I'm Johnny, an exchange student. I'm looking for some resources on Singapore's architecture. Could you help?", "pictures/dog.png", [2], "Johnny Sin", "sounds/animalese.wav"),
                      txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "You might find what you need in the architecture section. It's over there.", "nextSceneIndex": 3, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I'm really busy with my own studies. Maybe ask the librarian?", "nextSceneIndex": 3, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}},{"text": "I'd love to help! There's also a great documentary on this. We could watch it together sometime. Are you an architecture major?", "nextSceneIndex": 3, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}}]),    
@@ -209,6 +220,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                      txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "I'd like that. It's not goodbye, just see you later.", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "Sure, we can try to stay in touch. Who knows what the future holds?", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "It's hard to make such promises, Johnny. But let's enjoy today.", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
                      txtImgOptNameSndAff( "It's been an amazing week, Johnny Sin. Thanks for sharing it with me.", "pictures/dog.png", [57], "You", "sounds/animalese.wav")]))
                      johnnysinStartBtn.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
+                     create_button_hover_effect(johnnysinStartBtn)
                      johnnysinDescription = Label(selectFrame, text="An exchange student from the USA with\na heart as warm as his home state.\n\nHis charm lies in his adventurous spirit\nand his willingness to immerse\nhimself in new experiences.\n\n-Johnny's enthusiasm is infectious\n\n-He brings a touch of foreign intrigue\nand a lot of friendly warmth.\n\nJoin him on his journey of cultural exchange.", bg="#ed8c8c",font=("Comic Sans MS", 15))
                      johnnysinDescription.grid(row=row, column=column+2, sticky=W+E)
                      johnny_dialogues = []
@@ -237,16 +249,6 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
 
        # Position the window
        window.geometry("+{}+{}".format(position_right, position_top))
-
-def create_button_hover_effect(button, bg_normal='#d1aa73', bg_hover='#A7885C'):
-       def on_enter(e):
-              button.config(bg=bg_hover)
-
-       def on_leave(e):
-              button.config(bg=bg_normal)
-
-       button.bind("<Enter>", on_enter)
-       button.bind("<Leave>", on_leave)
 
 def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
        winsound.PlaySound(None, winsound.SND_PURGE)
