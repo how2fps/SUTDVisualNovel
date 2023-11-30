@@ -37,14 +37,14 @@ def txtImgOptNameSndAff(text:str, imgFilePath: str, options: list = [], name:str
             return {"text": text, "imgFilePath": imgFilePath, "name": name, "soundFilePath": soundFilePath, "options": options, "affectionCheck": affectionCheck}
 
 def createNameFrame(window:Frame, chatFrame:Frame, characterName:str, xLocation:int = 40): # Creates the name box
-       shadow1 = Label(window, text=characterName, background="#1f1f1f", foreground="black", font=("roboto", 18), padx=6, pady=6)
-       shadow1.place(in_=chatFrame, x=xLocation+5, y=-23)
-       shadow2 = Label(window, text=characterName, background="#2e2e2e", foreground="black", font=("roboto", 18), padx=6, pady=6)
-       shadow2.place(in_=chatFrame, x=xLocation+4, y=-24)
-       shadow3 = Label(window, text=characterName, background="#3b3a3a", foreground="black", font=("roboto", 18), padx=6, pady=6)
-       shadow3.place(in_=chatFrame, x=xLocation+3, y=-25)
-       nameLabelFrame = Label(window, text=characterName, background="#d1aa73", foreground="black", font=("roboto", 18), padx=5, pady=5, highlightbackground="#A7885C", highlightthickness=2)
-       nameLabelFrame.place(in_=chatFrame, x=xLocation, y=-28)
+       shadow1 = Label(window, text=characterName, background="#1f1f1f", foreground="black", font=("roboto", 32), padx=6, pady=6)
+       shadow1.place(in_=chatFrame, x=xLocation+5, y=-35)
+       shadow2 = Label(window, text=characterName, background="#2e2e2e", foreground="black", font=("roboto", 32), padx=6, pady=6)
+       shadow2.place(in_=chatFrame, x=xLocation+4, y=-36)
+       shadow3 = Label(window, text=characterName, background="#3b3a3a", foreground="black", font=("roboto", 32), padx=6, pady=6)
+       shadow3.place(in_=chatFrame, x=xLocation+3, y=-37)
+       nameLabelFrame = Label(window, text=characterName, background="#d1aa73", foreground="black", font=("roboto", 32), padx=5, pady=5, highlightbackground="#A7885C", highlightthickness=2)
+       nameLabelFrame.place(in_=chatFrame, x=xLocation, y=-40)
 
 def cleanUp(afterIds:list, dialogueContainer:Label, storyFrame:Frame):
        winsound.PlaySound(None, winsound.SND_PURGE)
@@ -95,15 +95,14 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
               image = photoList[i].subsample(3,3)
               photoList[i] = image  # keep the reference to the new PhotoImage
               if NPC == XIAOMING:
-                     peepee = []
-                     for i in XM2(name):
-                            listy2 = {1:'',2:'',3:[],4:None,5:None,6:None}
+                     poopy1 = []
+                     for i in XIAO_MING(name):
+                            listy = {1:'',2:'',3:[],4:None,5:None,6:None}
                             length = len(i)
                             for j in range(1, length + 1):
-                                   listy2[j] = i[j - 1]
-                            peepee.append(txtImgOptNameSndAff(listy2[1], listy2[2], listy2[3], listy2[4], listy2[5], listy2[6]))
-                     chatButton1 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
-                            peepee), padx=2, pady=2)
+                                   listy[j] = i[j - 1]
+                            poopy1.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
+                     chatButton1 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame, poopy1), padx=2, pady=2)
                      chatButton1.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
                      description1 = Label(selectFrame, text="Shy yet sporty tech student\n\n-Introverted coder\n\n-Confident athlete\n\n-Uses his tech prowess \nto solve challenges\n\nJoin him on his journey from \nnovice coder to top tech expert", bg="#8cb9ed", font=("Comic Sans MS", 15))
                      description1.grid(row=row, column=column+3, sticky=W+E)
@@ -289,7 +288,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                      chatFrame.pack(side="bottom", fill="both", expand=TRUE)
               if (name != None and len(name) > 0):
                      createNameFrame(window, chatFrame, name)
-              dialogueContainer = Label(chatFrame, text="", height=0, wraplength=860, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", 16), padx=50, pady=20)
+              dialogueContainer = Label(chatFrame, text="", height=0, wraplength=1100, justify=LEFT, background="#d1aa73", foreground="black", font=("roboto", 24), padx=50, pady=20)
               dialogueContainer.pack(side="left")
               dialogueContainer.config(text="")
               afterIds.clear()
@@ -297,7 +296,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                      def updateText(w=word):
                             currentText = dialogueContainer.cget("text")
                             dialogueContainer.configure(text=currentText + w)
-                     afterId = dialogueContainer.after(27 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
+                     afterId = dialogueContainer.after(20 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
                      afterIds.append(afterId)  # Store the after ID 
               if (soundFilePath != None):
                      winsound.PlaySound(soundFilePath, winsound.SND_ASYNC)
@@ -317,7 +316,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                      currentIndex = sceneIndex
                      updateDialogue()
               if(showContinue):
-                     chatButton = Button(chatButtonContainer, text='Continue >>', borderwidth=2, background="#d1aa73", foreground="black", font="roboto", command=continueDialogue, padx=2, pady=2)
+                     chatButton = Button(chatButtonContainer, text='Continue >>', font=("roboto", 24), borderwidth=2, background="#d1aa73", foreground="black", command=continueDialogue, padx=2, pady=2)
                      chatButton.pack(side="bottom")
               if(affectionCheck != None):
                      affectedNPC: NPC = affectionCheck.get("NPC")
