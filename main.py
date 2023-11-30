@@ -296,7 +296,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                      def updateText(w=word):
                             currentText = dialogueContainer.cget("text")
                             dialogueContainer.configure(text=currentText + w)
-                     afterId = dialogueContainer.after(27 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
+                     afterId = dialogueContainer.after(20 * i, updateText) # Logs the afterId so I can stop it from running when I go to the next scene
                      afterIds.append(afterId)  # Store the after ID 
               if (soundFilePath != None):
                      winsound.PlaySound(soundFilePath, winsound.SND_ASYNC)
