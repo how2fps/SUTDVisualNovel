@@ -42,7 +42,7 @@ def JC(name):
        ("(Thinking about it now, aren't the grub club in charge of the dessert aspect of the Prom.)", picmain, [6]),
        ("Maybe I can sneak a peek at what dessert will be at prom in advanced!!", picmain, [7], name, "sounds/animalese (1).wav"), 
        ("(As you are trying to see through the crowd to see what food they are preparing, a shadow can be seen creeping up behind her)", pic, [8]),
-       ("Oi!! What are you doing ?!?", pic, [9], "JungCook", "sounds/animalese (1).wav"),
+       ("Oi!! What are you doing ?!?", pic, [9], "JungCook", Jung),
        ("(Wah!! Shit scared the hell outta me.)", picmain, [10], name),
        ("(Who is the annoying guy spoiling my business!!!)", picmain, [11], name),
        ("(You turn around to see a tall handsome man with curly hair)", picofJC, [12]),
