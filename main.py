@@ -95,15 +95,14 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
               image = photoList[i].subsample(3,3)
               photoList[i] = image  # keep the reference to the new PhotoImage
               if NPC == XIAOMING:
-                     poopy = []
-                     for i in XM(name):
+                     poopy1 = []
+                     for i in XIAO_MING(name):
                             listy = {1:'',2:'',3:[],4:None,5:None,6:None}
                             length = len(i)
                             for j in range(1, length + 1):
                                    listy[j] = i[j - 1]
-                            poopy.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
-                     chatButton1 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
-                            poopy), padx=2, pady=2)
+                            poopy1.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
+                     chatButton1 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame, poopy1), padx=2, pady=2)
                      chatButton1.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
                      description1 = Label(selectFrame, text="Shy yet sporty tech student\n\n-Introverted coder\n\n-Confident athlete\n\n-Uses his tech prowess \nto solve challenges\n\nJoin him on his journey from \nnovice coder to top tech expert", bg="#8cb9ed", font=("Comic Sans MS", 15))
                      description1.grid(row=row, column=column+3, sticky=W+E)
