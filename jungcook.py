@@ -16,9 +16,9 @@ picofmoon = "pictures/dog.png"
 picofshadow = "pictures/dog.png"
 picshadow = "pictures/dog.png"
 pic = "pictures/dog.png"
-picofgomgom = "pictures/dog.png"
+picofgomgom = "pictures/JC/gomgomnew.png"
 sound = "sounds/animalese (1).wav"
-Jung = "JungCook"
+Jung = "sounds/animaleseJC (1).wav"
 
 protagonist =  Protagonist("", "")
 XIAOMING = NPC("Xiao Ming")
