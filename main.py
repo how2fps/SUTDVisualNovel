@@ -95,33 +95,33 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
               image = photoList[i].subsample(3,3)
               photoList[i] = image  # keep the reference to the new PhotoImage
               if NPC == XIAOMING:
-                     poopy1 = []
+                     xiaomingScenes = []
                      for i in XIAO_MING(name):
                             listy = {1:'',2:'',3:[],4:None,5:None,6:None}
                             length = len(i)
                             for j in range(1, length + 1):
                                    listy[j] = i[j - 1]
-                            poopy1.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
-                     chatButton1 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame, poopy1), padx=2, pady=2)
-                     chatButton1.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
-                     description1 = Label(selectFrame, text="Shy yet sporty tech student\n\n-Introverted coder\n\n-Confident athlete\n\n-Uses his tech prowess \nto solve challenges\n\nJoin him on his journey from \nnovice coder to top tech expert", bg="#8cb9ed", font=("Comic Sans MS", 15))
-                     description1.grid(row=row, column=column+3, sticky=W+E)
+                            xiaomingScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
+                     xiaomingStartBtn = Button(selectFrame, text=XIAOMING.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, xiaomingScenes), padx=2, pady=2)
+                     xiaomingStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
+                     xiaomingDescription = Label(selectFrame, text="Shy yet sporty tech student\n\n-Introverted coder\n\n-Confident athlete\n\n-Uses his tech prowess \nto solve challenges\n\nJoin him on his journey from \nnovice coder to top tech expert", bg="#8cb9ed", font=("Comic Sans MS", 15))
+                     xiaomingDescription.grid(row=row, column=column+3, sticky=W+E)
+
               elif NPC == JUNGCOOK:
-                     poopy = []
+                     jungcookScenes = []
                      for i in JC(name):
                             listy = {1:'',2:'',3:[],4:None,5:None,6:None}
                             length = len(i)
                             for j in range(1, length + 1):
                                    listy[j] = i[j - 1]
-                            poopy.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
-                     chatButton2 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
-                            poopy), padx=2, pady=2)
-                     chatButton2.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
-                     # Add a label for the character description
-                     description2 = Label(selectFrame, text="-Fiery Korean chef with a tsundere personality\n\n-Known as the 'Korean Gordon Ramsey'\n\n-Despite his tough exterior, he has a\nsoft spot for those he cares about.\n\n-Uses his culinary prowess to create\nmouth-watering dishes that leave everyone in awe.\n\nJoin him on his journey from being a\nrenowned chef to the star of the Prom night", bg="#ed8ce0",font=("Comic Sans MS", 15))
-                     description2.grid(row=row, column=column+3, sticky=W+E)
+                            jungcookScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
+                     jungcookStartBtn = Button(selectFrame, text=JUNGCOOK.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, jungcookScenes), padx=2, pady=2)
+                     jungcookStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
+                     jungcookDescription = Label(selectFrame, text="-Fiery Korean chef with a tsundere personality\n\n-Known as the 'Korean Gordon Ramsey'\n\n-Despite his tough exterior, he has a\nsoft spot for those he cares about.\n\n-Uses his culinary prowess to create\nmouth-watering dishes that leave everyone in awe.\n\nJoin him on his journey from being a\nrenowned chef to the star of the Prom night", bg="#ed8ce0",font=("Comic Sans MS", 15))
+                     jungcookDescription.grid(row=row, column=column+3, sticky=W+E)
+
               elif NPC == ADAMCMITH:
-                     list = []
+                     adamcmithScenes = []
                      for i in AC(name):
                             length = len(i)
                             textls = i[0]
@@ -143,15 +143,14 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                                    print(sixth)
                             else:
                                    sixth = None
-                            list.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth))
-                     chatButton3 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
-                            list), padx=2, pady=2)
-                     chatButton3.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
-                     # Add a label for the character description
-                     description3 = Label(selectFrame, text="Your childhood friend with a heart of gold.\n\n-A familiar face from your past,\nalways there in your memories.\n\n-Always there when you need him.\n\nDespite the time that's passed,\nyour bond with him remains strong.\n\n-He is a constant source of support and companionship.\n\nJoin him on a journey of reconnection,\nfrom accidental encounters to shared memories.",bg="#8ced8f", font=("Comic Sans MS", 15))
-                     description3.grid(row=row, column=column+2, sticky=W+E)
+                            adamcmithScenes.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth))
+                     adamcmithStartBtn = Button(selectFrame, text=ADAMCMITH.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, adamcmithScenes), padx=2, pady=2)
+                     adamcmithStartBtn.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
+                     adamcmithDescription = Label(selectFrame, text="Your childhood friend with a heart of gold.\n\n-A familiar face from your past,\nalways there in your memories.\n\n-Always there when you need him.\n\nDespite the time that's passed,\nyour bond with him remains strong.\n\n-He is a constant source of support and companionship.\n\nJoin him on a journey of reconnection,\nfrom accidental encounters to shared memories.",bg="#8ced8f", font=("Comic Sans MS", 15))
+                     adamcmithDescription.grid(row=row, column=column+2, sticky=W+E)
+
               elif NPC == JOHNNYSIN:
-                     chatButton4 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
+                     johnnysinStartBtn = Button(selectFrame, text=JOHNNYSIN.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame,
                      [txtImgOptNameSndAff("(You're buried in books at the SUTD library, preparing for your final exams.)", "pictures/dog.png", [1], None, "sounds/animalese.wav"),
                      txtImgOptNameSndAff("Hey there, sorry to disturb you. I'm Johnny, an exchange student. I'm looking for some resources on Singapore's architecture. Could you help?", "pictures/dog.png", [2], "Johnny Sin", "sounds/animalese.wav"),
                      txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "You might find what you need in the architecture section. It's over there.", "nextSceneIndex": 3, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I'm really busy with my own studies. Maybe ask the librarian?", "nextSceneIndex": 3, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}},{"text": "I'd love to help! There's also a great documentary on this. We could watch it together sometime. Are you an architecture major?", "nextSceneIndex": 3, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}}]),    
@@ -209,10 +208,9 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                      txtImgOptNameSndAff("I hope we can keep in touch. Maybe you could visit me in the States someday?", "pictures/dog.png", [55],"Johnny Sin", "sounds/animalese.wav"),
                      txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "I'd like that. It's not goodbye, just see you later.", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "Sure, we can try to stay in touch. Who knows what the future holds?", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "It's hard to make such promises, Johnny. But let's enjoy today.", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
                      txtImgOptNameSndAff( "It's been an amazing week, Johnny Sin. Thanks for sharing it with me.", "pictures/dog.png", [57], "You", "sounds/animalese.wav")]))
-                     chatButton4.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
-                     # Add a label for the character description
-                     description4 = Label(selectFrame, text="An exchange student from the USA with\na heart as warm as his home state.\n\nHis charm lies in his adventurous spirit\nand his willingness to immerse\nhimself in new experiences.\n\n-Johnny's enthusiasm is infectious\n\n-He brings a touch of foreign intrigue\nand a lot of friendly warmth.\n\nJoin him on his journey of cultural exchange.", bg="#ed8c8c",font=("Comic Sans MS", 15))
-                     description4.grid(row=row, column=column+2, sticky=W+E)
+                     johnnysinStartBtn.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
+                     johnnysinDescription = Label(selectFrame, text="An exchange student from the USA with\na heart as warm as his home state.\n\nHis charm lies in his adventurous spirit\nand his willingness to immerse\nhimself in new experiences.\n\n-Johnny's enthusiasm is infectious\n\n-He brings a touch of foreign intrigue\nand a lot of friendly warmth.\n\nJoin him on his journey of cultural exchange.", bg="#ed8c8c",font=("Comic Sans MS", 15))
+                     johnnysinDescription.grid(row=row, column=column+2, sticky=W+E)
                      johnny_dialogues = []
                      
        # Make the rows and columns expandable
@@ -240,7 +238,15 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
        # Position the window
        window.geometry("+{}+{}".format(position_right, position_top))
 
+def create_button_hover_effect(button, bg_normal='#d1aa73', bg_hover='#A7885C'):
+       def on_enter(e):
+              button.config(bg=bg_hover)
 
+       def on_leave(e):
+              button.config(bg=bg_normal)
+
+       button.bind("<Enter>", on_enter)
+       button.bind("<Leave>", on_leave)
 
 def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
        winsound.PlaySound(None, winsound.SND_PURGE)
@@ -260,6 +266,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
               pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="#A7885C", highlightthickness=2, height=550)
               pictureFrame.image = img
               pictureFrame.config(image=img)
+              
               if (len(options) > 1): # If there are multiple options, show multiple options.
                      showContinue = False
                      pictureFrame.pack(side="top", fill="both", expand= True)
@@ -279,8 +286,11 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                                    if (affectionChange =='neutral'):
                                        print('no change of affection of ' + NPC.getName())
                                    print(NPC.getAffectionLevel()) 
-                            optionButton = Button(chatFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
+                                   
+                            
+                            optionButton = Button(chatFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6, activebackground="#A7885C")
                             optionButton.pack(side = "top", fill=X, padx=50, pady=5, expand=FALSE)
+                            create_button_hover_effect(optionButton)
               else:
                      pictureFrame.pack(side="top", fill="both")
                      showContinue = True
@@ -316,8 +326,15 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                      currentIndex = sceneIndex
                      updateDialogue()
               if(showContinue):
-                     chatButton = Button(chatButtonContainer, text='Continue >>', font=("roboto", 24), borderwidth=2, background="#d1aa73", foreground="black", command=continueDialogue, padx=2, pady=2)
+                     chatButton = Button(chatButtonContainer, text='Continue >>', font=("roboto", 24), borderwidth=2, background="#d1aa73", foreground="black", command=continueDialogue, padx=2, pady=2, activebackground="#A7885C")
                      chatButton.pack(side="bottom")
+                     def onEnter(e):
+                            chatButton.config(bg='#A7885C')
+                     def onLeave(e):
+                            chatButton.config(bg='#d1aa73')
+                     chatButton.bind("<Enter>", onEnter)
+                     chatButton.bind("<Leave>", onLeave)
+                     
               if(affectionCheck != None):
                      affectedNPC: NPC = affectionCheck.get("NPC")
                      comparison = affectionCheck.get("comparison")
@@ -369,15 +386,14 @@ def main():
     # Create a frame to hold the start menu widgets
     start_menu_frame = Frame(window, bg='#d1aa73', highlightbackground="#A7885C", highlightthickness=4)
     start_menu_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
-
     # Create a label for the game title
     title_label = Label(start_menu_frame, text="SUTDoki", bg='#d1aa73', font=('Comic Sans MS', 48))
     title_label.pack(pady=20)
 
     # Create an entry for the player to input their name
-    name_label = Label(start_menu_frame, text="What's your name?", bg='#d1aa73', font=('Comic Sans MS', 24))
+    name_label = Label(start_menu_frame, text="What's your name?", bg='#d1aa73', font=('Comic Sans MS', 24), padx=2)
     name_label.pack()
-    name_entry = Entry(start_menu_frame, font=('Arial', 24))
+    name_entry = Entry(start_menu_frame, font=('Comic Sans MS', 24))
     name_entry.pack(padx=10, pady=10)
 
     NPClist = [JOHNNYSIN,JUNGCOOK,ADAMCMITH,XIAOMING]
@@ -389,9 +405,10 @@ def main():
     ]
 
     # Create the start button
-    start_button = Button(start_menu_frame, text="Start Story", font=('Arial', 24), command=lambda: 
+    start_button = Button(start_menu_frame, text="Start Story", font=('Roboto', 24), bg='#d1aa73', activebackground="#A7885C", command=lambda: 
             [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist, photoList)])
-    start_button.pack(pady=20)
+    start_button.pack(pady=20, expand=TRUE)
+    create_button_hover_effect(start_button)
     window.attributes("-fullscreen", True)
     window.bind("<F11>", lambda event: window.attributes("-fullscreen",
                                    not window.attributes("-fullscreen")))
