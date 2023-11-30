@@ -183,7 +183,7 @@ def AC(name):
             ("Oh, I didn't mean to make you uncomfortable. I just thought you looked really happy and wanted to capture that...", "pictures/AdamCmith_Pic/025.png", [113], "Adam Cmith"),
             ("[The mood becomes awkward. Adam feels misunderstood, and the protagonist senses that she might have hurt his feelings.]", "pictures/AdamCmith_Pic/001.png", [116]),
             #Day 7 End
-            #__________________________________________________________________________________________________________________________________________________________________________________
+            #________________________________________________________________________________Sound__________________________________________________________________________________________________
             #Good ending index link to 114
             ("[You and Adam go to prom to gether]", "pictures/dog.png", [115]),
             ("[Congratulations You Win]", "pictures/dog.png", [115]),

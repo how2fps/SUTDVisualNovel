@@ -386,7 +386,7 @@ def main():
     photoList = [
            PhotoImage(file="pictures/dog.png"),
            PhotoImage(file="pictures/dog.png"),
-           PhotoImage(file="pictures/dog.png"),
+           PhotoImage(file="pictures/AdamCmith_Pic/Cover Photo.png"),
            PhotoImage(file="pictures/dog.png")
     ]
 
