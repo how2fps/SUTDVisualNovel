@@ -7,6 +7,7 @@ from tkinter import *
 from adamcmith import *
 from classes import *
 from jungcook import *
+from xiaoming import *
 
 warnings.filterwarnings('ignore')
 
@@ -94,18 +95,16 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
               image = photoList[i].subsample(3,3)
               photoList[i] = image  # keep the reference to the new PhotoImage
               if NPC == XIAOMING:
-                     chatButton1 = Button(selectFrame, text=NPC.getName(), image= image, compound=TOP,  borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
-                            [txtImgOptNameSndAff("(After a long and tiring day of classes, school has finally ended...)", "pictures/dog.png", [1]), 
-                            txtImgOptNameSndAff("Damn, I can't believe that it is already 6pm... time to go home and submit my assignment.", "pictures/dog.png", [2], name, "sounds/xm1.wav"),
-                            txtImgOptNameSndAff("(You head for the classroom door, ready to head home...)", "pictures/Mob_Balrog.png", [3]),
-                            txtImgOptNameSndAff("(Suddenly, you felt someone grab your shoulders!)", "pictures/dog.png", [4]),
-                            txtImgOptNameSndAff("NOOO WE ARE GONNA BE LATE, LETS GO NOW!", "pictures/dog.png", [5], "Mia", "sounds/xm2.wav"),
-                            txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}},{"text": "Neutral 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": NEUTRAL}}]),
-                            txtImgOptNameSndAff("SCENE 6!", "pictures/dog.png", [], "YAY", "sounds/animalese (1).wav", {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }), 
-                            txtImgOptNameSndAff("SCENE 7!", "pictures/dog.png", [4], "YAY", "sounds/animalese (1).wav"),
-                            ]), padx=2, pady=2)
+                     poopy = []
+                     for i in XM(name):
+                            listy = {1:'',2:'',3:[],4:None,5:None,6:None}
+                            length = len(i)
+                            for j in range(1, length + 1):
+                                   listy[j] = i[j - 1]
+                            poopy.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
+                     chatButton1 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
+                            poopy), padx=2, pady=2)
                      chatButton1.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
-                     # Add a label for the character description
                      description1 = Label(selectFrame, text="Shy yet sporty tech student\n\n-Introverted coder\n\n-Confident athlete\n\n-Uses his tech prowess \nto solve challenges\n\nJoin him on his journey from \nnovice coder to top tech expert", bg="#8cb9ed", font=("Comic Sans MS", 15))
                      description1.grid(row=row, column=column+3, sticky=W+E)
               elif NPC == JUNGCOOK:
