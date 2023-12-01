@@ -453,12 +453,12 @@ def main():
            PhotoImage(file="pictures/johnnysin_profile.png"),
            PhotoImage(file="pictures/JC/JCPP.png"),
            PhotoImage(file="pictures/dog.png"),
-           PhotoImage(file="pictures/dog.png")
+           PhotoImage(file="pictures/dog.png"),
     ]
 
     # Create the start button
     start_button = Button(start_menu_frame, text="Start Story", font=('Roboto', 24), bg='#d1aa73', activebackground="#A7885C", command=lambda: 
-            [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist, photoList)])
+            [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist, photoList, "pictures/start_menu_bg.png")])
     start_button.pack(pady=20, expand=TRUE)
     create_button_hover_effect(start_button)
     window.attributes("-fullscreen", True)
