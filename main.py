@@ -14,13 +14,6 @@ warnings.filterwarnings('ignore')
 # Create your characters here, e.g. Xiao Ming => XIAOMING = NPC("Xiao Ming")
 # Already created for you guys, just edit the name if you want
 #yuchuan testing stuff
-picmain = "pictures/dog.png"
-picofJC = "pictures/dog.png"
-picofsun = "pictures/dog.png"
-picofmoon = "pictures/dog.png"
-picofshadow = "pictures/dog.png"
-picshadow = "pictures/dog.png"
-pic = "pictures/dog.png"
 protagonist =  Protagonist("", "")
 XIAOMING = NPC("Xiao Ming")
 JUNGCOOK = NPC("JungCook")
