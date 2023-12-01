@@ -193,7 +193,7 @@ def JC(name):
        ("Nothing much just that remember when I owe you dinner, well I’m free now to cook for you", "pictures/JC/jcwalkway.png", [142], "JungCook", Jung),
        ("", picofsun, [{"text": "LETSS GOOOOO", "nextSceneIndex": 143, "affection": {"affectedNPC": JUNGCOOK, "change": INCREASE}}, {"text": "Be Polite", "nextSceneIndex": 148, "affection": {"affectedNPC": JUNGCOOK, "change": NEUTRAL}}, {"text": "Reject Him", "nextSceneIndex": 152, "affection": {"affectedNPC": JUNGCOOK, "change": DECREASE}}]),
        ("Letss gooooooo, I was just nice hungry after training. I will say first, I not someone with a small stomach.", "pictures/JC/mainday1start.png", [144], name,sound),
-       ("No problem, do you know who I am? My name is Cook, JungCook.", picofJC, [145], "JungCook", sound),
+       ("No problem, do you know who I am? My name is Cook, JungCook.", "pictures/JC/jcwalkway.png", [145], "JungCook", sound),
        ("Cooking a meal for the whole school wouldn’t be an issue to me much less one person.", "pictures/JC/jcwalkway.png", [146], "JungCook", Jung),
        ("Hahha good, I shall feast tonight then.", "pictures/JC/mainday1start.png", [147], name,sound),
        ("(You followed JC to the block communal kitchen where JC had prepared the food ingredients beforehand. JC cooked a feast for you and you two enjoyed yourselves)", picofkitchen,[157]),
@@ -209,7 +209,7 @@ def JC(name):
        ("Day End", picofmoon, [158]), 
        #Day 6 Done!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        ("Day 6", picofsun, [159]), 
-       ("(You are with your friend at ccp, deciding what to eat.)", "pictures/JC/ccpfriend.png" [160]), 
+       ("(You are with your friend at ccp, deciding what to eat.)", "pictures/JC/ccpfriend.png" ,[160]), 
        ("Hmmmm, what should we eat?", "pictures/JC/ccpfriend.png", [161], name, sound), 
        ("How bout Sukiya? Its nice and cheap?", "pictures/JC/ccpfriend.png", [162], "Friend 1", sound), 
        ("I just had that yesterday though", "pictures/JC/ccpfriend.png", [163], "Friend 2", sound), 
@@ -273,10 +273,10 @@ def JC(name):
        #Prom Day Done !-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        ("PROM DAY", picofsun, [219]),
        ("(Its Prom Day, as others were preparing for prom. You realise that you do not have any partner for tonight.)", picofmoon, [220], '', sound, {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 5, "altSceneIndex": 222 }),
-       ("(If you had made better choices maybe someone would have asked you to be their prom date.)", picofmoon, [221], sound),
+       ("(If you had made better choices maybe someone would have asked you to be their prom date.)", picofmoon, [221], '',sound),
        ("Too bad You Losttt", picofmoon, [234], sound),
        #ring sound
-       ("(Ringing!! Ringing!!)", "pictures/JC/mainrm.png", [223], sound),
+       ("(Ringing!! Ringing!!)", "pictures/JC/mainrm.png", [223], '',sound),
        ("Hi JC!!", "pictures/JC/mainrm.png", [224], name, sound),
        ("Hi, today is Prom Day. I just want to check if you are free for tonight.", "pictures/JC/jcrm.png", [225], "JungCook", Jung),
        ("Of Course, I am!!", "pictures/JC/mainrm.png", [226], name, sound),
