@@ -273,10 +273,10 @@ def JC(name):
        #Prom Day Done !-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        ("PROM DAY", picofsun, [219]),
        ("(Its Prom Day, as others were preparing for prom. You realise that you do not have any partner for tonight.)", picofmoon, [220], '', sound, {"NPC": JUNGCOOK, "comparison": BIGGER, "amount": 5, "altSceneIndex": 222 }),
-       ("(If you had made better choices maybe someone would have asked you to be their prom date.)", picofmoon, [221], sound),
+       ("(If you had made better choices maybe someone would have asked you to be their prom date.)", picofmoon, [221], '',sound),
        ("Too bad You Losttt", picofmoon, [234], sound),
        #ring sound
-       ("(Ringing!! Ringing!!)", "pictures/JC/mainrm.png", [223], sound),
+       ("(Ringing!! Ringing!!)", "pictures/JC/mainrm.png", [223], '',sound),
        ("Hi JC!!", "pictures/JC/mainrm.png", [224], name, sound),
        ("Hi, today is Prom Day. I just want to check if you are free for tonight.", "pictures/JC/jcrm.png", [225], "JungCook", Jung),
        ("Of Course, I am!!", "pictures/JC/mainrm.png", [226], name, sound),
