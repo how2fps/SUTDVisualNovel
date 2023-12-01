@@ -271,6 +271,10 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list, photoI
               pictureFrame.image = img
               pictureFrame.config(image=img)
               
+              backToMainMenuBtn = Button(pictureFrame, text="Back to Main Menu", borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 12), command=lambda:goStartMenu(window, photoImage, storyFrame), padx=2, pady=6, activebackground="#A7885C")
+              backToMainMenuBtn.place(x=5, y=5)
+              create_button_hover_effect(backToMainMenuBtn)
+              
               if (len(options) > 1): # If there are multiple options, show multiple options.
                      showContinue = False
                      pictureFrame.pack(side="top", fill="both", expand= True)
@@ -393,11 +397,11 @@ def goStartMenu(window, photoImage:PhotoImage, currentFrame: Frame = None):
                [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist, photoList, photoImage)])
        start_button.pack(pady=20, expand=TRUE)
        create_button_hover_effect(start_button)
-       window.attributes("-fullscreen", True)
-       window.bind("<F11>", lambda: window.attributes("-fullscreen", not window.attributes("-fullscreen")))
-       window.bind("<Escape>", lambda: window.attributes("-fullscreen", False))
-       show_toast("Press F11 to toggle Fullscreen\nPress Escape to exit Fullscreen")
 
+       window.attributes("-fullscreen", True)
+       window.bind("<F11>", lambda event: window.attributes("-fullscreen", not window.attributes("-fullscreen")))
+       window.bind("<Escape>", lambda event: window.attributes("-fullscreen", False))
+       show_toast("Press F11 to toggle Fullscreen\nPress Escape to exit Fullscreen")
 
 def main():
     window = Tk()
