@@ -33,8 +33,8 @@ NEUTRAL = "neutral"
 BIGGER = "bigger"
 SMALLER = "smaller"
 
-def txtImgOptNameSndAff(text:str, imgFilePath: str, options: list = [], name:str = None, soundFilePath: str = None, affectionCheck: dict = None):
-            return {"text": text, "imgFilePath": imgFilePath, "name": name, "soundFilePath": soundFilePath, "options": options, "affectionCheck": affectionCheck}
+def txtImgOptNameSndAff(text:str, imgFilePath:str, options:list = [], name:str = None, soundFilePath:str = None, affectionCheck:dict = None, isFinalScene:bool = False):
+            return {"text": text, "imgFilePath": imgFilePath, "name": name, "soundFilePath": soundFilePath, "options": options, "affectionCheck": affectionCheck, "isFinalScene": isFinalScene}
 
 def createNameFrame(window:Frame, chatFrame:Frame, characterName:str, xLocation:int = 40): # Creates the name box
        shadow1 = Label(window, text=characterName, background="#1f1f1f", foreground="black", font=("roboto", 32), padx=6, pady=6)
@@ -61,7 +61,7 @@ def create_button_hover_effect(button, bg_normal='#d1aa73', bg_hover='#A7885C'):
        button.bind("<Enter>", on_enter)
        button.bind("<Leave>", on_leave)
 
-def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoList):
+def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, photoList:list, photoImage: PhotoImage):
        # ****FUNCTION txtImgOptNameSndAff****
 
        # "text" is what the dialogue in the chatbox reads, leave it empty during multiple option scenes.
@@ -75,7 +75,8 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
        # "affectionCheck" is a dictionary in this format {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }. 
        # "NPC" is the NPC you want to check the affection level of.
        # "comparison" is to check whether it is smaller or bigger than the "amount".
-       # "altSceneIndex" is the alternate scene you want to go to when the comparison returns TRUE.
+       # "altSceneIndex" is the alternate scene you want to go to when the comparison returns TRUE. 
+       # "isFinalScene" is should be set to true to show "Back to main menu" instead of "Continue >>" when the story ends.
 
        # "options" is a list that dictates what scenes the buttons go to.
        # If you have multiple options, create a list of dictionary
@@ -105,12 +106,12 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
               if NPC == XIAOMING:
                      xiaomingScenes = []
                      for i in XIAO_MING(name):
-                            listy = {1:'',2:'',3:[],4:None,5:None,6:None}
+                            listy = {1:'',2:'',3:[],4:None,5:None,6:None,7:False}
                             length = len(i)
                             for j in range(1, length + 1):
                                    listy[j] = i[j - 1]
-                            xiaomingScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
-                     xiaomingStartBtn = Button(selectFrame, text=XIAOMING.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, xiaomingScenes), padx=2, pady=2)
+                            xiaomingScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6], listy[7]))
+                     xiaomingStartBtn = Button(selectFrame, text=XIAOMING.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, xiaomingScenes, photoImage), padx=2, pady=2)
                      xiaomingStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
                      create_button_hover_effect(xiaomingStartBtn)
                      xiaomingDescription = Label(selectFrame, text="Shy yet sporty tech student\n\n-Introverted coder\n\n-Confident athlete\n\n-Uses his tech prowess \nto solve challenges\n\nJoin him on his journey from \nnovice coder to top tech expert", bg="#8cb9ed", font=("Comic Sans MS", 15))
@@ -119,12 +120,12 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
               elif NPC == JUNGCOOK:
                      jungcookScenes = []
                      for i in JC(name):
-                            listy = {1:'',2:'',3:[],4:None,5:None,6:None}
+                            listy = {1:'',2:'',3:[],4:None,5:None,6:None,7:False}
                             length = len(i)
                             for j in range(1, length + 1):
                                    listy[j] = i[j - 1]
-                            jungcookScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
-                     jungcookStartBtn = Button(selectFrame, text=JUNGCOOK.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, jungcookScenes), padx=2, pady=2)
+                            jungcookScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6], listy[7]))
+                     jungcookStartBtn = Button(selectFrame, text=JUNGCOOK.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, jungcookScenes, photoImage), padx=2, pady=2)
                      jungcookStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
                      create_button_hover_effect(jungcookStartBtn)
                      jungcookDescription = Label(selectFrame, text="-Fiery Korean chef with a tsundere personality\n\n-Known as the 'Korean Gordon Ramsey'\n\n-Despite his tough exterior, he has a\nsoft spot for those he cares about.\n\n-Uses his culinary prowess to create\nmouth-watering dishes that leave everyone in awe.\n\nJoin him on his journey from being a\nrenowned chef to the star of the Prom night", bg="#ed8ce0",font=("Comic Sans MS", 15))
@@ -153,8 +154,12 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                                    print(sixth)
                             else:
                                    sixth = None
-                            adamcmithScenes.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth))
-                     adamcmithStartBtn = Button(selectFrame, text=ADAMCMITH.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", activebackground="#A7885C", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, adamcmithScenes), padx=2, pady=2)
+                            if (length >= 7):
+                                   seven = i[6]
+                            else:
+                                   seven = False
+                            adamcmithScenes.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth, seven))
+                     adamcmithStartBtn = Button(selectFrame, text=ADAMCMITH.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", activebackground="#A7885C", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, adamcmithScenes, photoImage), padx=2, pady=2)
                      adamcmithStartBtn.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
                      create_button_hover_effect(adamcmithStartBtn)
                      adamcmithDescription = Label(selectFrame, text="Your childhood friend with a heart of gold.\n\n-A familiar face from your past,\nalways there in your memories.\n\n-Always there when you need him.\n\nDespite the time that's passed,\nyour bond with him remains strong.\n\n-He is a constant source of support and companionship.\n\nJoin him on a journey of reconnection,\nfrom accidental encounters to shared memories.",bg="#8ced8f", font=("Comic Sans MS", 15))
@@ -218,7 +223,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                      txtImgOptNameSndAff("", "pictures/star1.png", [{"text": "I feel the same way, Johnny. This week was unforgettable.", "nextSceneIndex": 54, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "It's been great, hasn't it? We made some good memories.", "nextSceneIndex": 54, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "All good things come to an end, right? That's life.", "nextSceneIndex": 54, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}},{"text": "Let's make a promise to see each other again, no matter what.", "nextSceneIndex": 54, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}}],"You"), 
                      txtImgOptNameSndAff("I hope we can keep in touch. Maybe you could visit me in the States someday?", "pictures/star1.png", [55],"Johnny Sin", "sounds/xm1.wav"),
                      txtImgOptNameSndAff("", "pictures/star1.png", [{"text": "I'd like that. It's not goodbye, just see you later.", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "Sure, we can try to stay in touch. Who knows what the future holds?", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "It's hard to make such promises, Johnny. But let's enjoy today.", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
-                     txtImgOptNameSndAff( "It's been an amazing week, Johnny Sin. Thanks for sharing it with me.", "pictures/star1.png", [57], "You", "sounds/justforfun.wav")]))
+                     txtImgOptNameSndAff( "It's been an amazing week, Johnny Sin. Thanks for sharing it with me.", "pictures/star1.png", [57], "You", "sounds/justforfun.wav")], photoImage))
                      chatButton4.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
                      # Add a label for the character description
                      
@@ -251,7 +256,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
        # Position the window
        window.geometry("+{}+{}".format(position_right, position_top))
 
-def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
+def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list, photoImage: PhotoImage):
        winsound.PlaySound(None, winsound.SND_PURGE)
        storyFrame = Frame(window)
        storyFrame.pack(fill=BOTH, expand=True)
@@ -264,11 +269,16 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
               soundFilePath = textImgNameSound[currentIndex].get("soundFilePath")
               options = textImgNameSound[currentIndex].get("options")
               affectionCheck = textImgNameSound[currentIndex].get("affectionCheck")
+              isFinalScene = textImgNameSound[currentIndex].get("isFinalScene")
               currentFrame.pack_forget() # Remove current frame
               img = PhotoImage(file=imgFilePath) # Some weird gimmick to make the image work
               pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="#A7885C", highlightthickness=2, height=550)
               pictureFrame.image = img
               pictureFrame.config(image=img)
+              
+              backToMainMenuBtn = Button(pictureFrame, text="Back to Main Menu", borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 12), command=lambda:goStartMenu(window, photoImage, storyFrame), padx=2, pady=6, activebackground="#A7885C")
+              backToMainMenuBtn.place(x=5, y=5)
+              create_button_hover_effect(backToMainMenuBtn)
               
               if (len(options) > 1): # If there are multiple options, show multiple options.
                      showContinue = False
@@ -330,6 +340,8 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                      updateDialogue()
               if(showContinue):
                      chatButton = Button(chatButtonContainer, text='Continue >>', font=("roboto", 24), borderwidth=2, background="#d1aa73", foreground="black", command=continueDialogue, padx=2, pady=2, activebackground="#A7885C")
+                     if (isFinalScene == True):
+                            chatButton.config(text="Back to Main Menu", command=lambda:goStartMenu(window, photoImage, storyFrame))
                      chatButton.pack(side="bottom")
                      def onEnter(e):
                             chatButton.config(bg='#A7885C')
@@ -356,6 +368,45 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
        currentIndex:int = 0
        return updateDialogue()
 
+def goStartMenu(window, photoImage:PhotoImage, currentFrame: Frame = None):
+       if (currentFrame is not None):
+              currentFrame.pack_forget()
+       winsound.PlaySound("sounds/justforfun.wav", winsound.SND_ASYNC)
+       # Load background image for start menu
+       bg_label = Label(window, image=photoImage)
+       bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+       # Create a frame to hold the start menu widgets
+       start_menu_frame = Frame(window, bg='#d1aa73', highlightbackground="#A7885C", highlightthickness=4)
+       start_menu_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
+       # Create a label for the game title
+       title_label = Label(start_menu_frame, text="SUTDoki", bg='#d1aa73', font=('Comic Sans MS', 48))
+       title_label.pack(pady=20)
+
+       # Create an entry for the player to input their name
+       name_label = Label(start_menu_frame, text="What's your name?", bg='#d1aa73', font=('Comic Sans MS', 24), padx=2)
+       name_label.pack()
+       name_entry = Entry(start_menu_frame, font=('Comic Sans MS', 24))
+       name_entry.pack(padx=10, pady=10)
+
+       NPClist = [JOHNNYSIN,JUNGCOOK,ADAMCMITH,XIAOMING]
+       photoList = [
+              PhotoImage(file="pictures/johnnysin_profile.png"),
+              PhotoImage(file="pictures/JC/JCPP.png"),
+              PhotoImage(file="pictures/dog.png"),
+              PhotoImage(file="pictures/dog.png")
+       ]
+
+       # Create the start button
+       start_button = Button(start_menu_frame, text="Start Story", font=('Roboto', 24), bg='#d1aa73', activebackground="#A7885C", command=lambda: 
+               [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist, photoList, photoImage)])
+       start_button.pack(pady=20, expand=TRUE)
+       create_button_hover_effect(start_button)
+
+       window.attributes("-fullscreen", True)
+       window.bind("<F11>", lambda event: window.attributes("-fullscreen", not window.attributes("-fullscreen")))
+       window.bind("<Escape>", lambda event: window.attributes("-fullscreen", False))
+       show_toast("Press F11 to toggle Fullscreen\nPress Escape to exit Fullscreen")
 
 def main():
     window = Tk()
@@ -379,9 +430,7 @@ def main():
 
     # Position the window
     window.geometry("+{}+{}".format(position_right, position_top))
-
-    winsound.PlaySound("sounds/justforfun.wav", winsound.SND_ASYNC)
-    # Load background image for start menu
+    
     bg_photo = PhotoImage(file='pictures/start_menu_bg3.png')
     bg_label = Label(window, image=bg_photo)
     bg_label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -404,12 +453,12 @@ def main():
            PhotoImage(file="pictures/johnnysin_profile.png"),
            PhotoImage(file="pictures/JC/JCPP.png"),
            PhotoImage(file="pictures/dog.png"),
-           PhotoImage(file="pictures/dog.png")
+           PhotoImage(file="pictures/dog.png"),
     ]
 
     # Create the start button
     start_button = Button(start_menu_frame, text="Start Story", font=('Roboto', 24), bg='#d1aa73', activebackground="#A7885C", command=lambda: 
-            [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist, photoList)])
+            [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist, photoList, "pictures/start_menu_bg.png")])
     start_button.pack(pady=20, expand=TRUE)
     create_button_hover_effect(start_button)
     window.attributes("-fullscreen", True)
@@ -418,6 +467,7 @@ def main():
     window.bind("<Escape>", lambda event: window.attributes("-fullscreen", False))
     show_toast("Press F11 to toggle Fullscreen\nPress Escape to exit Fullscreen")
     window.mainloop()
+
 
 def show_toast(message, duration=3000):  # Duration in milliseconds
     toast = Toplevel()
