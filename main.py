@@ -154,7 +154,11 @@ def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, p
                                    print(sixth)
                             else:
                                    sixth = None
-                            adamcmithScenes.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth))
+                            if (length >= 7):
+                                   seven = i[6]
+                            else:
+                                   seven = False
+                            adamcmithScenes.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth, seven))
                      adamcmithStartBtn = Button(selectFrame, text=ADAMCMITH.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", activebackground="#A7885C", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, adamcmithScenes, photoImage), padx=2, pady=2)
                      adamcmithStartBtn.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
                      create_button_hover_effect(adamcmithStartBtn)
