@@ -53,6 +53,14 @@ def cleanUp(afterIds:list, dialogueContainer:Label, storyFrame:Frame):
        for widget in storyFrame.winfo_children():
               widget.destroy() 
 
+def create_button_hover_effect(button, bg_normal='#d1aa73', bg_hover='#A7885C'):
+       def on_enter(e):
+              button.config(bg=bg_hover)
+       def on_leave(e):
+              button.config(bg=bg_normal)
+       button.bind("<Enter>", on_enter)
+       button.bind("<Leave>", on_leave)
+
 def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoList):
        # ****FUNCTION txtImgOptNameSndAff****
 
@@ -95,33 +103,35 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
               image = photoList[i].subsample(3,3)
               photoList[i] = image  # keep the reference to the new PhotoImage
               if NPC == XIAOMING:
-                     poopy1 = []
+                     xiaomingScenes = []
                      for i in XIAO_MING(name):
                             listy = {1:'',2:'',3:[],4:None,5:None,6:None}
                             length = len(i)
                             for j in range(1, length + 1):
                                    listy[j] = i[j - 1]
-                            poopy1.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
-                     chatButton1 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame, poopy1), padx=2, pady=2)
-                     chatButton1.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
-                     description1 = Label(selectFrame, text="Shy yet sporty tech student\n\n-Introverted coder\n\n-Confident athlete\n\n-Uses his tech prowess \nto solve challenges\n\nJoin him on his journey from \nnovice coder to top tech expert", bg="#8cb9ed", font=("Comic Sans MS", 15))
-                     description1.grid(row=row, column=column+3, sticky=W+E)
+                            xiaomingScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
+                     xiaomingStartBtn = Button(selectFrame, text=XIAOMING.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, xiaomingScenes), padx=2, pady=2)
+                     xiaomingStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
+                     create_button_hover_effect(xiaomingStartBtn)
+                     xiaomingDescription = Label(selectFrame, text="Shy yet sporty tech student\n\n-Introverted coder\n\n-Confident athlete\n\n-Uses his tech prowess \nto solve challenges\n\nJoin him on his journey from \nnovice coder to top tech expert", bg="#8cb9ed", font=("Comic Sans MS", 15))
+                     xiaomingDescription.grid(row=row, column=column+3, sticky=W+E)
+
               elif NPC == JUNGCOOK:
-                     poopy = []
+                     jungcookScenes = []
                      for i in JC(name):
                             listy = {1:'',2:'',3:[],4:None,5:None,6:None}
                             length = len(i)
                             for j in range(1, length + 1):
                                    listy[j] = i[j - 1]
-                            poopy.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
-                     chatButton2 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
-                            poopy), padx=2, pady=2)
-                     chatButton2.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
-                     # Add a label for the character description
-                     description2 = Label(selectFrame, text="-Fiery Korean chef with a tsundere personality\n\n-Known as the 'Korean Gordon Ramsey'\n\n-Despite his tough exterior, he has a\nsoft spot for those he cares about.\n\n-Uses his culinary prowess to create\nmouth-watering dishes that leave everyone in awe.\n\nJoin him on his journey from being a\nrenowned chef to the star of the Prom night", bg="#ed8ce0",font=("Comic Sans MS", 15))
-                     description2.grid(row=row, column=column+3, sticky=W+E)
+                            jungcookScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6]))
+                     jungcookStartBtn = Button(selectFrame, text=JUNGCOOK.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, jungcookScenes), padx=2, pady=2)
+                     jungcookStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
+                     create_button_hover_effect(jungcookStartBtn)
+                     jungcookDescription = Label(selectFrame, text="-Fiery Korean chef with a tsundere personality\n\n-Known as the 'Korean Gordon Ramsey'\n\n-Despite his tough exterior, he has a\nsoft spot for those he cares about.\n\n-Uses his culinary prowess to create\nmouth-watering dishes that leave everyone in awe.\n\nJoin him on his journey from being a\nrenowned chef to the star of the Prom night", bg="#ed8ce0",font=("Comic Sans MS", 15))
+                     jungcookDescription.grid(row=row, column=column+3, sticky=W+E)
+
               elif NPC == ADAMCMITH:
-                     list = []
+                     adamcmithScenes = []
                      for i in AC(name):
                             length = len(i)
                             textls = i[0]
@@ -143,74 +153,75 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                                    print(sixth)
                             else:
                                    sixth = None
-                            list.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth))
-                     chatButton3 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
-                            list), padx=2, pady=2)
-                     chatButton3.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
-                     # Add a label for the character description
-                     description3 = Label(selectFrame, text="Your childhood friend with a heart of gold.\n\n-A familiar face from your past,\nalways there in your memories.\n\n-Always there when you need him.\n\nDespite the time that's passed,\nyour bond with him remains strong.\n\n-He is a constant source of support and companionship.\n\nJoin him on a journey of reconnection,\nfrom accidental encounters to shared memories.",bg="#8ced8f", font=("Comic Sans MS", 15))
-                     description3.grid(row=row, column=column+2, sticky=W+E)
+                            adamcmithScenes.append(txtImgOptNameSndAff(textls, picls, third, fourth, fifth, sixth))
+                     adamcmithStartBtn = Button(selectFrame, text=ADAMCMITH.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", activebackground="#A7885C", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, adamcmithScenes), padx=2, pady=2)
+                     adamcmithStartBtn.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
+                     create_button_hover_effect(adamcmithStartBtn)
+                     adamcmithDescription = Label(selectFrame, text="Your childhood friend with a heart of gold.\n\n-A familiar face from your past,\nalways there in your memories.\n\n-Always there when you need him.\n\nDespite the time that's passed,\nyour bond with him remains strong.\n\n-He is a constant source of support and companionship.\n\nJoin him on a journey of reconnection,\nfrom accidental encounters to shared memories.",bg="#8ced8f", font=("Comic Sans MS", 15))
+                     adamcmithDescription.grid(row=row, column=column+2, sticky=W+E)
+
               elif NPC == JOHNNYSIN:
                      chatButton4 = Button(selectFrame, text=NPC.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda i=i :createScenes(window, selectFrame,
-                     [txtImgOptNameSndAff("(You're buried in books at the SUTD library, preparing for your final exams.)", "pictures/dog.png", [1], None, "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("Hey there, sorry to disturb you. I'm Johnny, an exchange student. I'm looking for some resources on Singapore's architecture. Could you help?", "pictures/dog.png", [2], "Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "You might find what you need in the architecture section. It's over there.", "nextSceneIndex": 3, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I'm really busy with my own studies. Maybe ask the librarian?", "nextSceneIndex": 3, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}},{"text": "I'd love to help! There's also a great documentary on this. We could watch it together sometime. Are you an architecture major?", "nextSceneIndex": 3, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}}]),    
-                     txtImgOptNameSndAff("Yes, and I'm fascinated by the blend of modern and traditional designs here. What about you? What are you studying so intently?", "pictures/dog.png", [4],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("I'm prepping for my final exams. It's a bit overwhelming.", "pictures/dog.png", [5],"You", "sounds/yourvoice.wav"),
-                     txtImgOptNameSndAff("Maybe after your exams, you could show me around the city's architectural highlights?", "pictures/dog.png", [6],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "That sounds like a plan. It would be a nice break from studying.", "nextSceneIndex": 7, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "I might be able to. Let's see how my schedule looks after exams.", "nextSceneIndex": 7, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I'm not sure, I'll be pretty busy even after exams.", "nextSceneIndex": 7, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
-                     txtImgOptNameSndAff("That sounds like a plan. It would be a nice break from all this studying.", "pictures/dog.png", [8], "You", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("(The conversation flows smoothly, and you're both surprised at how comfortable you feel around each other. Johnny's charm and your shared interest in architecture make for a promising start.)", "pictures/dog.png", [10]),
-                     txtImgOptNameSndAff("(The next morning in SUTD track in the late afternoon.)", "pictures/dog.png", [11], "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("Hey, I noticed you yesterday at the library. I'm going for a run. Care to join me? It's a great way to de-stress.", "pictures/dog.png", [12], "Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "I'm not much of a runner, but why not? It might be fun. Running at sunset sounds perfect.", "nextSceneIndex": 13, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},    {"text": "Maybe another day. I'm not really up for a run right now.", "nextSceneIndex": 13, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},    {"text": "Running isn't really my thing. Maybe another time?", "nextSceneIndex": 13, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}]),
-                     txtImgOptNameSndAff("Trust me, the view at sunset is worth it. Plus, I could use the company.", "pictures/dog.png", [14],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("(During the run) Look at that sunset! It's like the sky's putting on a show just for us.", "pictures/dog.png", [15],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "It's beautiful. I never took the time to appreciate it like this.", "nextSceneIndex": 16, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "It is nice. But let's not stop; we should keep our pace.", "nextSceneIndex": 16, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I'm too tired to enjoy it. Maybe we should head back?", "nextSceneIndex": 16, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
-                     txtImgOptNameSndAff("Back home, moments like these are rare. I'm glad I got to share it with you.", "pictures/dog.png", [17],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("Me too, Johnny. This was unexpectedly enjoyable.", "pictures/dog.png", [17], "You", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("(The run turns into a fun and light-hearted experience. Your laughter echoes in the cool evening air, and the shared moment at sunset feels special.)", "pictures/dog.png", [18]),
-                     txtImgOptNameSndAff("(Art class, with an assignment to draw a portrait.)", "pictures/dog.png", [19], None, "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("I've been thinking about the assignment, and I would like to draw your portrait. Would that be okay with you?", "pictures/dog.png", [20], "Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Me? Well, that's quite the compliment. That sounds like fun! I've always wanted to be someone's muse.", "nextSceneIndex": 21, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "I guess that's fine. But I'm not sure I'm model material.", "nextSceneIndex": 21, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I'm not really comfortable being your subject, sorry.", "nextSceneIndex": 21, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}]),
-                     txtImgOptNameSndAff("You have a certain...expression, it's captivating. Like the Mona Lisa.", "pictures/dog.png", [22],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("That's quite the compliment. I guess I can't say no to being compared to a masterpiece.", "pictures/dog.png", [23], "You", "sounds/yourvoice.wav"),
-                     txtImgOptNameSndAff("(While drawing) You know, this reminds me of a scene from Titanic. Minus the drama, of course.", "pictures/dog.png", [24],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Well, let's keep it that way. No icebergs in Singapore, thankfully.", "nextSceneIndex": 25, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "Just make sure you get my good side!", "nextSceneIndex": 25, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I hope you're better at drawing than making movie references.", "nextSceneIndex": 25, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
-                     txtImgOptNameSndAff("Just a sunny island with a sunny girl.", "pictures/dog.png", [26],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("(The session is filled with playful banter. Johnny's focus on capturing your essence is flattering, and the mood is reminiscent of a classic romantic movie.)", "pictures/dog.png", [27]),
-                     txtImgOptNameSndAff("(Sports stadium, buzzing with excitement.)", "pictures/dog.png", [28], None, "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("I'm really glad you came. Your support means a lot to me.", "pictures/dog.png", [29], "Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "I wouldn't miss it. Seeing you run is inspiring. I brought a banner to cheer you on. Go Johnny!", "nextSceneIndex": 30, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "I'm curious to see how fast you run. Good luck!", "nextSceneIndex": 30, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I just hope it doesn't drag on too long.", "nextSceneIndex": 30, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}]),
-                     txtImgOptNameSndAff("Just knowing you're here in the crowd makes me want to run faster.", "pictures/dog.png", [31],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Well, then I expect nothing less than a win from you!", "nextSceneIndex": 32, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "Just focus on your race. Don’t worry about the crowd.", "nextSceneIndex": 32, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "Don't get too distracted by looking for me.", "nextSceneIndex": 32, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
-                     txtImgOptNameSndAff("(The energy of the competition is electric. As Johnny races, you find yourself fully invested in his success. His win feels like a shared victory.)", "pictures/dog.png", [33]),
-                     txtImgOptNameSndAff("(Changi City Point mall, bustling with activity.)", "pictures/dog.png", [34], None, "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("This mall is huge! Where should we start?", "pictures/dog.png", [35], "Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "How about some window shopping? There are some great clothing stores here.", "nextSceneIndex": 36, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "Maybe grab a bite first? I'm a bit hungry.", "nextSceneIndex": 36, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I don’t really like malls. They're too crowded.", "nextSceneIndex": 36, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}},{"text": "Let's explore together and find the best spot in CCP!", "nextSceneIndex": 36, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}}],"You"),
-                     txtImgOptNameSndAff("Sounds good. Maybe you can help me pick out something that screams 'Singapore'!", "pictures/dog.png", [37],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("(In a café) This coffee is great, but not as sweet as your company.", "pictures/dog.png", [38],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [    {"text": "Smooth line, Johnny. Been practicing?", "nextSceneIndex": 39, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},    {"text": "You and your compliments! But thanks, the coffee is good.", "nextSceneIndex": 39, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},    {"text": "Are you always this cheesy?", "nextSceneIndex": 39, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
-                     txtImgOptNameSndAff("Maybe a little. But only the best for today.", "pictures/dog.png", [40],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("(Before the movie) I'm glad we did this. Today was perfect.", "pictures/dog.png", [41],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("Me too, Johnny. It's nice to just relax and enjoy the day.", "pictures/dog.png", [42], "You", "sounds/yourvoice.wav"),
-                     txtImgOptNameSndAff("(The day is a mix of casual shopping, sipping coffee, and watching a movie. It's comfortable and easy, with a hint of budding romance.)", "pictures/dog.png", [43]),
-                     txtImgOptNameSndAff("(University observatory, under a starlit sky.)", "pictures/dog.png", [44], None, "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("These stars... they're like nothing I've seen back home.", "pictures/dog.png", [45], "Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "They have a way of making everything seem so possible, so magical.", "nextSceneIndex": 46, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},    {"text": "Yeah, it's a clear night. Perfect for star-gazing.", "nextSceneIndex": 46, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},    {"text": "I'm more of a city lights person, but this is okay.", "nextSceneIndex": 46, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}},    {"text": "It's like they're shining just for us tonight.", "nextSceneIndex": 46, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}}],"You"),
-                     txtImgOptNameSndAff("You know, I've been meaning to tell you something. These past few days with you have been the highlight of my trip.", "pictures/dog.png", [47],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("Really? I've enjoyed our time together too.", "pictures/dog.png", [48], "You", "sounds/yourvoice.wav"),
-                     txtImgOptNameSndAff("I feel like there's something special between us. I know my time here is limited, but I had to let you know.", "pictures/dog.png", [49],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "Johnny, I feel it too. Let's just enjoy this moment, under the stars.", "nextSceneIndex": 50, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "That's really sweet, Johnny. I'm glad we met.", "nextSceneIndex": 50, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "It's been fun, but let's not get ahead of ourselves.", "nextSceneIndex": 50, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
-                     txtImgOptNameSndAff("(The night is filled with heartfelt confessions and quiet understanding. The stars above seem to bless this new, uncertain yet hopeful chapter in your lives.)", "pictures/dog.png", [51]),
-                     txtImgOptNameSndAff("(A quiet spot on campus, preparing to say goodbye.)", "pictures/dog.png", [52], None, "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("This week with you has been the best part of my exchange. I wish it didn't have to end.", "pictures/dog.png", [53], "Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "I feel the same way, Johnny. This week was unforgettable.", "nextSceneIndex": 54, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "It's been great, hasn't it? We made some good memories.", "nextSceneIndex": 54, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "All good things come to an end, right? That's life.", "nextSceneIndex": 54, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}},{"text": "Let's make a promise to see each other again, no matter what.", "nextSceneIndex": 54, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}}],"You"), 
-                     txtImgOptNameSndAff("I hope we can keep in touch. Maybe you could visit me in the States someday?", "pictures/dog.png", [55],"Johnny Sin", "sounds/animalese.wav"),
-                     txtImgOptNameSndAff("", "pictures/dog.png", [{"text": "I'd like that. It's not goodbye, just see you later.", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "Sure, we can try to stay in touch. Who knows what the future holds?", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "It's hard to make such promises, Johnny. But let's enjoy today.", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
-                     txtImgOptNameSndAff( "It's been an amazing week, Johnny Sin. Thanks for sharing it with me.", "pictures/dog.png", [57], "You", "sounds/animalese.wav")]))
+                     [txtImgOptNameSndAff("(You're buried in books at the SUTD library, preparing for your final exams.)", "pictures/libraryjohnny0.png", [1], None, "sounds/animalese.wav"),
+                     txtImgOptNameSndAff("Hey there, sorry to disturb you. I'm Johnny, an exchange student. I'm looking for some resources on Singapore's architecture. Could you help?", "pictures/libraryjohnny2.png", [2], "Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/libraryjohnny2.png", [{"text": "You might find what you need in the architecture section. It's over there.", "nextSceneIndex": 3, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I'm really busy with my own studies. Maybe ask the librarian?", "nextSceneIndex": 3, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}},{"text": "I'd love to help! There's also a great documentary on this. We could watch it together sometime. Are you an architecture major?", "nextSceneIndex": 3, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}}]),    
+                     txtImgOptNameSndAff("Yes, and I'm fascinated by the blend of modern and traditional designs here. What about you? What are you studying so intently?", "pictures/libraryjohnny2.png", [4],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("I'm prepping for my final exams. It's a bit overwhelming.", "pictures/libraryjohnny3.png", [5],"You", "xm2.wav"),
+                     txtImgOptNameSndAff("Maybe after your exams, you could show me around the city's architectural highlights?", "pictures/libraryjohnny3.png", [6],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/libraryjohnny2.png", [{"text": "That sounds like a plan. It would be a nice break from studying.", "nextSceneIndex": 7, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "I might be able to. Let's see how my schedule looks after exams.", "nextSceneIndex": 7, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I'm not sure, I'll be pretty busy even after exams.", "nextSceneIndex": 7, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
+                     txtImgOptNameSndAff("That sounds like a plan. It would be a nice break from all this studying.", "pictures/libraryjohnny3.png", [8], "You", "sounds/xm2.wav"),
+                     txtImgOptNameSndAff("(The conversation flows smoothly, and you're both surprised at how comfortable you feel around each other. Johnny's charm and your shared interest in architecture make for a promising start.)", "pictures/libraryjohnny3.png", [10]),
+                     txtImgOptNameSndAff("(The next morning in SUTD track in the late afternoon.)", "pictures/trackjohnny2.png", [11], "sounds/animalese.wav"),
+                     txtImgOptNameSndAff("Hey, I noticed you yesterday at the library. I'm going for a run. Care to join me? It's a great way to unwind.", "pictures/trackjohnny1.png", [12], "Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/trackjohnny1.png", [{"text": "I'm not much of a runner, but why not? It might be fun. Running at sunset sounds perfect.", "nextSceneIndex": 13, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},    {"text": "Maybe another day. I'm not really up for a run right now.", "nextSceneIndex": 13, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},    {"text": "Running isn't really my thing. Maybe another time?", "nextSceneIndex": 13, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}]),
+                     txtImgOptNameSndAff("Trust me, the view at sunset is worth it. Plus, I could use the company.", "pictures/trackjohnny1.png", [14],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("(During the run) Look at that sunset! It's like the sky's putting on a show just for us.", "pictures/sunsetjohnny2.png", [15],"Johnny Sin", "sounds/animalese.wav"),
+                     txtImgOptNameSndAff("", "pictures/sunsetjohnny2.png", [{"text": "It's beautiful. I never took the time to appreciate it like this.", "nextSceneIndex": 16, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "It is nice. But let's not stop; we should keep our pace.", "nextSceneIndex": 16, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I'm too tired to enjoy it. Maybe we should head back?", "nextSceneIndex": 16, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
+                     txtImgOptNameSndAff("Back home, moments like these are rare. I'm glad I got to share it with you.", "pictures/sunsetjohnny2.png", [17],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("Me too, Johnny. This was unexpectedly enjoyable.", "pictures/sunsetjohnny2.png", [17], "You", "sounds/xm2.wav"), 
+                     txtImgOptNameSndAff("(The run turns into a fun and light-hearted experience. Your laughter echoes in the cool evening air, and the shared moment at sunset feels special.)", "pictures/eveningjohnny1.png", [18]),
+                     txtImgOptNameSndAff("(Day3, today I have Art class, with an assignment to draw a portrait.)", "pictures/classroomjohnny1.png", [19], None, "sounds/animalese.wav"),
+                     txtImgOptNameSndAff("I've been thinking about the assignment, and I would like to draw your portrait. Would that be okay with you?", "pictures/classroomjohnny2.png", [20], "Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/classroomjohnny2.png", [{"text": "Me? Well, that's quite the compliment. That sounds like fun! I've always wanted to be someone's muse.", "nextSceneIndex": 21, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "I guess that's fine. But I'm not sure I'm model material.", "nextSceneIndex": 21, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I'm not really comfortable being your subject, sorry.", "nextSceneIndex": 21, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}]),
+                     txtImgOptNameSndAff("You have a certain...expression, it's captivating. Like the Mona Lisa.", "pictures/monalisa.png", [22],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("That's quite the compliment. I guess I can't say no to being compared to a masterpiece.", "pictures/monalisa.png", [23], "You", "sounds/xm2.wav"),
+                     txtImgOptNameSndAff("(While drawing) You know, this reminds me of a scene from Titanic. Minus the drama, of course.", "pictures/classroomjohnny2.png", [24],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/classroomjohnny2.png", [{"text": "Well, let's keep it that way. No icebergs in Singapore, thankfully.", "nextSceneIndex": 25, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "Just make sure you get my good side!", "nextSceneIndex": 25, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I hope you're better at drawing than making movie references.", "nextSceneIndex": 25, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
+                     txtImgOptNameSndAff("Just a sunny island with a sunny girl.", "pictures/classroomjohnny2.png", [26],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("(The session is filled with playful banter. Johnny's focus on capturing your essence is flattering, and the mood is reminiscent of a classic romantic movie.)", "pictures/classroomjohnny1.png", [27]),
+                     txtImgOptNameSndAff("(Sports stadium, buzzing with excitement.)", "pictures/stadiumjohnny1.png", [28], None, "sounds/animalese.wav"),
+                     txtImgOptNameSndAff("I'm really glad you came. Your support means a lot to me.", "pictures/stadiumjohnny2.png", [29], "Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/stadiumjohnny2.png", [{"text": "I wouldn't miss it. Seeing you run is inspiring. I brought a banner to cheer you on. Go Johnny!", "nextSceneIndex": 30, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "I'm curious to see how fast you run. Good luck!", "nextSceneIndex": 30, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I just hope it doesn't drag on too long.", "nextSceneIndex": 30, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}]),
+                     txtImgOptNameSndAff("Just knowing you're here in the crowd makes me want to run faster.", "pictures/stadiumjohnny2.png", [31],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/stadiumjohnny2.png", [{"text": "Well, then I expect nothing less than a win from you!", "nextSceneIndex": 32, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "Just focus on your race. Don’t worry about the crowd.", "nextSceneIndex": 32, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "Don't get too distracted by looking for me.", "nextSceneIndex": 32, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
+                     txtImgOptNameSndAff("(The energy of the competition is electric. As Johnny races, you find yourself fully invested in his success. His win feels like a shared victory.)", "pictures/stadiumjohnny3.png", [33]),
+                     txtImgOptNameSndAff("(Changi City Point mall, bustling with activity.)", "pictures/ccp1.png", [34], None, "sounds/animalese.wav"),
+                     txtImgOptNameSndAff("This mall is huge! Where should we start?", "pictures/ccp2.png", [35], "Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/ccp2.png", [{"text": "How about some window shopping? There are some great clothing stores here.", "nextSceneIndex": 36, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "Maybe grab a bite first? I'm a bit hungry.", "nextSceneIndex": 36, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "I don’t really like malls. They're too crowded.", "nextSceneIndex": 36, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}},{"text": "Let's explore together and find the best spot in CCP!", "nextSceneIndex": 36, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}}],"You"),
+                     txtImgOptNameSndAff("Sounds good. Maybe you can help me pick out something that screams 'Singapore'!", "pictures/ccp2.png", [37],"Johnny Sin", "sounds/xm2.wav"),
+                     txtImgOptNameSndAff("(In a café) This coffee is great, but not as sweet as your company.", "pictures/cafejohnny1.png", [38],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/cafejohnny1.png", [    {"text": "Smooth line, Johnny. Been practicing?", "nextSceneIndex": 39, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},    {"text": "You and your compliments! But thanks, the coffee is good.", "nextSceneIndex": 39, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},    {"text": "Are you always this cheesy?", "nextSceneIndex": 39, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
+                     txtImgOptNameSndAff("Maybe a little. But only the best for today.", "pictures/cafejohnny1.png", [40],"Johnny Sin", "sounds/xm2.wav"),
+                     txtImgOptNameSndAff("(Before the movie) I'm glad we did this. Today was perfect.", "pictures/cafejohnny1.png", [41],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("Me too, Johnny. It's nice to just relax and enjoy the day.", "pictures/cafejohnny1.png", [42], "You", "sounds/xm2.wav"),
+                     txtImgOptNameSndAff("(The day is a mix of casual shopping, sipping coffee, and watching a movie. It's comfortable and easy, with a hint of budding romance.)", "pictures/cafejohnny1.png", [43]),
+                     txtImgOptNameSndAff("(University observatory, under a starlit sky.)", "pictures/star1.png", [44], None, "sounds/animalese.wav"),
+                     txtImgOptNameSndAff("These stars... they're like nothing I've seen back home.", "pictures/star1.png", [45], "Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/star1.png", [{"text": "They have a way of making everything seem so possible, so magical.", "nextSceneIndex": 46, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},    {"text": "Yeah, it's a clear night. Perfect for star-gazing.", "nextSceneIndex": 46, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},    {"text": "I'm more of a city lights person, but this is okay.", "nextSceneIndex": 46, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}},    {"text": "It's like they're shining just for us tonight.", "nextSceneIndex": 46, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}}],"You"),
+                     txtImgOptNameSndAff("You know, I've been meaning to tell you something. These past few days with you have been the highlight of my trip.", "pictures/star1.png", [47],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("Really? I've enjoyed our time together too.", "pictures/star1.png", [48], "You", "sounds/xm2.wav"),
+                     txtImgOptNameSndAff("I feel like there's something special between us. I know my time here is limited, but I had to let you know.", "pictures/star1.png", [49],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/star1.png", [{"text": "Johnny, I feel it too. Let's just enjoy this moment, under the stars.", "nextSceneIndex": 50, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "That's really sweet, Johnny. I'm glad we met.", "nextSceneIndex": 50, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "It's been fun, but let's not get ahead of ourselves.", "nextSceneIndex": 50, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
+                     txtImgOptNameSndAff("(The night is filled with heartfelt confessions and quiet understanding. The stars above seem to bless this new, uncertain yet hopeful chapter in your lives.)", "pictures/star1.png", [51]),
+                     txtImgOptNameSndAff("(A quiet spot on campus, preparing to say goodbye.)", "pictures/star1.png", [52], None, "sounds/animalese.wav"),
+                     txtImgOptNameSndAff("This week with you has been the best part of my exchange. I wish it didn't have to end.", "pictures/star1.png", [53], "Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/star1.png", [{"text": "I feel the same way, Johnny. This week was unforgettable.", "nextSceneIndex": 54, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "It's been great, hasn't it? We made some good memories.", "nextSceneIndex": 54, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "All good things come to an end, right? That's life.", "nextSceneIndex": 54, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}},{"text": "Let's make a promise to see each other again, no matter what.", "nextSceneIndex": 54, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}}],"You"), 
+                     txtImgOptNameSndAff("I hope we can keep in touch. Maybe you could visit me in the States someday?", "pictures/star1.png", [55],"Johnny Sin", "sounds/xm1.wav"),
+                     txtImgOptNameSndAff("", "pictures/star1.png", [{"text": "I'd like that. It's not goodbye, just see you later.", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}},{"text": "Sure, we can try to stay in touch. Who knows what the future holds?", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "It's hard to make such promises, Johnny. But let's enjoy today.", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}}],"You"),
+                     txtImgOptNameSndAff( "It's been an amazing week, Johnny Sin. Thanks for sharing it with me.", "pictures/star1.png", [57], "You", "sounds/justforfun.wav")]))
                      chatButton4.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
                      # Add a label for the character description
+                     
                      description4 = Label(selectFrame, text="An exchange student from the USA with\na heart as warm as his home state.\n\nHis charm lies in his adventurous spirit\nand his willingness to immerse\nhimself in new experiences.\n\n-Johnny's enthusiasm is infectious\n\n-He brings a touch of foreign intrigue\nand a lot of friendly warmth.\n\nJoin him on his journey of cultural exchange.", bg="#ed8c8c",font=("Comic Sans MS", 15))
                      description4.grid(row=row, column=column+2, sticky=W+E)
                      johnny_dialogues = []
@@ -240,8 +251,6 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
        # Position the window
        window.geometry("+{}+{}".format(position_right, position_top))
 
-
-
 def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
        winsound.PlaySound(None, winsound.SND_PURGE)
        storyFrame = Frame(window)
@@ -260,6 +269,7 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
               pictureFrame = Label(storyFrame, image="", border="2", highlightbackground="#A7885C", highlightthickness=2, height=550)
               pictureFrame.image = img
               pictureFrame.config(image=img)
+              
               if (len(options) > 1): # If there are multiple options, show multiple options.
                      showContinue = False
                      pictureFrame.pack(side="top", fill="both", expand= True)
@@ -279,8 +289,11 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                                    if (affectionChange =='neutral'):
                                        print('no change of affection of ' + NPC.getName())
                                    print(NPC.getAffectionLevel()) 
-                            optionButton = Button(chatFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6)
+                                   
+                            
+                            optionButton = Button(chatFrame, text=option['text'], borderwidth=1, background="#d1aa73", foreground="black", font=("roboto", 20), command=lambda idx=option: [updateCurrentIndex(idx.get("nextSceneIndex"), idx.get("affection").get("affectedNPC"), idx.get("affection").get("change")), updateDialogue()], padx=2, pady=6, activebackground="#A7885C")
                             optionButton.pack(side = "top", fill=X, padx=50, pady=5, expand=FALSE)
+                            create_button_hover_effect(optionButton)
               else:
                      pictureFrame.pack(side="top", fill="both")
                      showContinue = True
@@ -316,8 +329,15 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list):
                      currentIndex = sceneIndex
                      updateDialogue()
               if(showContinue):
-                     chatButton = Button(chatButtonContainer, text='Continue >>', font=("roboto", 24), borderwidth=2, background="#d1aa73", foreground="black", command=continueDialogue, padx=2, pady=2)
+                     chatButton = Button(chatButtonContainer, text='Continue >>', font=("roboto", 24), borderwidth=2, background="#d1aa73", foreground="black", command=continueDialogue, padx=2, pady=2, activebackground="#A7885C")
                      chatButton.pack(side="bottom")
+                     def onEnter(e):
+                            chatButton.config(bg='#A7885C')
+                     def onLeave(e):
+                            chatButton.config(bg='#d1aa73')
+                     chatButton.bind("<Enter>", onEnter)
+                     chatButton.bind("<Leave>", onLeave)
+                     
               if(affectionCheck != None):
                      affectedNPC: NPC = affectionCheck.get("NPC")
                      comparison = affectionCheck.get("comparison")
@@ -369,29 +389,29 @@ def main():
     # Create a frame to hold the start menu widgets
     start_menu_frame = Frame(window, bg='#d1aa73', highlightbackground="#A7885C", highlightthickness=4)
     start_menu_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
-
     # Create a label for the game title
     title_label = Label(start_menu_frame, text="SUTDoki", bg='#d1aa73', font=('Comic Sans MS', 48))
     title_label.pack(pady=20)
 
     # Create an entry for the player to input their name
-    name_label = Label(start_menu_frame, text="What's your name?", bg='#d1aa73', font=('Comic Sans MS', 24))
+    name_label = Label(start_menu_frame, text="What's your name?", bg='#d1aa73', font=('Comic Sans MS', 24), padx=2)
     name_label.pack()
-    name_entry = Entry(start_menu_frame, font=('Arial', 24))
+    name_entry = Entry(start_menu_frame, font=('Comic Sans MS', 24))
     name_entry.pack(padx=10, pady=10)
 
     NPClist = [JOHNNYSIN,JUNGCOOK,ADAMCMITH,XIAOMING]
     photoList = [
-           PhotoImage(file="pictures/dog.png"),
+           PhotoImage(file="pictures/johnnysin_profile.png"),
            PhotoImage(file="pictures/JC/JCPP.png"),
            PhotoImage(file="pictures/AdamCmith_Pic/Cover Photo.png"),
            PhotoImage(file="pictures/dog.png")
     ]
 
     # Create the start button
-    start_button = Button(start_menu_frame, text="Start Story", font=('Arial', 24), command=lambda: 
+    start_button = Button(start_menu_frame, text="Start Story", font=('Roboto', 24), bg='#d1aa73', activebackground="#A7885C", command=lambda: 
             [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist, photoList)])
-    start_button.pack(pady=20)
+    start_button.pack(pady=20, expand=TRUE)
+    create_button_hover_effect(start_button)
     window.attributes("-fullscreen", True)
     window.bind("<F11>", lambda event: window.attributes("-fullscreen",
                                    not window.attributes("-fullscreen")))
@@ -423,6 +443,5 @@ def show_toast(message, duration=3000):  # Duration in milliseconds
 
 if __name__ == '__main__':
        main()
-
 
 
