@@ -289,7 +289,7 @@ def JC(name):
        ("(You guys then proceed to Prom and enjoyed yourselves. )", "pictures/JC/promtgt.png", [232]),
        ("Story End", picofsun, [233]),
        ("Congratss you got JungCook Heart", picofsun, [234]),
-       ("Thanks for playing!!!!!", picofsun, [])
+       ("Thanks for playing!!!!!", picofsun, [], '', '', None, True)
        ]
        return diag
 
