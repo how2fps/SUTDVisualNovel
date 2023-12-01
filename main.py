@@ -213,6 +213,7 @@ def showSelectNPCWindow(window: Tk, currentFrame: Frame, name, NPCList, photoLis
                      txtImgOptNameSndAff( "It's been an amazing week, Johnny Sin. Thanks for sharing it with me.", "pictures/star1.png", [57], "You", "sounds/justforfun.wav")]))
                      chatButton4.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
                      # Add a label for the character description
+                     
                      description4 = Label(selectFrame, text="An exchange student from the USA with\na heart as warm as his home state.\n\nHis charm lies in his adventurous spirit\nand his willingness to immerse\nhimself in new experiences.\n\n-Johnny's enthusiasm is infectious\n\n-He brings a touch of foreign intrigue\nand a lot of friendly warmth.\n\nJoin him on his journey of cultural exchange.", bg="#ed8c8c",font=("Comic Sans MS", 15))
                      description4.grid(row=row, column=column+2, sticky=W+E)
                      johnny_dialogues = []
