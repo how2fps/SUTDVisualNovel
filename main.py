@@ -75,7 +75,8 @@ def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, p
        # "affectionCheck" is a dictionary in this format {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }. 
        # "NPC" is the NPC you want to check the affection level of.
        # "comparison" is to check whether it is smaller or bigger than the "amount".
-       # "altSceneIndex" is the alternate scene you want to go to when the comparison returns TRUE.
+       # "altSceneIndex" is the alternate scene you want to go to when the comparison returns TRUE. 
+       # "isFinalScene" is should be set to true to show "Back to main menu" instead of "Continue >>" when the story ends.
 
        # "options" is a list that dictates what scenes the buttons go to.
        # If you have multiple options, create a list of dictionary
