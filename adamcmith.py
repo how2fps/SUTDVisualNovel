@@ -187,11 +187,19 @@ def AC(name):
             #Day 7 End
             #________________________________________________________________________________Sound__________________________________________________________________________________________________
             #Good ending index link to 114
+<<<<<<< HEAD
             ("[You and Adam go to prom to gether]", "pictures/Prom Night.png", [115]),
             ("[Congratulations You Win]", "pictures/Prom Night.png", [], True),
             #Bad ending index link 116
             ("Adam felt distence from you", "pictures/No Prom.png", [117]),
             ("You Lose", "pictures/No prom.png", [117], True),
+=======
+            ("[You and Adam go to prom to gether]", "pictures/dog.png", [115]),
+            ("[Congratulations You Win]", "pictures/dog.png", [115], '', '', None, True),
+            #Bad ending index link 116
+            ("Adam felt distence from you", "pictures/dog.png", [117]),
+            ("You Lose", "pictures/dog.png", [117], '', '', None, True),
+>>>>>>> 373657e45c1a3acd98955853f9d12d4c7c237112
             #Adjustment to Options Update
             ("Thought: That's Adam! I haven't seen him in days. He looks so stressed... I wonder what he's studying.", "pictures/AdamCmith_Pic/003.png", [2], name),#118
             ("Thought: Wow, Adam's here too? That's unexpected. It's nice to see a familiar face, though.", "pictures/AdamCmith_Pic/103.png", [19], name),#119
