@@ -430,7 +430,6 @@ def main():
 
     # Position the window
     window.geometry("+{}+{}".format(position_right, position_top))
-    
     bg_photo = PhotoImage(file='pictures/start_menu_bg3.png')
     bg_label = Label(window, image=bg_photo)
     bg_label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -447,6 +446,7 @@ def main():
     name_label.pack()
     name_entry = Entry(start_menu_frame, font=('Comic Sans MS', 24))
     name_entry.pack(padx=10, pady=10)
+    winsound.PlaySound("sounds/justforfun.wav", winsound.SND_ASYNC)
 
     NPClist = [JOHNNYSIN,JUNGCOOK,ADAMCMITH,XIAOMING]
     photoList = [
