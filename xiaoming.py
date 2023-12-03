@@ -363,7 +363,7 @@ def XIAO_MING(name):
        ["(You turn around and sprinted all way to the MRT station without even saying goodbye.)", "pictures/xiaoming/park.png", [], "", sad],
        ["You start sobbing all the way home.)", "pictures/xiaoming/mrt.png", [], "", awwcute],
        ["(You got friendzoned.)", "pictures/xiaoming/bad.png", [], "", boo],
-       ["Maybe it was just not meant to be.....", "pictures/xiaoming/bad.png", [], "", sad]
+       ["Maybe it was just not meant to be.....", "pictures/xiaoming/bad.png", [], "", sad, None, True]
        ]
      
        return diag
