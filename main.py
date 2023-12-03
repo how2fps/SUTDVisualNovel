@@ -393,7 +393,7 @@ def goStartMenu(window, photoImage:PhotoImage, currentFrame: Frame = None):
        photoList = [
               PhotoImage(file="pictures/johnnysin_profile.png"),
               PhotoImage(file="pictures/JC/JCPP.png"),
-              PhotoImage(file="pictures/dog.png"),
+              PhotoImage(file="pictures/AdamCmith_Pic/Cover Photo.png"),
               PhotoImage(file="pictures/dog.png")
        ]
 
