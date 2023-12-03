@@ -330,7 +330,7 @@ def XIAO_MING(name):
        ["You start sobbing all the way home.)", picmain, [], "", "sounds/animalese (1).wav"],
        ["(You got friendzoned.)", picmain, [], "", "sounds/animalese (1).wav"],
        ["Maybe it was just not meant to be.....", picmain, [], "", "sounds/animalese (1).wav"]
-       ]
+       
        
 
     
