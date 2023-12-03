@@ -106,11 +106,11 @@ def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, p
               if NPC == XIAOMING:
                      xiaomingScenes = []
                      for i in XIAO_MING(name):
-                            listy = {1:'',2:'',3:[],4:None,5:None,6:None,7:False}
+                            funcParams = {1:'',2:'',3:[],4:None,5:None,6:None,7:False}
                             length = len(i)
                             for j in range(1, length + 1):
-                                   listy[j] = i[j - 1]
-                            xiaomingScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6], listy[7]))
+                                   funcParams[j] = i[j - 1]
+                            xiaomingScenes.append(txtImgOptNameSndAff(funcParams[1], funcParams[2], funcParams[3], funcParams[4], funcParams[5], funcParams[6], funcParams[7]))
                      xiaomingStartBtn = Button(selectFrame, text=XIAOMING.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, xiaomingScenes, photoImage), padx=2, pady=2)
                      xiaomingStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
                      create_button_hover_effect(xiaomingStartBtn)
@@ -120,11 +120,11 @@ def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, p
               elif NPC == JUNGCOOK:
                      jungcookScenes = []
                      for i in JC(name):
-                            listy = {1:'',2:'',3:[],4:None,5:None,6:None,7:False}
+                            funcParams = {1:'',2:'',3:[],4:None,5:None,6:None,7:False}
                             length = len(i)
                             for j in range(1, length + 1):
-                                   listy[j] = i[j - 1]
-                            jungcookScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6], listy[7]))
+                                   funcParams[j] = i[j - 1]
+                            jungcookScenes.append(txtImgOptNameSndAff(funcParams[1], funcParams[2], funcParams[3], funcParams[4], funcParams[5], funcParams[6], funcParams[7]))
                      jungcookStartBtn = Button(selectFrame, text=JUNGCOOK.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, jungcookScenes, photoImage), padx=2, pady=2)
                      jungcookStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
                      create_button_hover_effect(jungcookStartBtn)
@@ -452,7 +452,7 @@ def main():
     photoList = [
            PhotoImage(file="pictures/johnnysin_profile.png"),
            PhotoImage(file="pictures/JC/JCPP.png"),
-           PhotoImage(file="pictures/AdamCmith_Pic/Cover Photo.png"),
+           PhotoImage(file="pictures/dog.png"),
            PhotoImage(file="pictures/dog.png"),
     ]
 
