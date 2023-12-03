@@ -269,7 +269,7 @@ def XIAO_MING(name):
        ["Hey!! I brought you a lil something, hope you like it!!", picmain, [], name, "sounds/animalese (1).wav"],
        ["(You hand him the gift.)", picmain, [], "", "sounds/animalese (1).wav"],
        ["What gift did you buy for him?", picmain, [], "", "sounds/animalese (1),wav"],
-       ["", picmain, {"text": "A shoebag", "nextSceneIndex": 219, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "A bunch of snacks.", "nextSceneIndex": 220, "affection": {"affectedNPC": XIAOMING, "change": NEUTRAL}}, {"text": "A cute phone cover", "nextSceneIndex": 221, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}]],
+       ["", picmain, {"text": "A shoebag", "nextSceneIndex": 219, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "A bunch of snacks.", "nextSceneIndex": 220, "affection": {"affectedNPC": XIAOMING, "change": NEUTRAL}}, {"text": "A cute phone cover", "nextSceneIndex": 221, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}],
        ["Wait.... how did you know I needed this, my old shoebag got holes in it and I was planning to replace it. This will do it for me!! Thanks so much!!", picmain, [222], XM, "sounds/animalese (1).wav"],
        ["Oohhhh thanks!! This will push me through the late night studies!!", picmain, [222], XM, "sounds/animalese (1).wav"],
        ["Ahh shit, my phone doesn’t fit into the cover 🙁 I appreciate it a lot though.", picmain, [], XM, "sounds/animalese (1).wav"],
@@ -282,7 +282,7 @@ def XIAO_MING(name):
        ["", picmain, [{'text': "Sephora", "nextSceneIndex": 229, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}, {"text": "Victoria's Secret (are you fr?)", "nextSceneIndex": 229, "affection": {"affectedNPC": XIAOMING, "change":DECREASE}}, {"text": "Foot-Locker", "nextSceneIndex": 231, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}]],
        ["uhhhh... ngl I personally wouldn’t get anything from there anyways. How about Foot Locker instead? I wanna scout some new shoes to add to my collection!!", picmain, [], XM, "sounds/animalese (1).wav"],
        ["Ohh sounds good. I don’t mind looking at some nice shoes too.", picmain, [232], name, "sounds/animalese (1).wav"],
-       ["Yooo, I didn’t know that you are into shoes, I am a sneakerhead too!! If you’re looking to get a new shoe I am down to recommend you some a few models", picmain, [], XM, "sounds/animalese(1).wav"]
+       ["Yooo, I didn’t know that you are into shoes, I am a sneakerhead too!! If you’re looking to get a new shoe I am down to recommend you some a few models", picmain, [], XM, "sounds/animalese(1).wav"],
        ["(Both of you visit Foot Locker, XM passionately goes through all the models of the shoes being displayed.)", picmain, [], "", "sounds/animalese (1).wav"],
        ["(He recommends a few pair that he personally thinks are value-for-money.)", picmain, [], "", "sounds/animalese (1).wav"],
        ["Here, try these few pairs. It’s durable, comfortable and looks great aesthetically at the same time!!", picmain, [], XM, "sounds/animalese (1).wav"],
@@ -330,7 +330,7 @@ def XIAO_MING(name):
        ["You start sobbing all the way home.)", picmain, [], "", "sounds/animalese (1).wav"],
        ["(You got friendzoned.)", picmain, [], "", "sounds/animalese (1).wav"],
        ["Maybe it was just not meant to be.....", picmain, [], "", "sounds/animalese (1).wav"]
-       
+       ]
        
 
     
