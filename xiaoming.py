@@ -300,7 +300,7 @@ def XIAO_MING(name):
        ["(Maybe love makes you do dumb things.)", cs, [], "", awwcute],
        ["(Hmmm, what should I get?)", "pictures/xiaoming/girl_cs.png", [], "", girl_hmm],
        ["(In the afternoon, you meet up with XM at the shopping mall.)", sm, [], "", "sounds/animalese (1).wav"],
-       ["Hey!! I brought you a lil something, hope you like it!!", "pictures/xiaoming/girl_sm.png", [], name,awwcute],
+       ["Hey!! I brought you a lil something, hope you like it!!", "pictures/xiaoming/girl_sm.png", [], name, awwcute],
        ["(You hand him the gift.)", sm, [], "", "sounds/animalese (1).wav"],
        ["What gift did you buy for him?", sm, [], "", "sounds/animalese (1).wav"],
        ["", sm, [{"text": "A shoebag", "nextSceneIndex": 220, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "A bunch of snacks.", "nextSceneIndex": 221, "affection": {"affectedNPC": XIAOMING, "change": NEUTRAL}}, {"text": "A cute phone cover", "nextSceneIndex": 222, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}]],
