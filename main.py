@@ -106,11 +106,11 @@ def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, p
               if NPC == XIAOMING:
                      xiaomingScenes = []
                      for i in XIAO_MING(name):
-                            listy = {1:'',2:'',3:[],4:None,5:None,6:None,7:False}
+                            funcParams = {1:'',2:'',3:[],4:None,5:None,6:None,7:False}
                             length = len(i)
                             for j in range(1, length + 1):
-                                   listy[j] = i[j - 1]
-                            xiaomingScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6], listy[7]))
+                                   funcParams[j] = i[j - 1]
+                            xiaomingScenes.append(txtImgOptNameSndAff(funcParams[1], funcParams[2], funcParams[3], funcParams[4], funcParams[5], funcParams[6], funcParams[7]))
                      xiaomingStartBtn = Button(selectFrame, text=XIAOMING.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, xiaomingScenes, photoImage), padx=2, pady=2)
                      xiaomingStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
                      create_button_hover_effect(xiaomingStartBtn)
@@ -120,11 +120,11 @@ def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, p
               elif NPC == JUNGCOOK:
                      jungcookScenes = []
                      for i in JC(name):
-                            listy = {1:'',2:'',3:[],4:None,5:None,6:None,7:False}
+                            funcParams = {1:'',2:'',3:[],4:None,5:None,6:None,7:False}
                             length = len(i)
                             for j in range(1, length + 1):
-                                   listy[j] = i[j - 1]
-                            jungcookScenes.append(txtImgOptNameSndAff(listy[1], listy[2], listy[3], listy[4], listy[5], listy[6], listy[7]))
+                                   funcParams[j] = i[j - 1]
+                            jungcookScenes.append(txtImgOptNameSndAff(funcParams[1], funcParams[2], funcParams[3], funcParams[4], funcParams[5], funcParams[6], funcParams[7]))
                      jungcookStartBtn = Button(selectFrame, text=JUNGCOOK.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, jungcookScenes, photoImage), padx=2, pady=2)
                      jungcookStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
                      create_button_hover_effect(jungcookStartBtn)
@@ -432,40 +432,7 @@ def main():
     window.geometry("+{}+{}".format(position_right, position_top))
     
     bg_photo = PhotoImage(file='pictures/start_menu_bg3.png')
-    bg_label = Label(window, image=bg_photo)
-    bg_label.place(x=0, y=0, relwidth=1, relheight=1)
-
-    # Create a frame to hold the start menu widgets
-    start_menu_frame = Frame(window, bg='#d1aa73', highlightbackground="#A7885C", highlightthickness=4)
-    start_menu_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
-    # Create a label for the game title
-    title_label = Label(start_menu_frame, text="SUTDoki", bg='#d1aa73', font=('Comic Sans MS', 48))
-    title_label.pack(pady=20)
-
-    # Create an entry for the player to input their name
-    name_label = Label(start_menu_frame, text="What's your name?", bg='#d1aa73', font=('Comic Sans MS', 24), padx=2)
-    name_label.pack()
-    name_entry = Entry(start_menu_frame, font=('Comic Sans MS', 24))
-    name_entry.pack(padx=10, pady=10)
-
-    NPClist = [JOHNNYSIN,JUNGCOOK,ADAMCMITH,XIAOMING]
-    photoList = [
-           PhotoImage(file="pictures/johnnysin_profile.png"),
-           PhotoImage(file="pictures/JC/JCPP.png"),
-           PhotoImage(file="pictures/dog.png"),
-           PhotoImage(file="pictures/dog.png"),
-    ]
-
-    # Create the start button
-    start_button = Button(start_menu_frame, text="Start Story", font=('Roboto', 24), bg='#d1aa73', activebackground="#A7885C", command=lambda: 
-            [protagonist.setName(name_entry.get()), showSelectNPCWindow(window, start_menu_frame, name_entry.get(), NPClist, photoList, "pictures/start_menu_bg.png")])
-    start_button.pack(pady=20, expand=TRUE)
-    create_button_hover_effect(start_button)
-    window.attributes("-fullscreen", True)
-    window.bind("<F11>", lambda event: window.attributes("-fullscreen",
-                                   not window.attributes("-fullscreen")))
-    window.bind("<Escape>", lambda event: window.attributes("-fullscreen", False))
-    show_toast("Press F11 to toggle Fullscreen\nPress Escape to exit Fullscreen")
+    goStartMenu(window, bg_photo)
     window.mainloop()
 
 
