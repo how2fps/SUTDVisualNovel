@@ -462,7 +462,7 @@ def main():
 
     NPClist = [JOHNNYSIN,JUNGCOOK,ADAMCMITH,XIAOMING]
     photoList = [
-           PhotoImage(file="pictures/johnnysin_profile.png"),
+           PhotoImage(file="pictures/johnnysin_profile_resized2.png"),
            PhotoImage(file="pictures/JC/JCPP.png"),
            PhotoImage(file="pictures/dog.png"),
            PhotoImage(file="pictures/dog.png")
