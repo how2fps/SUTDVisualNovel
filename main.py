@@ -71,10 +71,6 @@ def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, p
               NPC = NPCList[i]
               image = photoList[i].subsample(3,3)
               photoList[i] = image  # keep the reference to the new PhotoImage
-              XIAOMING.clearAffectionLevel()
-              JOHNNYSIN.clearAffectionLevel()
-              JUNGCOOK.clearAffectionLevel()
-              ADAMCMITH.clearAffectionLevel()
               if NPC == XIAOMING:
                      xiaomingScenes = []
                      for i in XIAO_MING(name):
@@ -341,6 +337,10 @@ def createScenes(window: Tk, currentFrame: Frame, textImgNameSound: list, photoI
        return updateDialogue()
 
 def goStartMenu(window, photoImage:PhotoImage, currentFrame: Frame = None):
+       XIAOMING.clearAffectionLevel()
+       JOHNNYSIN.clearAffectionLevel()
+       JUNGCOOK.clearAffectionLevel()
+       ADAMCMITH.clearAffectionLevel()
        if (currentFrame is not None):
               currentFrame.pack_forget()
        winsound.PlaySound("sounds/justforfun.wav", winsound.SND_ASYNC)
