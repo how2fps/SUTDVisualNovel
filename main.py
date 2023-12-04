@@ -62,38 +62,6 @@ def create_button_hover_effect(button, bg_normal='#d1aa73', bg_hover='#A7885C'):
        button.bind("<Leave>", on_leave)
 
 def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, photoList:list, photoImage: PhotoImage):
-       # ****FUNCTION txtImgOptNameSndAff****
-
-       # "text" is what the dialogue in the chatbox reads, leave it empty during multiple option scenes.
-
-       # "imgFilePath" is the relative image file path to this file, a few examples are shown (ONE image for each scene, edit the characters onto the image, 1080x550 resolution)
-
-       # "name" is the name of the character who is speaking, it will appear in the name box at the top left of the chatbox, leave it empty to not have the name box shown.
-
-       # "soundFilePath" is the relative sound file path to this file, a few examples are shown.
-
-       # "affectionCheck" is a dictionary in this format {"NPC": XIAOMING, "comparison": SMALLER, "amount": 5, "altSceneIndex": 2 }. 
-       # "NPC" is the NPC you want to check the affection level of.
-       # "comparison" is to check whether it is smaller or bigger than the "amount".
-       # "altSceneIndex" is the alternate scene you want to go to when the comparison returns TRUE. 
-       # "isFinalScene" is should be set to true to show "Back to main menu" instead of "Continue >>" when the story ends.
-
-       # "options" is a list that dictates what scenes the buttons go to.
-       # If you have multiple options, create a list of dictionary
-       # [{"text": "Scene 6", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, 
-       #  {"text": "Scene 7", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}] < like this
-       # where "text" is the text shown in the option button, and "nextSceneIndex" is the scene's index in the array it will jump to when the button is pressed.
-       # If you put options as a single number in a list e.g. [3], it will go to the scene at array index 3.
-       # If you put options as [], an empty list, it will go to the scene in the next index.
-       # "affection" is a dictionary that takes in the affected NPC and whether the button will INCREASE or DECREASE his affection.
-       # If neutral, just put {"text": "Neutral Option Example", "nextSceneIndex": 8}, without "affection"
-       # [{"text": "Positive Option Example", "nextSceneIndex": 6, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, 
-       #  {"text": "Negative Option Example", "nextSceneIndex": 7, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}},
-       #  {"text": "Neutral Option Example", "nextSceneIndex": 8} ] < like this
- 
-       # https://acedio.github.io/animalese.js/ < please use this to generate more animal crossing sounds, need to format this to .wav even though it is already .wav if not winsound wouldn't run it
-       # https://cloudconvert.com/wav-converter < use this to reformat the animal crossing sounds
-       # How to find out what index your dialogue is in the array: Take the current line of your array and subtract from the starting line. P.S: Put your dialogues in this vertical manner. 
        currentFrame.pack_forget()
        selectFrame = Frame(window)
        selectFrame.pack(fill=BOTH, expand=1)
@@ -103,6 +71,10 @@ def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, p
               NPC = NPCList[i]
               image = photoList[i].subsample(3,3)
               photoList[i] = image  # keep the reference to the new PhotoImage
+              XIAOMING.clearAffectionLevel()
+              JOHNNYSIN.clearAffectionLevel()
+              JUNGCOOK.clearAffectionLevel()
+              ADAMCMITH.clearAffectionLevel()
               if NPC == XIAOMING:
                      xiaomingScenes = []
                      for i in XIAO_MING(name):

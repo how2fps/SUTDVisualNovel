@@ -25,5 +25,8 @@ class NPC:
        def getAffectionLevel(self):
               return self.affectionLevel
        
+       def clearAffectionLevel(self):
+              self.affectionLevel = 0
+       
        def getName(self):
               return self.name
