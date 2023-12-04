@@ -394,7 +394,7 @@ def goStartMenu(window, photoImage:PhotoImage, currentFrame: Frame = None):
               PhotoImage(file="pictures/johnnysin_profile.png"),
               PhotoImage(file="pictures/JC/JCPP.png"),
               PhotoImage(file="pictures/AdamCmith_Pic/Cover Photo.png"),
-              PhotoImage(file="pictures/xiaoming/xm.png")
+              PhotoImage(file="pictures/xiaoming/sad.png")
        ]
 
        # Create the start button
