@@ -249,7 +249,7 @@ def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, p
                      txtImgOptNameSndAff("I hope we can keep in touch. Maybe you could visit my girlfriend and I in the States someday?", "pictures/sutdscene.png", [55],"Johnny Sin", "sounds/xm1.wav"),
                      txtImgOptNameSndAff( ".......................??.", "pictures/sutdscene.png", [57], "You", "sounds/silence.wav"),
                      txtImgOptNameSndAff("", "pictures/sutdscene.png", [{"text": "Bruhhhhhhh U got girlfriend already?!.", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": DECREASE}},{"text": "Sure, we can try to stay in touch. Who knows what the future holds?", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": NEUTRAL}},{"text": "Can I be your sidechick?", "nextSceneIndex": 56, "affection": {"affectedNPC": JOHNNYSIN, "change": INCREASE}}],"You"),
-                     txtImgOptNameSndAff( "(Johnny Sin went back to USA, you are left alone in sutd. Feeling empty and depressed, you decided to commit sudoku. END)", "pictures/endgamejohnny.png", [57], "You", "sounds/justforfun.wav"),
+                     txtImgOptNameSndAff( "(Johnny Sin went back to USA, you are left alone in sutd. Feeling empty and depressed, you decided to commit sudoku. END)", "pictures/endgamejohnny.png", [57], "You", "sounds/justforfun.wav", None, True),
                      txtImgOptNameSndAff( end_game(affection_score), "pictures/endgamejohnny.png", [57], "You", "sounds/justforfun.wav"),
                      end_game(affection_score)],photoImage))
                      
