@@ -114,7 +114,7 @@ def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, p
                      xiaomingStartBtn = Button(selectFrame, text=XIAOMING.getName(),  image = image, compound=TOP, borderwidth=2, background="#d1aa73", activebackground="#A7885C", foreground="black", font=("roboto", 20), command=lambda:createScenes(window, selectFrame, xiaomingScenes, photoImage), padx=2, pady=2)
                      xiaomingStartBtn.grid(row=row, column=column+2, sticky=N+E+W+S, padx=10, pady=10)
                      create_button_hover_effect(xiaomingStartBtn)
-                     xiaomingDescription = Label(selectFrame, text="Shy yet sporty tech student\n\n-Introverted coder\n\n-Confident athlete\n\n-Uses his tech prowess \nto solve challenges\n\nJoin him on his journey from \nnovice coder to top tech expert", bg="#8cb9ed", font=("Comic Sans MS", 15))
+                     xiaomingDescription = Label(selectFrame, text="Socially awkward\n\n-Huge introvert\n\n-Passionate and energetic on the field\n\n-Huge contrast in personality on and off the field\n\n-Join him on his journey to open up \nand become more enthusiastic in the\n daily school life", bg="#8cb9ed", font=("Comic Sans MS", 15))
                      xiaomingDescription.grid(row=row, column=column+3, sticky=W+E)
 
               elif NPC == JUNGCOOK:
