@@ -253,7 +253,6 @@ def showSelectNPCWindow(window:Tk, currentFrame:Frame, name:str, NPCList:list, p
                      txtImgOptNameSndAff( end_game(affection_score), "pictures/endgamejohnny.png", [57], "You", "sounds/justforfun.wav"),
                      end_game(affection_score)],photoImage))
                      
-
                      chatButton4.grid(row=row, column=column, sticky=N+E+W+S, padx=10, pady=10)
                      # Add a label for the character description
                      
