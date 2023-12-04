@@ -6,9 +6,9 @@ from tkinter import *
 
 from adamcmith import *
 from classes import *
+from johnnysin import *
 from jungcook import *
 from xiaoming import *
-from johnnysin import *
 
 warnings.filterwarnings('ignore')
 

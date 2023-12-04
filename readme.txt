@@ -1,0 +1,1 @@
+Type python main.py in the terminal to run the program.
