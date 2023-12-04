@@ -1,1 +1,1 @@
-Type python main.py in the terminal to run the program.
+Type python main.py and press enter in the terminal to run the program.
