@@ -1,3 +1,6 @@
+# Team 1D-F04E
+# Members: Ng Guan Zhe, The Chong Lin, Huang Yuchuan. Siripongisit Siripong, Yap Ka Jun, Finn Yap Jun Hun
+
 # Type "python main.py" without the " " in the terminal to run this project. ctrl + ` to open the terminal.
 # Only need to add more scenes using txtImgOptNameSndAff function. Guide to use is below.
 import warnings
