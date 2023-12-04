@@ -129,7 +129,7 @@ def XIAO_MING(name):
        ["You know, XM, you're not at all what I expected.", girl_talk_ct, [], name, girl_hmm],
        ["What did you expect?", xm_talk_ct, [], XM, xm_hey], #shy
        #("", picofsun, [{"text": "Act SUS", "nextSceneIndex": 19, "affection": {"affectedNPC": JUNGCOOK, "change": INCREASE}}, {"text": "Ignore him", "nextSceneIndex": 24, "affection": {"affectedNPC": JUNGCOOK, "change": NEUTRAL}}, {"text": "Act Curious", "nextSceneIndex": 26, "affection": {"affectedNPC": JUNGCOOK, "change": DECREASE}}]) 
-       ["", picmain, [{"text": "I don't know, maybe someone more... distant. But you're surprisingly easy to talk to.", "nextSceneIndex": 52, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "I honestly expected you to be kinda energetic, but you seem to be very shy, conserved and even awkward.... but hey that’s kinda cute tho!!.", "nextSceneIndex": 55, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}, {"text": "You seem to be more conservative and shy, especially after seeing your energy and passion out on the field last night.", "nextSceneIndex": 54, "affection": {"affectedNPC": XIAOMING, "change": NEUTRAL}}]],
+       ["", picmain, [{"text": "I don't know, maybe someone more... distant. But you're surprisingly easy to talk to.", "nextSceneIndex": 52, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "I honestly expected you to be kinda energetic, but you seem to be very shy, conserved and even awkward..\n..but hey that’s kinda cute tho!!.", "nextSceneIndex": 55, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}, {"text": "You seem to be more conservative and shy,\nespecially after seeing your energy and passion out on the field last night.", "nextSceneIndex": 54, "affection": {"affectedNPC": XIAOMING, "change": NEUTRAL}}]],
        ["….Ahhh thanks a lot for that! I am aware I am quite socially awkward... but hearing someone say that I am approachable and easy to talk to sure is nice!!", xm_canteen, [], XM, xm_hmm],
        ["I will keep improving ok!!", xm_talk_ct, [56], XM, xm_hmm],
        ["yeahh..... I get that a lot. I just don’t have a lot of energy in me unless I am playing football.... hope that’s ok.", xm_sad_ct, [56], XM, sorry],
@@ -145,7 +145,7 @@ def XIAO_MING(name):
        ["(Trying to find a chance to meet XM, you invite him to study together in the library.)", "pictures/xiaoming/dorm.png", [], "", "sounds/animalese (1).wav"],
        ["How about tackling some assignments together? Two heads are better than one!" , "pictures/xiaoming/girl_dorm.png", [], name, girl_hey],
        ["Uh, sure. I usually study alone, though." , "pictures/xiaoming/xm_dorm.png", [], XM, xm_hey],
-       ["", "pictures/xiaoming/girl_dorm.png", [{"text": "Why not give it a go? Who knows, you might find it more productive too!! If you run into a tough question, we can help each other out.", "nextSceneIndex": 75, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "Ahh I see. Do you wanna try it out though? It can potentially be more productive :D .", "nextSceneIndex": 75, "affection": {"affectedNPC": XIAOMING, "change": NEUTRAL}}, {"text": "I understand, group studying might not be for everyone.", "nextSceneIndex": 67, "affection" : {"affectedNPC": XIAOMING, "change": DECREASE}}]],
+       ["", "pictures/xiaoming/girl_dorm.png", [{"text": "Why not give it a go? Who knows, you might find it more productive too!!\nIf you run into a tough question, we can help each other out.", "nextSceneIndex": 75, "affection": {"affectedNPC": XIAOMING, "change": INCREASE}}, {"text": "Ahh I see. Do you wanna try it out though?\nIt can potentially be more productive :D .", "nextSceneIndex": 75, "affection": {"affectedNPC": XIAOMING, "change": NEUTRAL}}, {"text": "I understand, group studying might not be for everyone.", "nextSceneIndex": 67, "affection" : {"affectedNPC": XIAOMING, "change": DECREASE}}]],
        ["Totally cool if it’s not your style, I shouldn’t disturb you.", "pictures/xiaoming/girl_dorm.png", [], name, girl_hmm],
        ["...yeah I am sorry, I realise that I am only productive when by myself so...", "pictures/xiaoming/xm_dorm.png", [], XM, sorry],
        ["(Being disappointed, you are about to just say goodbye and move on. However, before you have the chance to end the conversation, he says something that is quite surprising.)", "pictures/xiaoming/dorm.png", [], "", sad],
@@ -254,7 +254,7 @@ def XIAO_MING(name):
        ["(Being happy that he is very punctual, you walk up to him enthusiastically)", "pictures/xiaoming/cinema.png", [], "", awwcute],
        ["Hey, thank for being on time!!", "pictures/xiaoming/girl_talk_cinema.png", [], name, girl_hey],
        ["No problem. So, what movies do you want to watch?", "pictures/xiaoming/xm_happy_cinema.png", [], XM, xm_hey],
-       ["", "pictures/xiaoming/girl_talk_cinema.png", [{"text": "I am thinking of watching a horror!! The Nun sounds thrilling to watch!!", "nextSceneIndex": 176 , "affection": {"affectedNPC": XIAOMING, "change": INCREASE }}, {"text": "How about some comedy? I really need a good laugh to end off this stressful week.", "nextSceneIndex": 175 , "affection": {"affectedNPC": XIAOMING, "change": NEUTRAL}}, {"text": "How about a romance movie? I have been looking forward to watch “A Silent Voice” in the cinemas.", "nextSceneIndex": 173, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}]],
+       ["", "pictures/xiaoming/girl_talk_cinema.png", [{"text": "I am thinking of watching a horror!! The Nun sounds thrilling to watch!!", "nextSceneIndex": 176 , "affection": {"affectedNPC": XIAOMING, "change": INCREASE }}, {"text": "How about some comedy? I really need a good laugh to end off this stressful week.", "nextSceneIndex": 175 , "affection": {"affectedNPC": XIAOMING, "change": NEUTRAL}}, {"text": "How about a romance movie?\nI have been looking forward to watch “A Silent Voice” in the cinemas.", "nextSceneIndex": 173, "affection": {"affectedNPC": XIAOMING, "change": DECREASE}}]],
        ["ahhhh...... romance are not really my kinda thing. I have always been into something action-packed and thrilling. Love the adrenaline rush these movies give me. Let’s watch The Nun instead shall we? It should be exciting.", "pictures/xiaoming/xm_sad_cinema.png", [], XM, xm_hmm],
        ["Okok, let’s do it.", "pictures/xiaoming/girl_talk_cinema.png", [177], name, girl_hey],
        ["Comedy sounds nice, however I am lowkey craving for something thrilling. Let’s watch The Nun instead.", sorry, [177], XM, "sounds/animalese (1).wav"],
@@ -361,9 +361,9 @@ def XIAO_MING(name):
        ["(Filled with embarrassment, you couldn’t wait to escape.)", "pictures/xiaoming/park.png", [], "", "sounds/animalese (1).wav"],
        ["I have something on.... I gotta go now.", "pictures/xiaoming/girl park.png", [], name, boo],
        ["(You turn around and sprinted all way to the MRT station without even saying goodbye.)", "pictures/xiaoming/park.png", [], "", sad],
-       ["You start sobbing all the way home.)", "pictures/xiaoming/mrt.png", [], "", awwcute],
+       ["(You start sobbing all the way home.)", "pictures/xiaoming/mrt.png", [], "", awwcute],
        ["(You got friendzoned.)", "pictures/xiaoming/bad.png", [], "", boo],
-       ["Maybe it was just not meant to be.....", "pictures/xiaoming/bad.png", [], "", sad, None, True]
+       ["(Maybe it was just not meant to be.....)", "pictures/xiaoming/bad.png", [], "", sad, None, True]
        ]
      
        return diag
