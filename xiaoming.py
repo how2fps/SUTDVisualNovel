@@ -350,7 +350,7 @@ def XIAO_MING(name):
        ["(Congrats, it seems like the feelings was mutual.)", "pictures/xiaoming/park.png", [], "", awyeah],
        ["(On high spirits, both of you treasure the stroll back to the MRT station with all laughs and giggles.)", "pictures/xiaoming/park.png", [], "", awwcute],
        ["(Even on the way home, you smile uncontrollably.)", "pictures/xiaoming/girl_smile_park.png", [], "", awwcute],
-       ["(You now have to motivation to push through the arduous studying, knowing that when exams are over you get to go prom with him.)", "pictures/xiaoming/girl_smile_park.png", [500], "", "sounds/animalese (1).wav", True],
+       ["(You now have to motivation to push through the arduous studying, knowing that when exams are over you get to go prom with him.)", "pictures/xiaoming/girl_smile_park.png", [500], "", "sounds/animalese (1).wav", None, True],
        ["(His face turned into a small frown. )", "pictures/xiaoming/xm_frown_park.png", [], "", "sounds/animalese (1).wav"],
        ["Hey, I am so sorry if I made you misunderstood.", "pictures/xiaoming/xm_frown_park2.png", [], XM, sorry],
        ["I have always just seen you as a nice friend right from the beginning.", "pictures/xiaoming/xm_frown_park2.png", [], XM, sad],
